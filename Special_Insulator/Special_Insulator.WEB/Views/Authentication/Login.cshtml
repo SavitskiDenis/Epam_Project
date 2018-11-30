@@ -1,0 +1,23 @@
+﻿@model Special_Insulator.WEB.Models.UserLogin
+
+@{
+    ViewBag.Title = "Вход";
+}
+<div class="container border-dark">
+    <div class="row justify-content-center">
+        <div>
+            <h2>Введите свои данные</h2>
+            @using (@Html.BeginForm("Login", "Authentication", FormMethod.Post, new { @style = "border:1px solid #000000;border-radius:20px;margin:0 auto", @class = "col-lg-10" }))
+            {
+                <input type="text" class="form-control" style="margin-top:20px" placeholder="Логин">
+                <hr />
+                <input type="password" class="form-control" placeholder="Пароль">
+                <hr />
+                <button class="btn btn-dark" style="margin:0 auto;display:block;margin-bottom:20px" type="submit">ВОЙТИ</button>
+            }
+            <p class="text-center">Еще нету аккаунта? <a class="btn-link"  onclick="location.href = '@Url.Action("Registration", "Authentication")'"><font style="color:#29aafe">Регистрируйся</font></a></p>
+        </div>
+    </div>
+</div>
+
+
