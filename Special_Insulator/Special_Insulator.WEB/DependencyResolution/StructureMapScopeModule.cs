@@ -1,7 +1,7 @@
-namespace Special_Insulator.Dependency.DependencyResolution {
+namespace Special_Insulator.WEB.DependencyResolution {
     using System.Web;
 
-    using Special_Insulator.Dependency.App_Start;
+    using Special_Insulator.WEB.App_Start;
 
     using StructureMap.Web.Pipeline;
 

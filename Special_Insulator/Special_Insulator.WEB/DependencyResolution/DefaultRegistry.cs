@@ -15,7 +15,7 @@
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace Special_Insulator.Dependency.DependencyResolution {
+namespace Special_Insulator.WEB.DependencyResolution {
     using StructureMap.Configuration.DSL;
     using StructureMap.Graph;
 	
@@ -26,8 +26,6 @@ namespace Special_Insulator.Dependency.DependencyResolution {
             Scan(
                 scan => {
                     scan.TheCallingAssembly();
-                    scan.WithDefaultConventions();
-					scan.With(new ControllerConvention());
                 });
             //For<IExample>().Use<Example>();
         }

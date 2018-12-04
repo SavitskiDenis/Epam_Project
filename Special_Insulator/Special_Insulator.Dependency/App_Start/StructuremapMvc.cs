@@ -15,42 +15,42 @@
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 
-using Special_Insulator.Dependency.App_Start;
+//using Special_Insulator.Dependency.App_Start;
 
-using WebActivatorEx;
+//using WebActivatorEx;
 
-[assembly: PreApplicationStartMethod(typeof(StructuremapMvc), "Start")]
-[assembly: ApplicationShutdownMethod(typeof(StructuremapMvc), "End")]
+//[assembly: PreApplicationStartMethod(typeof(StructuremapMvc), "Start")]
+//[assembly: ApplicationShutdownMethod(typeof(StructuremapMvc), "End")]
 
-namespace Special_Insulator.Dependency.App_Start {
-	using System.Web.Mvc;
+//namespace Special_Insulator.Dependency.App_Start {
+//    using System.Web.Mvc;
 
-    using Microsoft.Web.Infrastructure.DynamicModuleHelper;
+//    using Microsoft.Web.Infrastructure.DynamicModuleHelper;
 
-	using Special_Insulator.Dependency.DependencyResolution;
+//	using Special_Insulator.Dependency.DependencyResolution;
 
-    using StructureMap;
+//    using StructureMap;
     
-	public static class StructuremapMvc {
-        #region Public Properties
+//	public static class StructuremapMvc {
+//        #region Public Properties
 
-        public static StructureMapDependencyScope StructureMapDependencyScope { get; set; }
+//        public static StructureMapDependencyScope StructureMapDependencyScope { get; set; }
 
-        #endregion
+//        #endregion
 		
-		#region Public Methods and Operators
+//		#region Public Methods and Operators
 		
-		public static void End() {
-            StructureMapDependencyScope.Dispose();
-        }
+//		public static void End() {
+//            StructureMapDependencyScope.Dispose();
+//        }
 		
-        public static void Start() {
-            IContainer container = IoC.Initialize();
-            StructureMapDependencyScope = new StructureMapDependencyScope(container);
-            DependencyResolver.SetResolver(StructureMapDependencyScope);
-            DynamicModuleUtility.RegisterModule(typeof(StructureMapScopeModule));
-        }
+//        public static void Start() {
+//            IContainer container = IoC.Initialize();
+//            StructureMapDependencyScope = new StructureMapDependencyScope(container);
+//            DependencyResolver.SetResolver(StructureMapDependencyScope);
+//            DynamicModuleUtility.RegisterModule(typeof(StructureMapScopeModule));
+//        }
 
-        #endregion
-    }
-}
+//        #endregion
+//    }
+//}

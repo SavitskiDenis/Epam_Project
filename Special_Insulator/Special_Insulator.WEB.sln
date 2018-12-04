@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Specila_Insultor.BLL", "Spe
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Special_Insulator.Dependency", "Special_Insulator.Dependency\Special_Insulator.Dependency.csproj", "{55FB3B48-F153-4577-814A-A9FBF26E043B}"
 EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "Special_Insulator_Db", "Special_Insulator_Db\Special_Insulator_Db.sqlproj", "{0A1F41CE-4AD1-47E6-ADD8-3694C542D357}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,12 @@ Global
 		{55FB3B48-F153-4577-814A-A9FBF26E043B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{55FB3B48-F153-4577-814A-A9FBF26E043B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{55FB3B48-F153-4577-814A-A9FBF26E043B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0A1F41CE-4AD1-47E6-ADD8-3694C542D357}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0A1F41CE-4AD1-47E6-ADD8-3694C542D357}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0A1F41CE-4AD1-47E6-ADD8-3694C542D357}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{0A1F41CE-4AD1-47E6-ADD8-3694C542D357}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0A1F41CE-4AD1-47E6-ADD8-3694C542D357}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0A1F41CE-4AD1-47E6-ADD8-3694C542D357}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -15,7 +15,7 @@
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace Special_Insulator.Dependency.DependencyResolution {
+namespace Special_Insulator.WEB.DependencyResolution {
     using System;
     using System.Collections.Generic;
     using System.Linq;

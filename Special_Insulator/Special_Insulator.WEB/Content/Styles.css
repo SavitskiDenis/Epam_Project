@@ -1,0 +1,12 @@
+﻿tr.vision button {
+    visibility: hidden;
+}
+
+tr.vision:hover button {
+    visibility: visible;
+}
+
+tr.vision textarea {
+    height: 70px; 
+    resize: none;
+}

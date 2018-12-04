@@ -6,6 +6,7 @@
     <title>@ViewBag.Title</title>
     <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/Styles.css" rel="stylesheet" />
     <script src="~/Scripts/modernizr-2.6.2.js"></script>
 </head>
 <body style="padding:0">
@@ -16,32 +17,17 @@
                 <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="background-color:#6c1e2e">
                 Навигация
                 </button>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <a class="dropdown-item" onclick="location.href = '#'">Список задержанных</a>
+                <div class="dropdown-menu " style="background-color:#6c1e2e" aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item" onclick="location.href = '@Url.Action("Index", "DetaineesPage")'">Список задержанных</a>
                     <a class="dropdown-item" onclick="location.href = '#'">Другое</a>
                 </div>
             </div>
-            <a class="nav-link navbar-nav mд-auto" onclick="location.href = '@Url.Action("Login", "Authentication")'">Вход</a>
-            
-            @*<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="navbar-collapse" id="navbarNavDropdown">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item "><a class="nav-link" onclick="location.href = '#'">Список задержанных</a></li>
-                <li class="nav-item "><a class="nav-link" onclick="location.href = '#'">Другое</a></li>
-                <li class="nav-item "><a class="nav-link" onclick="location.href = '@Url.Action("Login", "Authentication")'">Вход</a></li>
-            </ul>
-        </div>*@
+            <a class="nav-link navbar-nav ml-auto" onclick="location.href = '@Url.Action("Login", "Authentication")'">Вход</a>
         </div>
     </nav>
-    <div class="container body-content">
+    @*<div class="container body-content">*@
         @RenderBody()
-        @*<hr />
-            <footer>
-                    <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-                </footer>*@
-    </div>
+    @*</div>*@
     <script src="~/Scripts/jquery-3.3.1.js"></script>
     <script src="~/Scripts/bootstrap.min.js"></script>
 </body>

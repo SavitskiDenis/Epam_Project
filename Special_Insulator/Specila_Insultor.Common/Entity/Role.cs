@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Common.Entity
 {
-    class Role
+    public class Role
     {
         public int Id { get; set; }
         public string Type { get; set; }
