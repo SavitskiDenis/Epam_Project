@@ -58,6 +58,8 @@
   <ItemGroup>
     <Folder Include="Properties" />
     <Folder Include="Tables" />
+    <Folder Include="Procedures" />
+    <Folder Include="Procedures\Add" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Tables\CreateRoleTable.sql" />
@@ -74,5 +76,33 @@
     <None Include="Tables\DetansionsAndDetainWorkers.sql" />
     <None Include="Tables\DetantionsAndDeliveryWorkers.sql" />
     <None Include="Tables\DetantionsAndReleaseWorkers.sql" />
+    <None Include="Procedures\Add\AddInUserAndRole.sql" />
+    <None Include="Procedures\Add\AddInDetantionsAndDetainWorkers.sql" />
+    <None Include="Procedures\Add\AddInDetantionsAndDeliveryWorkers.sql" />
+    <None Include="Procedures\Add\AddInDetantionsAndReleaseWorkers.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Procedures\Add\AddDepartment.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Procedures\Add\AddDetainee.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Procedures\Add\AddDetantion.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Procedures\Add\AddPeople.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Procedures\Add\AddPhone.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Procedures\Add\AddRole.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Procedures\Add\AddUser.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Procedures\Add\AddWorker.sql" />
   </ItemGroup>
 </Project>
