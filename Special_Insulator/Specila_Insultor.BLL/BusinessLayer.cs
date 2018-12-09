@@ -12,6 +12,12 @@ namespace Specila_Insultor.BLL
     {
         private IDataAccessLayer data;
 
+        public BusinessLayer(IDataAccessLayer data)
+        {
+            this.data = data;
+        }
+
+
         public List<Detainee> GetAllDetainees()
         {
             return data.GetAllDeteinees();

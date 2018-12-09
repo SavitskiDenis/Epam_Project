@@ -7,14 +7,11 @@ using System.Threading.Tasks;
 
 namespace Special_Insulator.DAL
 {
-    public class DALRegistry
+    public class DALRegistry : Registry
     {
-        public class DARegistry : Registry
+        public DALRegistry()
         {
-            public DARegistry()
-            {
-                For<IDataAccessLayer>().Use<DataAccessLayer>();
-            }
+            For<IDataAccessLayer>().Singleton().Use<DataAccessLayer>();
         }
     }
 }

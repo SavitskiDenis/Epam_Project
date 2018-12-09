@@ -7,16 +7,17 @@ using System.Threading.Tasks;
 
 namespace Specila_Insultor.BLL
 {
-    public class BusinessRegistry : Registry
+    public class BLLRegistry : Registry
     {
-        public BusinessRegistry()
+        public BLLRegistry()
         {
             Scan(
                 scan => {
                     scan.TheCallingAssembly();
+                    scan.WithDefaultConventions();
                 });
-
             For<IBusinessLayer>().Use<BusinessLayer>();
         }
+
     }
 }

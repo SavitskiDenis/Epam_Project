@@ -19,12 +19,9 @@
 namespace Special_Insulator.WEB.DependencyResolution {
     using Special_Insulator.Dependency;
     using StructureMap;
-
-
-    public static class IoC
-    {
-        public static IContainer Initialize()
-        {
+	
+    public static class IoC {
+        public static IContainer Initialize() {
             return new Container(c => c.AddRegistry<MainRegistry>());
         }
     }

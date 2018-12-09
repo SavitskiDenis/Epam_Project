@@ -65,5 +65,7 @@
     <None Include="Tables\UserAndRole.sql" />
     <None Include="DBCreate.sql" />
     <None Include="RelationShip.sql" />
+    <None Include="Tables\CreateDetaineeTable.sql" />
+    <None Include="Tables\CreateWorkerTable.sql" />
   </ItemGroup>
 </Project>
