@@ -67,5 +67,12 @@
     <None Include="RelationShip.sql" />
     <None Include="Tables\CreateDetaineeTable.sql" />
     <None Include="Tables\CreateWorkerTable.sql" />
+    <None Include="Tables\CreatePhoneTable.sql" />
+    <None Include="Tables\CreatePeopleTable.sql" />
+    <None Include="Tables\CreateDetantionTable.sql" />
+    <None Include="Tables\CreateDepartmentTable.sql" />
+    <None Include="Tables\DetansionsAndDetainWorkers.sql" />
+    <None Include="Tables\DetantionsAndDeliveryWorkers.sql" />
+    <None Include="Tables\DetantionsAndReleaseWorkers.sql" />
   </ItemGroup>
 </Project>
