@@ -1,7 +1,7 @@
 ﻿USE SIDb
 GO
 
-CREATE PROC AddPhone
+CREATE PROC AddDepartment
 	@Address varchar(Max)
 AS
 	INSERT INTO Departments([Address]) VALUES (@Address)
