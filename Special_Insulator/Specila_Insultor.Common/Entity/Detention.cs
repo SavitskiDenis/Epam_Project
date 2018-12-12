@@ -15,7 +15,7 @@ namespace Common.Entity
         public Worker ReleaseWorker { get; set; }
         public decimal AccruedAmount { get; set; }
         public decimal PaidAmount  { get; set; }
-        public int User_Id { get; set; }
+        public int Detainee_Id { get; set; }
 
     }
 }

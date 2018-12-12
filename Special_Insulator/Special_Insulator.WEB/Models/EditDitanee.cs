@@ -8,11 +8,10 @@ namespace Special_Insulator.WEB.Models
 {
     public class EditDitanee
     {
-
         public int Id { get; set; }
         public string FullName { get; set; }
         public DateTime BornDate { get; set; }
-        public Marital_status Status { get; set; }
+        public string Status { get; set; }
         public string Workplace { get; set; }
         public string Phone { get; set; }
         public string Photo { get; set; }

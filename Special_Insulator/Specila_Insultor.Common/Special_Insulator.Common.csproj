@@ -54,7 +54,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Entity\Detainee.cs" />
+    <Compile Include="Entity\DetaineeWithName.cs" />
     <Compile Include="Entity\Detention.cs" />
+    <Compile Include="Entity\Person.cs" />
     <Compile Include="Entity\Role.cs" />
     <Compile Include="Entity\User.cs" />
     <Compile Include="Entity\Worker.cs" />

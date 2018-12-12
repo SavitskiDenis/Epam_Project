@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Common.Entity.Detainee>
+﻿@model IEnumerable<Common.Entity.DetaineeWithName>
 
 @{
     ViewBag.Title = "Режим редактирования";
@@ -6,9 +6,6 @@
 <div class="container-fluid">
     <table class="table table-sm">
         <tr>
-            <th>
-                Фото
-            </th>
             <th>
                 ФИО
             </th>
@@ -21,7 +18,7 @@
             <th>
                 Семейное положение
             </th>
-            <th>
+            @*<th>
                 Телефон
             </th>
             <th>
@@ -29,10 +26,10 @@
             </th>
             <th>
                 Дополнительная информация
-            </th>
-            <th>Задержания</th>
+            </th>*@
             <th></th>
             <th></th>
+            @*<th></th>*@
 
         </tr>
 
@@ -40,35 +37,24 @@
         {
             <tr class="vision">
                 <td>
-                    <button class="btn btn-default" style="margin-top:5px;" onclick="location.href = '@item.Photo'"><img height="20" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAGnSURBVGhD7Zm7LgVRFIZP684biN4rSFxCqJQarUTrAUR0ahqJa6GTKJSIQuMZvADRiUqD/5dMrOysOZk1s2fvIetLvuLs7LNmvjjOPoee4zjOv2MBnsGbTJ7COdiIXfjVEXdgLeahNjCns9DMOdSG5fQEmrmH2rCc8p7MPEBtWE55T2Y8pEWjhPDxYWK1ezATDtmEqeE15T14iBziIQ3wEImHRCRLyCicKHEI1iFpyAC8g3Kv5gG0kjRkCcp9ZX7CQWghaQhfUi9Q7i1zDFpIGkKm4SuU+zU7H0IY8wblc0L/RMgWlPs1Ox9SJYJ2OqQs4l1ZyxJyBeWQNRhSFsF17Q2A73AWooTwfPiAHPAEx6GkX0QBY54h1x+5YCRKCJmCy3Dk59EvVSIK+NwZaD0MSbQQDUtEU1oLSRlBWglJHUGih+SIIFFDckWQaCFVI/jliefMRmQvoLxurT9ir0M5pDCM4CHHc0bbG9tjaOYahoO0l9MKDPe1Jc8jM3tQDin7nZiExSeANt2GtRiG+/AWrnKhD4vwEmr/zGzqEaz1k3Acx+kqvd43MSjmILIPTOIAAAAASUVORK5CYII="></button>
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.FullName)
+                    @{ 
+                        string FullName = item.person.FirstName + "\n" + item.person.LastName;
+                        <p>@FullName</p>
+                    }
                 </td>
                 <td>
                     @{
-                        string date = item.BornDate.ToShortDateString();
+                        string date = item.detainee.BornDate.ToShortDateString();
                         <p>@date</p>
                     }
                 </td>
                 <td>
-                    @Html.TextAreaFor(modelItem => item.Workplace, new { disabled = "disabled" })
+                    @Html.TextAreaFor(modelItem => item.detainee.Workplace, new { disabled = "disabled" })
                 </td>
                 <td>
-                    @if (item.Status == Common.Entity.Marital_status.Divorced)
-                    {
-                        <p>Разведен (Разведена)</p>
-                    }
-                    else if (item.Status == Common.Entity.Marital_status.Married)
-                    {
-                        <p>Женат (Замужем)</p>
-                    }
-                    else
-                    {
-                        <p>Одинок (Одинока)</p>
-                    }
+                    @Html.DisplayFor(modelItem => item.detainee.Status)
                 </td>
-                <td>
+                @*<td>
                     @Html.DisplayFor(modelItem => item.Phone)
                 </td>
                 <td>
@@ -76,12 +62,12 @@
                 </td>
                 <td>
                     @Html.TextAreaFor(modelItem => item.Additional_information, new { disabled = "disabled" })
-                </td>
+                </td>*@
                 <td>
                     <button class="btn btn-default" style="margin-top:5px;" onclick="location.href = '#'"><img height="20" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAGnSURBVGhD7Zm7LgVRFIZP684biN4rSFxCqJQarUTrAUR0ahqJa6GTKJSIQuMZvADRiUqD/5dMrOysOZk1s2fvIetLvuLs7LNmvjjOPoee4zjOv2MBnsGbTJ7COdiIXfjVEXdgLeahNjCns9DMOdSG5fQEmrmH2rCc8p7MPEBtWE55T2Y8pEWjhPDxYWK1ezATDtmEqeE15T14iBziIQ3wEImHRCRLyCicKHEI1iFpyAC8g3Kv5gG0kjRkCcp9ZX7CQWghaQhfUi9Q7i1zDFpIGkKm4SuU+zU7H0IY8wblc0L/RMgWlPs1Ox9SJYJ2OqQs4l1ZyxJyBeWQNRhSFsF17Q2A73AWooTwfPiAHPAEx6GkX0QBY54h1x+5YCRKCJmCy3Dk59EvVSIK+NwZaD0MSbQQDUtEU1oLSRlBWglJHUGih+SIIFFDckWQaCFVI/jliefMRmQvoLxurT9ir0M5pDCM4CHHc0bbG9tjaOYahoO0l9MKDPe1Jc8jM3tQDin7nZiExSeANt2GtRiG+/AWrnKhD4vwEmr/zGzqEaz1k3Acx+kqvd43MSjmILIPTOIAAAAASUVORK5CYII="></button>
                 </td>
                 <td><button class="btn btn-default" style="margin-top:5px;" onclick="location.href = '#'"><img height="20" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAEOSURBVGhD7do/DgFRGATwPYzo3EAicQdXkChUClG5BG4g3EEponEPdyDBfN3LZvxJdt6zxUzy677d7w2ChMpxnOJZwOWLmGl1lvD8UcwWTTx6hx+cgB34k7iG3atO8gxugR2ipDhD47iIkKTIEMZ/FmdwnLanD+z1m1PslGcD7B0lp9gpj4s0ULTIFdLvRWdgc6mYSa+Je7C5okXqn7o9YHOpmEnz7tuDi3yKixAuooiLEC6iiIsQLqKIixAuooiLEC6iiIsQLqKIixB/LbIGtuwIo8QM2FwqZtJr4h5sbgXyxO94bFlOc5CnC3dgC3O4QQeyZAoPYIuVYscEsmYAe2B/BFDYQexwHEeWqnoBb8JjUY+wGHoAAAAASUVORK5CYII="></button>
-                <td><button class="btn btn-default" style="margin-top:5px;" onclick="location.href = '#'"><img height="20" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAGxSURBVGhD7Zq7SsRAGEajhYXoA6ylpWBjYSVWll4qsRcbwUJ8Di+VFit2voFYK1io6IsoCDYWFl6+b7OBIUyic/n/JMscOCTLJpk5xbITkiyRSASzBa/hcwQf4DGcgar04Y+Ar3AeqrABbZOI5RNU4RLaJhDTWSjOLTQHPYebgX5A85pLUJw7aA66C0N5h+Y1U4gLKaSGFBJCCqlhZELeoHnNzoasw0/YiZApuGJxEpI1WMS0OoSrWvO8Qi55yjGdDKHlmMV8VxaJEGrGqCAVQlVjJEOoWoxvyDi8gOa5VarE+IaQVsWEhJDWxISGkFbExAghjcfECiEuMTcwakzMENJYTOwQ0kiMRAj5b8wX5HosGImQneH2rxhGbMOCseHWC4kQ3uoe5LuVMeWIfXgFJwafPJAK4bWqYmwR35DfecdIhtByTF1E4SF0RjqELkDCmOV8d4Atgp5BZzRCbLe6VRGczzR0pqkQPpozj6HeEaSpEHICi2OCIggXcOag2g969iB/3EERZGQeva1C2+CxfIRqnELbJEJ9gXNQFb4wwH9V2wsArt7DI9iDiURCjSz7BZ+9SlCSTSsaAAAAAElFTkSuQmCC"></button></td>
+                @*<td><button class="btn btn-default" style="margin-top:5px;" onclick="location.href = '#'"><img height="20" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAGxSURBVGhD7Zq7SsRAGEajhYXoA6ylpWBjYSVWll4qsRcbwUJ8Di+VFit2voFYK1io6IsoCDYWFl6+b7OBIUyic/n/JMscOCTLJpk5xbITkiyRSASzBa/hcwQf4DGcgar04Y+Ar3AeqrABbZOI5RNU4RLaJhDTWSjOLTQHPYebgX5A85pLUJw7aA66C0N5h+Y1U4gLKaSGFBJCCqlhZELeoHnNzoasw0/YiZApuGJxEpI1WMS0OoSrWvO8Qi55yjGdDKHlmMV8VxaJEGrGqCAVQlVjJEOoWoxvyDi8gOa5VarE+IaQVsWEhJDWxISGkFbExAghjcfECiEuMTcwakzMENJYTOwQ0kiMRAj5b8wX5HosGImQneH2rxhGbMOCseHWC4kQ3uoe5LuVMeWIfXgFJwafPJAK4bWqYmwR35DfecdIhtByTF1E4SF0RjqELkDCmOV8d4Atgp5BZzRCbLe6VRGczzR0pqkQPpozj6HeEaSpEHICi2OCIggXcOag2g969iB/3EERZGQeva1C2+CxfIRqnELbJEJ9gXNQFb4wwH9V2wsArt7DI9iDiURCjSz7BZ+9SlCSTSsaAAAAAElFTkSuQmCC"></button></td>*@
             </tr>
         }
 

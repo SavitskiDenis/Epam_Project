@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace Common.Entity
 {
-    public class Worker
+    public class Person
     {
-        public int People_Id { get; set; }
-        public string WorkerPost { get; set; }
-        public int User_Id { get; set; }
+        public int Id { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
     }
 }

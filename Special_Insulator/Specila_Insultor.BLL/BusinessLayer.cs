@@ -18,7 +18,7 @@ namespace Specila_Insultor.BLL
         }
 
 
-        public List<Detainee> GetAllDetainees()
+        public List<DetaineeWithName> GetAllDetainees()
         {
             return data.GetAllDeteinees();
         }

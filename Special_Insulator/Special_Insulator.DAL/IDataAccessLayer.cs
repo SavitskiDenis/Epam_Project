@@ -9,6 +9,6 @@ namespace Special_Insulator.DAL
 {
     public interface IDataAccessLayer
     {
-        List<Detainee> GetAllDeteinees();
+        List<DetaineeWithName> GetAllDeteinees();
     }
 }

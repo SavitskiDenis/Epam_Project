@@ -60,6 +60,8 @@
     <Folder Include="Tables" />
     <Folder Include="Procedures" />
     <Folder Include="Procedures\Add" />
+    <Folder Include="Procedures\Delete" />
+    <Folder Include="Procedures\Update" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Tables\CreateRoleTable.sql" />
@@ -80,6 +82,26 @@
     <None Include="Procedures\Add\AddInDetantionsAndDetainWorkers.sql" />
     <None Include="Procedures\Add\AddInDetantionsAndDeliveryWorkers.sql" />
     <None Include="Procedures\Add\AddInDetantionsAndReleaseWorkers.sql" />
+    <None Include="Procedures\Delete\DeleteRole.sql" />
+    <None Include="Procedures\Delete\DeleteUser.sql" />
+    <None Include="Procedures\Delete\DeleteDepartment.sql" />
+    <None Include="Procedures\Delete\DeleteDetainee.sql" />
+    <None Include="Procedures\Delete\DeleteDetantion.sql" />
+    <None Include="Procedures\Delete\DeletePeople.sql" />
+    <None Include="Procedures\Delete\DeletePhone.sql" />
+    <None Include="Procedures\Delete\DeleteWorker.sql" />
+    <None Include="Procedures\Delete\DeleteInDetantionsAndDeliveryWorkers.sql" />
+    <None Include="Procedures\Delete\DeleteInDetantionsAndDetainWorkers.sql" />
+    <None Include="Procedures\Delete\DeleteInDetantionsAndReleaseWorkers.sql" />
+    <None Include="Procedures\Delete\DeleteInUserAndRole.sql" />
+    <None Include="Procedures\Update\UpdatePhone.sql" />
+    <None Include="Procedures\Update\UpdateDepartment.sql" />
+    <None Include="Procedures\Update\UpdateDetainee.sql" />
+    <None Include="Procedures\Update\UpdateDetantion.sql" />
+    <None Include="Procedures\Update\UpdatePeople.sql" />
+    <None Include="Procedures\Update\UpdateRole.sql" />
+    <None Include="Procedures\Update\UpdateUser.sql" />
+    <None Include="Procedures\Update\UpdateWorker.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Procedures\Add\AddDepartment.sql" />

@@ -7,25 +7,19 @@ using System.Threading.Tasks;
 
 namespace Common.Entity
 {
-    public enum Marital_status
-    {
-        Married,
-        Single,
-        Divorced
-    }
 
     public class Detainee
     {
         public int Id { get; set; }
-        public string FullName { get; set; }
+        public int People_Id { get; set; }
         public DateTime BornDate { get; set; }
-        public Marital_status Status { get; set; }
+        public string Status { get; set; }
         public string Workplace { get; set; }
         public string Phone { get; set; }
         public string Photo { get; set; }
         public string Address { get; set; }
         public string Additional_information { get; set; }
-        public ICollection<Detention> Detentions { get; set; }
+        //public ICollection<Detention> Detentions { get; set; }
 
     }
 }

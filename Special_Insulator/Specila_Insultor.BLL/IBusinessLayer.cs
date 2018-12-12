@@ -9,6 +9,6 @@ namespace Specila_Insultor.BLL
 {
     public interface IBusinessLayer
     {
-        List<Detainee> GetAllDetainees();
+        List<DetaineeWithName> GetAllDetainees();
     }
 }
