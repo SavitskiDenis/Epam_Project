@@ -7,8 +7,10 @@ using System.Threading.Tasks;
 
 namespace Specila_Insultor.BLL
 {
-    public interface IBusinessLayer
+    public interface IDetaineeBusiness
     {
         List<DetaineeWithName> GetAllDetainees();
+
+        void AddDetainee(Person addPerson,Detainee addDetainee);
     }
 }

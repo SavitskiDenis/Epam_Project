@@ -54,8 +54,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BLLRegistry.cs" />
-    <Compile Include="BusinessLayer.cs" />
-    <Compile Include="IBusinessLayer.cs" />
+    <Compile Include="DetaineeBusiness.cs" />
+    <Compile Include="Interfaces\IDetaineeBusiness.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

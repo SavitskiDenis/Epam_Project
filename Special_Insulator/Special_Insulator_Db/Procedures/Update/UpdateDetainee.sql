@@ -4,12 +4,12 @@ GO
 CREATE PROC UpdateDetainee
 	@Id int,
 	@People_Id int,
-	@BornDate time,
+	@BornDate datetime,
 	@Status varchar(25),
 	@Workplace varchar(50) ,
-	@Photo varchar(50) ,
+	@Photo varchar(50)='' ,
 	@Address varchar(200),
-	@Additional_information varchar(200) 
+	@Additional_information varchar(200)='' 
 	
 AS
 	UPDATE Detainees Set [People_Id] = @People_Id ,

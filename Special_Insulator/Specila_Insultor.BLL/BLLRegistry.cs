@@ -16,7 +16,7 @@ namespace Specila_Insultor.BLL
                     scan.TheCallingAssembly();
                     scan.WithDefaultConventions();
                 });
-            For<IBusinessLayer>().Use<BusinessLayer>();
+            For<IDetaineeBusiness>().Use<DetaineeBusiness>();
         }
 
     }

@@ -11,7 +11,7 @@ namespace Special_Insulator.DAL
     {
         public DALRegistry()
         {
-            For<IDataAccessLayer>().Singleton().Use<DataAccessLayer>();
+            For<IDetaineeData>().Singleton().Use<DataineeData>();
         }
     }
 }

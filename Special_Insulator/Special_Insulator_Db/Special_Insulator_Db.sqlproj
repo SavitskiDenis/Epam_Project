@@ -62,6 +62,7 @@
     <Folder Include="Procedures\Add" />
     <Folder Include="Procedures\Delete" />
     <Folder Include="Procedures\Update" />
+    <Folder Include="Procedures\Select" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Tables\CreateRoleTable.sql" />
@@ -102,6 +103,9 @@
     <None Include="Procedures\Update\UpdateRole.sql" />
     <None Include="Procedures\Update\UpdateUser.sql" />
     <None Include="Procedures\Update\UpdateWorker.sql" />
+    <None Include="Procedures\Select\SelectAllDetainees.sql" />
+    <None Include="Procedures\Select\SelectPersonById.sql" />
+    <None Include="Procedures\Select\SelectPhoneByDetaineeId.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Procedures\Add\AddDepartment.sql" />

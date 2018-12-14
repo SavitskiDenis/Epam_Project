@@ -4,9 +4,9 @@ GO
 CREATE PROC UpdateDetantion
 	@Id int,
 	@Detainee_Id int,
-	@DetentionDate time ,
-	@DeliveryDate time ,
-	@LiberationDate time ,
+	@DetentionDate datetime ,
+	@DeliveryDate datetime ,
+	@LiberationDate datetime ,
 	@Department_Id  int ,
 	@AccruedAmount decimal ,
 	@PaidAmount decimal 

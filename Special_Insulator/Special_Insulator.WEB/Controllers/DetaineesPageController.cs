@@ -10,9 +10,9 @@ namespace Special_Insulator.WEB.Controllers
 {
     public class DetaineesPageController : Controller
     {
-        private IBusinessLayer data;
+        private IDetaineeBusiness data;
 
-        public DetaineesPageController(IBusinessLayer data)
+        public DetaineesPageController(IDetaineeBusiness data)
         {
             this.data = data;
         }

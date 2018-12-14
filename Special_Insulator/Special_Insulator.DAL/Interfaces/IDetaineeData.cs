@@ -7,8 +7,11 @@ using System.Threading.Tasks;
 
 namespace Special_Insulator.DAL
 {
-    public interface IDataAccessLayer
+    public interface IDetaineeData
     {
         List<DetaineeWithName> GetAllDeteinees();
+
+        void AddDetainee(Person person,Detainee detainee);
+
     }
 }

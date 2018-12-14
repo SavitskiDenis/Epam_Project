@@ -156,6 +156,7 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\StructuremapMvc.cs" />
+    <Compile Include="Controllers\AddInformationController.cs" />
     <Compile Include="Controllers\AuthenticationController.cs" />
     <Compile Include="Controllers\DetaineesPageController.cs" />
     <Compile Include="Controllers\EditController.cs" />
@@ -168,6 +169,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\CreateDetaineeWithName.cs" />
     <Compile Include="Models\EditDitanee.cs" />
     <Compile Include="Models\UserLogin.cs" />
     <Compile Include="Models\UserRegistration.cs" />
@@ -194,6 +196,7 @@
     <Content Include="Scripts\jquery-3.3.1.min.map" />
     <Content Include="Views\DetaineesPage\Index.cshtml" />
     <Content Include="Views\Edit\Index.cshtml" />
+    <Content Include="Views\AddInformation\AddDetainee.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

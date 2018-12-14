@@ -59,8 +59,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DALRegistry.cs" />
-    <Compile Include="DataAccessLayer.cs" />
-    <Compile Include="IDataAccessLayer.cs" />
+    <Compile Include="DataineeData.cs" />
+    <Compile Include="Interfaces\IDetaineeData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -11,9 +11,9 @@ namespace Special_Insulator.WEB.Controllers
     public class EditController : Controller
     {
 
-        private IBusinessLayer data;
+        private IDetaineeBusiness data;
 
-        public EditController(IBusinessLayer data)
+        public EditController(IDetaineeBusiness data)
         {
             this.data = data;
         }

@@ -47,6 +47,9 @@ sqlcmd -S.\ -E -i %Procedures/Update/UpdateRole.sql
 sqlcmd -S.\ -E -i %Procedures/Update/UpdateUser.sql
 sqlcmd -S.\ -E -i %Procedures/Update/UpdateWorker.sql
 
+sqlcmd -S.\ -E -i %Procedures/Select/SelectAllDetainees.sql
+sqlcmd -S.\ -E -i %Procedures/Select/SelectPersonById.sql
+
 
 
 

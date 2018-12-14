@@ -6,3 +6,4 @@ CREATE PROC AddPeople
 	@LastName varchar(50)
 AS
 	INSERT INTO People([FirstName],[LastName]) VALUES (@FirstName, @LastName)
+	Select SCOPE_IDENTITY()
