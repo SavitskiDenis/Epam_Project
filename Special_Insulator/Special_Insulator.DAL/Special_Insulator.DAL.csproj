@@ -60,7 +60,11 @@
   <ItemGroup>
     <Compile Include="DALRegistry.cs" />
     <Compile Include="DataineeData.cs" />
+    <Compile Include="DetentionData.cs" />
     <Compile Include="Interfaces\IDetaineeData.cs" />
+    <Compile Include="Interfaces\IDetentionData.cs" />
+    <Compile Include="Interfaces\IPersonData.cs" />
+    <Compile Include="PersonData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -1,7 +1,7 @@
 ﻿USE SIDb
 GO
 
-CREATE PROC UpdateDetantion
+CREATE PROC UpdateDetention
 	@Id int,
 	@Detainee_Id int,
 	@DetentionDate datetime ,
@@ -12,7 +12,7 @@ CREATE PROC UpdateDetantion
 	@PaidAmount decimal 
 	
 AS
-	UPDATE Detantions Set [Detainee_Id] = @Detainee_Id,
+	UPDATE Detentions Set [Detainee_Id] = @Detainee_Id,
 	[DetentionDate] = @DetentionDate,
 	[DeliveryDate] = @DeliveryDate,
 	[LiberationDate] = @LiberationDate,

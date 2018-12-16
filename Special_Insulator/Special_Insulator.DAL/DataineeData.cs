@@ -10,6 +10,8 @@ namespace Special_Insulator.DAL
 {
     public class DataineeData : IDetaineeData
     {
+        private PersonData personData = new PersonData();
+        private DetentionData detentionData = new DetentionData();
         public string connectionString = @"Data Source=.\;Initial Catalog=SIDb;Integrated Security=True";
 
 
@@ -40,67 +42,109 @@ namespace Special_Insulator.DAL
 
                 SqlCommand command1 = new SqlCommand("AddDetainee", connection);
                 command1.CommandType = System.Data.CommandType.StoredProcedure;
-
-                SqlParameter p1 =  new SqlParameter
+                SqlParameter[] parameters = new SqlParameter[]
                 {
-                    ParameterName = "@People_Id",
-                    Value = result
-                };
+                    new SqlParameter
+                    {
+                        ParameterName = "@People_Id",
+                        Value = result
+                    },
 
-                SqlParameter p2 = new SqlParameter
-                {
-                    ParameterName = "@BornDate",
-                    Value = detainee.BornDate
+                    new SqlParameter
+                    {
+                        ParameterName = "@BornDate",
+                        Value = detainee.BornDate
 
-                };
+                    },
 
-                SqlParameter p3 = new SqlParameter
-                {
-                    ParameterName = "@Status",
-                    Value = detainee.Status
+                    new SqlParameter
+                    {
+                        ParameterName = "@Status",
+                        Value = detainee.Status
 
-                };
+                    },
 
-                SqlParameter p4 = new SqlParameter
-                {
-                    ParameterName = "@Workplace",
-                    Value = detainee.Workplace
+                    new SqlParameter
+                    {
+                        ParameterName = "@Workplace",
+                        Value = detainee.Workplace
 
-                };
+                    },
 
-                SqlParameter p5 = new SqlParameter
-                {
-                    ParameterName = "@Photo",
-                    Value = detainee.Photo
+                    new SqlParameter
+                    {
+                        ParameterName = "@Photo",
+                        Value = detainee.Photo
 
-                };
+                    },
 
-                SqlParameter p6 = new SqlParameter
-                {
-                    ParameterName = "@Address",
-                    Value = detainee.Address
+                    new SqlParameter
+                    {
+                        ParameterName = "@Address",
+                        Value = detainee.Address
 
-                };
+                    },
 
-                SqlParameter p7 = new SqlParameter
-                {
-                    ParameterName = "@Additional_information",
-                    Value = detainee.Additional_information
+                    new SqlParameter
+                    {
+                        ParameterName = "@Additional_information",
+                        Value = detainee.Additional_information
 
-                };
-                
-                command1.Parameters.Add(p1);
-                command1.Parameters.Add(p2);
-                command1.Parameters.Add(p3);
-                command1.Parameters.Add(p4);
-                command1.Parameters.Add(p5);
-                command1.Parameters.Add(p6);
-                command1.Parameters.Add(p7);
+                    }
+            };
+
+
+                command1.Parameters.AddRange(parameters);
 
                 var result1 = command1.ExecuteNonQuery();
+
+                SqlCommand command2 = new SqlCommand("AddPhone", connection);
+                command2.CommandType = System.Data.CommandType.StoredProcedure;
+
+                SqlParameter DId = new SqlParameter
+                {
+                    ParameterName = "@Detainee_Id",
+                    Value = result
+
+                };
+                SqlParameter Number = new SqlParameter
+                {
+                    ParameterName = "@Number",
+                    Value = detainee.Phone
+
+                };
+
+                command2.Parameters.Add(DId);
+                command2.Parameters.Add(Number);
+                var result2 = command2.ExecuteNonQuery();
             }
         }
 
+        public void DeletDetaineeById(int id)
+        {
+            int person_id;
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                SqlCommand deleteDetainee = new SqlCommand("Delete_Detainee", connection);
+                deleteDetainee.CommandType = System.Data.CommandType.StoredProcedure;
+
+                deleteDetainee.Parameters.Add(new SqlParameter
+                {
+                    ParameterName = "@Id",
+                    Value = id
+                });
+                SqlDataReader DReader = deleteDetainee.ExecuteReader();
+                DReader.Read();
+
+                person_id = DReader.GetInt32(0);
+                DReader.Close();
+
+                personData.DeletePersonById(person_id);
+
+
+            }
+        }
 
         public List<DetaineeWithName> GetAllDeteinees()
         {
@@ -129,7 +173,7 @@ namespace Special_Insulator.DAL
                             Status = (string)DReader.GetValue(3),
                             Workplace = (string)DReader.GetValue(4),
                             Phone = " +(nnn)-nn-nnn-nn-nn",
-                            Photo = (string)DReader.GetValue(5),
+                            Photo = "https://st2.depositphotos.com/1104517/11967/v/950/depositphotos_119675554-stock-illustration-male-avatar-profile-picture-vector.jpg",
                             Address = (string)DReader.GetValue(6),
                             Additional_information = (string)DReader.GetValue(7)
                         };
@@ -139,38 +183,54 @@ namespace Special_Insulator.DAL
                 DReader.Close();
             }
 
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            foreach(var item in detainees)
             {
-                connection.Open();
-                SqlDataReader PReader;
-                SqlCommand getPerson;
-                Person person;
-
-                foreach(var item in detainees)
-                {
-                    getPerson = new SqlCommand("SelectPersonById", connection);
-                    getPerson.CommandType = System.Data.CommandType.StoredProcedure;
-                    getPerson.Parameters.Add(new SqlParameter {
-                        ParameterName = "@Id",
-                        Value = item.People_Id
-                    });
-
-                    PReader = getPerson.ExecuteReader();
-                    PReader.Read();
-                    person = new Person() {
-                        FirstName = (string)PReader.GetValue(1),
-                        Id = (int)PReader.GetValue(0),
-                        LastName = (string)PReader.GetValue(2)
-                    };
-                    PReader.Close();
-                    fullList.Add(new DetaineeWithName(item,person));
-                }
-
-
+                item.Phone = personData.GetPhoneByDetaineeId(item.Id);
+                fullList.Add(new DetaineeWithName(item, personData.GetPersonById(item.People_Id)));
             }
+            
             
             return fullList;
            
+        }
+
+        public DetaineeWithName GetDeteineeById (int Id)
+        {
+            Detainee detainee;
+            DetaineeWithName withName;
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                SqlCommand getDetainee = new SqlCommand("SelectDetaineeById", connection);
+                getDetainee.CommandType = System.Data.CommandType.StoredProcedure;
+
+                getDetainee.Parameters.Add(new SqlParameter
+                {
+                    ParameterName = "@Id",
+                    Value = Id
+                });
+                SqlDataReader DReader = getDetainee.ExecuteReader();
+                DReader.Read();
+
+                detainee = new Detainee()
+                {
+                    Id = DReader.GetInt32(0),
+                    People_Id = DReader.GetInt32(1),
+                    BornDate = DReader.GetDateTime(2),
+                    Status = DReader.GetString(3),
+                    Workplace = DReader.GetString(4),
+                    Photo = DReader.GetString(5),
+                    Address = DReader.GetString(6),
+                    Additional_information = DReader.GetString(7),
+                };
+                DReader.Close();
+
+            }
+
+            detainee.Detentions = detentionData.GetDetentionsByDetaineeId(detainee.Id);
+            withName = new DetaineeWithName(detainee, personData.GetPersonById(detainee.Id));
+            return withName;
         }
     }
 }

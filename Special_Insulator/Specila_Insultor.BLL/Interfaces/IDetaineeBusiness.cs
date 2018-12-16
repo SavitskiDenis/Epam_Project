@@ -12,5 +12,9 @@ namespace Specila_Insultor.BLL
         List<DetaineeWithName> GetAllDetainees();
 
         void AddDetainee(Person addPerson,Detainee addDetainee);
+
+        void DeleteDetaineeById(int id);
+
+        DetaineeWithName GetDeteineeById(int Id);
     }
 }

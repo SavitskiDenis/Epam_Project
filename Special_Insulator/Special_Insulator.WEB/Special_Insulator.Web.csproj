@@ -197,6 +197,7 @@
     <Content Include="Views\DetaineesPage\Index.cshtml" />
     <Content Include="Views\Edit\Index.cshtml" />
     <Content Include="Views\AddInformation\AddDetainee.cshtml" />
+    <Content Include="Views\DetaineesPage\FullInformation.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -19,5 +19,6 @@ namespace Common.Entity
         public string Photo { get; set; }
         public string Address { get; set; }
         public string Additional_information { get; set; }
+        public List<Detention> Detentions { get; set; }
     }
 }

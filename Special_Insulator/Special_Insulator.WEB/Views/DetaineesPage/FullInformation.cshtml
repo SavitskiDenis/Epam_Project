@@ -1,0 +1,40 @@
+﻿@model Common.Entity.DetaineeWithName
+@{
+    ViewBag.Title = "Информация о задержанном";
+}
+
+<div class="container-fluid">
+    <div class="justify-content-center">
+        <img src="@Model.detainee.Photo" />
+        <p>Имя: @Model.person.FirstName</p>
+        <p>Фамилия: @Model.person.LastName</p>
+        <p>Дата рождения: @Model.detainee.BornDate.ToShortDateString()</p>
+        <p>Семейное положение: @Model.detainee.Status</p>
+        <p></p>
+        <p>Адрес <textarea disabled="disabled">@Model.detainee.Address</textarea></p>
+    </div>
+    
+    <table>
+        <tr>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+        </tr>
+        @foreach(var item in Model.detainee.Detentions)
+        {
+            <tr>
+
+
+
+
+            </tr>
+        }
+
+    </table>
+
+
+
+
+</div>

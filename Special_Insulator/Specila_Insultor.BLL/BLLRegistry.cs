@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Specila_Insultor.BLL.Interfaces;
 
 namespace Specila_Insultor.BLL
 {
@@ -17,6 +18,7 @@ namespace Specila_Insultor.BLL
                     scan.WithDefaultConventions();
                 });
             For<IDetaineeBusiness>().Use<DetaineeBusiness>();
+            For<IDetentionBusiness>().Use<DetentionBusiness>();
         }
 
     }

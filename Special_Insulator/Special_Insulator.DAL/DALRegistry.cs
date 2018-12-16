@@ -1,4 +1,5 @@
-﻿using StructureMap;
+﻿using Special_Insulator.DAL.Interfaces;
+using StructureMap;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +13,8 @@ namespace Special_Insulator.DAL
         public DALRegistry()
         {
             For<IDetaineeData>().Singleton().Use<DataineeData>();
+            For<IPersonData>().Singleton().Use<PersonData>();
+            For<IDetentionData>().Singleton().Use<DetentionData>();
         }
     }
 }

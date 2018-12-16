@@ -1,7 +1,7 @@
 ﻿use SIDb
 go 
 
-create table Detantions (
+create table Detentions (
     Id int primary key IDentity,
 	[Detainee_Id] int NOT NULL,
 	[DetentionDate] datetime NOT NULL,
@@ -10,5 +10,4 @@ create table Detantions (
 	[Department_Id]  int NOT NULL,
 	[AccruedAmount] decimal NOT NULL,
 	[PaidAmount] decimal NOT NULL,
-
 )
