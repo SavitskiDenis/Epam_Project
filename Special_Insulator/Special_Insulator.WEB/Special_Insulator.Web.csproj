@@ -160,6 +160,7 @@
     <Compile Include="Controllers\AuthenticationController.cs" />
     <Compile Include="Controllers\DetaineesPageController.cs" />
     <Compile Include="Controllers\EditController.cs" />
+    <Compile Include="Controllers\EditInformationController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="DependencyResolution\ControllerConvention.cs" />
     <Compile Include="DependencyResolution\DefaultRegistry.cs" />
@@ -198,6 +199,8 @@
     <Content Include="Views\Edit\Index.cshtml" />
     <Content Include="Views\AddInformation\AddDetainee.cshtml" />
     <Content Include="Views\DetaineesPage\FullInformation.cshtml" />
+    <Content Include="Views\Edit\FullInformation.cshtml" />
+    <Content Include="Views\EditInformation\EditDetaineeInfo.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -207,7 +210,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\EditDetainee\" />
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="Scripts\index.d.ts" />

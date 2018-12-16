@@ -26,7 +26,7 @@ namespace Special_Insulator.WEB.Controllers
             return View(data.GetAllDetainees());
         }
 
-        public ActionResult FullInformation(int Id)
+        public ActionResult FullInformation(int Id = 1)
         {
             
             return View(data.GetDeteineeById(Id));

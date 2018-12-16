@@ -17,5 +17,7 @@ namespace Special_Insulator.DAL
 
         DetaineeWithName GetDeteineeById(int Id);
 
+        void UpdateDetaineeInfo(Detainee detainee);
+
     }
 }

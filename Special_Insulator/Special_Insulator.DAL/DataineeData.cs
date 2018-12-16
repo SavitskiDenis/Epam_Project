@@ -74,8 +74,7 @@ namespace Special_Insulator.DAL
                     new SqlParameter
                     {
                         ParameterName = "@Photo",
-                        Value = detainee.Photo
-
+                        Value = ""
                     },
 
                     new SqlParameter
@@ -173,7 +172,7 @@ namespace Special_Insulator.DAL
                             Status = (string)DReader.GetValue(3),
                             Workplace = (string)DReader.GetValue(4),
                             Phone = " +(nnn)-nn-nnn-nn-nn",
-                            Photo = "https://st2.depositphotos.com/1104517/11967/v/950/depositphotos_119675554-stock-illustration-male-avatar-profile-picture-vector.jpg",
+                            Photo = "",
                             Address = (string)DReader.GetValue(6),
                             Additional_information = (string)DReader.GetValue(7)
                         };
@@ -231,6 +230,79 @@ namespace Special_Insulator.DAL
             detainee.Detentions = detentionData.GetDetentionsByDetaineeId(detainee.Id);
             withName = new DetaineeWithName(detainee, personData.GetPersonById(detainee.Id));
             return withName;
+        }
+
+        public void UpdateDetaineeInfo(Detainee detainee)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                SqlCommand updateDetainee = new SqlCommand("UpdateDetainee", connection);
+                updateDetainee.CommandType = System.Data.CommandType.StoredProcedure;
+
+                SqlParameter[] parameters = new SqlParameter[]
+                {
+                    new SqlParameter
+                    {
+                        ParameterName = "@Id",
+                        Value = detainee.Id
+                    },
+
+                    new SqlParameter
+                    {
+                        ParameterName = "@People_Id",
+                        Value = detainee.People_Id
+                    },
+
+                    new SqlParameter
+                    {
+                        ParameterName = "@BornDate",
+                        Value = detainee.BornDate
+
+                    },
+
+                    new SqlParameter
+                    {
+                        ParameterName = "@Status",
+                        Value = detainee.Status
+
+                    },
+
+                    new SqlParameter
+                    {
+                        ParameterName = "@Workplace",
+                        Value = detainee.Workplace
+
+                    },
+
+                    new SqlParameter
+                    {
+                        ParameterName = "@Photo",
+                        Value = detainee.Photo
+
+                    },
+
+                    new SqlParameter
+                    {
+                        ParameterName = "@Address",
+                        Value = detainee.Address
+
+                    },
+
+                    new SqlParameter
+                    {
+                        ParameterName = "@Additional_information",
+                        Value = detainee.Additional_information
+
+                    }
+            };
+
+                updateDetainee.Parameters.AddRange(parameters);
+
+                var result = updateDetainee.ExecuteNonQuery();
+
+
+            }
         }
     }
 }

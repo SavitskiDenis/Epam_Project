@@ -49,7 +49,7 @@ namespace Special_Insulator.WEB.Controllers
                 addDetainee.Workplace = detainee.Workplace;
 
                 data.AddDetainee(addPerson,addDetainee);
-                return RedirectToAction("Index","Home");
+                return RedirectToAction("Index","Edit");
             }
              
             return View(detainee);

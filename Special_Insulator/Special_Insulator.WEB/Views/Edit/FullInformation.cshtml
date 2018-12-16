@@ -4,11 +4,12 @@
 }
 
 <div class="container-fluid">
+    <div class="row justify-content-end" style="margin-bottom:35px;margin-top:25px">
+        <a class="col-lg-2" onclick="location.href = '@Url.Action("EditDetaineeInfo","EditInformation",new { Model.detainee.Id})'" title="Изменить"><img src="https://img.icons8.com/ios/32/000000/edit-column.png"></a>
+    </div>
     <div class="justify-content-center">
         <img src="https://image.freepik.com/free-icon/male-user-close-up-shape-for-facebook_318-37635.jpg" width="200" style="border:2px solid #0094ff;border-radius:50px" />
     </div>
-
-
     <div class="row">
         <div class="col-lg-6">
             <p>Имя: @Model.person.FirstName</p>
@@ -20,10 +21,10 @@
             <p>Адрес</p>
             <textarea cols="50" rows="3" disabled="disabled" style="resize:none">@Model.detainee.Address</textarea>
             <p>Дополнительная информация</p>
-            <textarea  cols="50" rows="3" disabled="disabled" style="resize:none">@Model.detainee.Additional_information</textarea>
+            <textarea cols="50" rows="3" disabled="disabled" style="resize:none">@Model.detainee.Additional_information</textarea>
         </div>
-        
     </div>
+
 
     <table>
         <tr>
@@ -33,14 +34,9 @@
             <th></th>
             <th></th>
         </tr>
-        @foreach(var item in Model.detainee.Detentions)
+        @foreach (var item in Model.detainee.Detentions)
         {
-            <tr>
-
-
-
-
-            </tr>
+            <tr></tr>
         }
 
     </table>

@@ -28,5 +28,12 @@ namespace Special_Insulator.WEB.Controllers
             data.DeleteDetaineeById(id);
             return RedirectToAction("Index","Edit");
         }
+
+        public ActionResult FullInformation(int Id = 1)
+        {
+            return View(data.GetDeteineeById(Id));
+        }
+
+        
     }
 }
