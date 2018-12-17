@@ -212,6 +212,7 @@ namespace Special_Insulator.DAL
                 SqlDataReader DReader = getDetainee.ExecuteReader();
                 DReader.Read();
 
+
                 detainee = new Detainee()
                 {
                     Id = DReader.GetInt32(0),

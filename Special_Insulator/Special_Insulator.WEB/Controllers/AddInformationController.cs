@@ -33,7 +33,7 @@ namespace Special_Insulator.WEB.Controllers
                 Detainee addDetainee = new Detainee();
                 Person addPerson = new Person();
 
-                var date = detainee.BornDate.Split('.');
+                var date = detainee.BornDate.Split('/');
                 addDetainee.BornDate = new DateTime(int.Parse(date[2]), int.Parse(date[1]), int.Parse(date[0]));
 
                 addPerson.FirstName = detainee.FirstName;

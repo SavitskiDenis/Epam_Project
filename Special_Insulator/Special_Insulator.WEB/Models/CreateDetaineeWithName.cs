@@ -17,9 +17,9 @@ namespace Special_Insulator.WEB.Models
         public string LastName { get; set; }
 
         [Required(ErrorMessage = "Поле не должно быть пустым")]
-        [RegularExpression(@"\d{2}[.]\d{2}[.]\d{4}", ErrorMessage = "Дата должна быть в формате xx.xx.xxxx")]
+        [RegularExpression(@"(0[1-9]|[12][0-9]|3[01])[- /.](0[1-9]|1[012])[- /.](19|20)\d\d", ErrorMessage = "Дата должна быть в формате xx.xx.xxxx")]
         public string BornDate { get; set; }
-
+        
         [Required(ErrorMessage = "Поле не должно быть пустым")]
         public string Status { get; set; }
 

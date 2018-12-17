@@ -2,13 +2,13 @@
 @{
     ViewBag.Title = "Информация о задержанном";
 }
-
+<div>
+    <a onclick="location.href = '@Url.Action("Index","DetaineesPage",new { Model.detainee.Id})'"><img style="margin-top:15px" src="https://img.icons8.com/windows/32/000000/back.png"></a>
+</div>
 <div class="container-fluid">
-    <div class="justify-content-center">
-        <img src="https://image.freepik.com/free-icon/male-user-close-up-shape-for-facebook_318-37635.jpg" width="200" style="border:2px solid #0094ff;border-radius:50px" />
+    <div>
+        <img class="rounded-circle mx-auto d-block" src="https://image.freepik.com/free-icon/male-user-close-up-shape-for-facebook_318-37635.jpg" width="200" style="border:2px solid #0094ff;border-radius:50px" />
     </div>
-
-
     <div class="row">
         <div class="col-lg-6">
             <p>Имя: @Model.person.FirstName</p>
@@ -19,8 +19,10 @@
         <div class="col-lg-6">
             <p>Адрес</p>
             <textarea cols="50" rows="3" disabled="disabled" style="resize:none">@Model.detainee.Address</textarea>
+            <p>Место работы</p>
+            <textarea cols="50" rows="3" disabled="disabled" style="resize:none">@Model.detainee.Workplace</textarea>
             <p>Дополнительная информация</p>
-            <textarea  cols="50" rows="3" disabled="disabled" style="resize:none">@Model.detainee.Additional_information</textarea>
+            <textarea cols="50" rows="3" disabled="disabled" style="resize:none">@Model.detainee.Additional_information</textarea>
         </div>
         
     </div>
