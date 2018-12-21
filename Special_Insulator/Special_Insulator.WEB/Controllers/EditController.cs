@@ -29,7 +29,7 @@ namespace Special_Insulator.WEB.Controllers
             return RedirectToAction("Index","Edit");
         }
 
-        public ActionResult FullInformation(int Id = 1)
+        public ActionResult FullInformation(int Id )
         {
             return View(data.GetDeteineeById(Id));
         }

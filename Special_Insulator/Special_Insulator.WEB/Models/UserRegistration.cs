@@ -19,12 +19,12 @@ namespace Special_Insulator.WEB.Models
 
         [Required(ErrorMessage = "Поле не должно быть пустым")]
         [DataType(DataType.Password)]
-        [System.ComponentModel.DataAnnotations.Compare("Password", ErrorMessage = "Пароли не совпадают")]
-        public string Re_Password { get; set; }
+        [Compare("Password", ErrorMessage = "Пароли не совпадают")]
+        public string RePassword { get; set; }
 
 
         [Required(ErrorMessage = "Поле не должно быть пустым")]
         [EmailAddress(ErrorMessage = "Некорректный e-mail")]
-        public string E_mail { get; set; }
+        public string Email { get; set; }
     }
 }

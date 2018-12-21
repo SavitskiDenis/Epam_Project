@@ -4,29 +4,29 @@ GO
 --Many To Many
 
 Alter table UserAndRole
-ADD CONSTRAINT FK___UserRoleToUsers FOREIGN KEY([User_Id])
+ADD CONSTRAINT FK_UserRoleToUsers FOREIGN KEY([UserId])
 	REFERENCES Users(Id),
-CONSTRAINT FK___UserRoleToRoles FOREIGN KEY(Role_Id)
+CONSTRAINT FK_UserRoleToRoles FOREIGN KEY(RoleId)
 	REFERENCES Roles(Id);
 
 
 Alter table DetentionsAndDetainWorkers
-ADD CONSTRAINT FK_DetentionDWorker_ToDetantions FOREIGN KEY([Detention_Id])
+ADD CONSTRAINT FK_DetentionDWorkerToDetantions FOREIGN KEY([DetentionId])
 	REFERENCES Detentions(Id),
-CONSTRAINT FK_DetentionDWorker_ToWorkers FOREIGN KEY([Worker_Id])
+CONSTRAINT FK_DetentionDWorkerToWorkers FOREIGN KEY([WorkerId])
 	REFERENCES Workers(Id);
 
 
 Alter table DetentionsAndDeliveryWorkers
-ADD CONSTRAINT FK_DetentionDelWorker_ToDetantions FOREIGN KEY([Detention_Id])
+ADD CONSTRAINT FK_DetentionDelWorkerToDetantions FOREIGN KEY([DetentionId])
 	REFERENCES Detentions(Id),
-CONSTRAINT FK_DetentionDelWorker_ToWorkers FOREIGN KEY([Worker_Id])
+CONSTRAINT FK_DetentionDelWorkerToWorkers FOREIGN KEY([WorkerId])
 	REFERENCES Workers(Id);
 
 Alter table DetentionsAndReleaseWorkers
-ADD CONSTRAINT FK_DetentionRWorker_ToDetantions FOREIGN KEY([Detention_Id])
+ADD CONSTRAINT FK_DetentionRWorkerToDetantions FOREIGN KEY([DetentionId])
 	REFERENCES Detentions(Id),
-CONSTRAINT FK_DetentionRWorker_ToWorkers FOREIGN KEY([Worker_Id])
+CONSTRAINT FK_DetentionRWorkerToWorkers FOREIGN KEY([WorkerId])
 	REFERENCES Workers(Id);
 
 ------------
@@ -34,21 +34,21 @@ CONSTRAINT FK_DetentionRWorker_ToWorkers FOREIGN KEY([Worker_Id])
 --- One TO Many
 
 ALTER TABLE Phones
-ADD CONSTRAINT FK_Phone_Detainees FOREIGN KEY([Detainee_Id]) 
+ADD CONSTRAINT FK_Phone_Detainees FOREIGN KEY([DetaineeId]) 
     REFERENCES Detainees(Id);
 
 ALTER TABLE Detentions
-ADD CONSTRAINT FK_Detantion_Detainees FOREIGN KEY([Detainee_Id]) 
+ADD CONSTRAINT FK_Detantion_Detainees FOREIGN KEY([DetaineeId]) 
     REFERENCES Detainees(Id),
-CONSTRAINT FK_Detantion_Departments FOREIGN KEY([Department_Id])
+CONSTRAINT FK_DetantionDepartments FOREIGN KEY([DepartmentId])
 	REFERENCES Departments(Id);
 
 ALTER TABLE Detainees
-ADD CONSTRAINT FK_Detainees_People FOREIGN KEY([People_Id]) 
+ADD CONSTRAINT FK_Detainees_People FOREIGN KEY([PeopleId]) 
     REFERENCES People(Id);
 
 ALTER TABLE Workers
-ADD CONSTRAINT FK_Workers_People FOREIGN KEY([People_Id]) 
+ADD CONSTRAINT FK_Workers_People FOREIGN KEY([PeopleId]) 
     REFERENCES People(Id);
 
 

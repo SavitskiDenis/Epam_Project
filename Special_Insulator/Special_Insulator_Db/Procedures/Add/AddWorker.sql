@@ -3,6 +3,6 @@ GO
 
 CREATE PROC AddWorker
 	@WorkerPost varchar(50),
-	@People_Id int
+	@PeopleId int
 AS
-	INSERT INTO Workers([WorkerPost],[People_Id]) VALUES (@WorkerPost, @People_Id)
+	INSERT INTO Workers([WorkerPost],[PeopleId]) VALUES (@WorkerPost, @PeopleId)

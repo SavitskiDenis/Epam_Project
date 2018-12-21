@@ -2,12 +2,12 @@
 GO
 
 CREATE PROC AddDetention
-	@Detainee_Id int,
+	@DetaineeId int,
 	@DetentionDate datetime,
 	@DeliveryDate datetime,
 	@LiberationDate datetime,
-	@Department_Id  int,
+	@DepartmentId  int,
 	@AccruedAmount decimal,
 	@PaidAmount decimal
 AS
-	INSERT INTO Detentions([Detainee_Id],[DetentionDate],[DeliveryDate],[LiberationDate],[Department_Id],[AccruedAmount],[PaidAmount]) VALUES (@Detainee_Id,@DetentionDate,@DeliveryDate,@LiberationDate,@Department_Id,@AccruedAmount,@PaidAmount)
+	INSERT INTO Detentions([DetaineeId],[DetentionDate],[DeliveryDate],[LiberationDate],[DepartmentId],[AccruedAmount],[PaidAmount]) VALUES (@DetaineeId,@DetentionDate,@DeliveryDate,@LiberationDate,@DepartmentId,@AccruedAmount,@PaidAmount)

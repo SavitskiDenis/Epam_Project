@@ -2,7 +2,7 @@
 go 
 
 create table DetentionsAndDetainWorkers (
-	[Detention_Id] int Not null,
-	[Worker_Id] int NOT null
+	[DetentionId] int Not null,
+	[WorkerId] int NOT null
 
 )

@@ -4,4 +4,4 @@ GO
 CREATE PROC Delete_DetDel
 	@Id int 
 AS
-	Delete From DetentionsAndDeliveryWorkers Where [Detention_Id] = @Id;
+	Delete From DetentionsAndDeliveryWorkers Where [DetentionId] = @Id;

@@ -2,7 +2,7 @@
 GO
 
 CREATE PROC AddInDetentionsAndDetainWorkers
-	@Detention_Id int,
-	@Worker_Id int
+	@DetentionId int,
+	@WorkerId int
 AS
-	INSERT INTO DetentionsAndDetainWorkers([Detention_Id],[Worker_Id]) VALUES (@Detention_Id,@Worker_Id)
+	INSERT INTO DetentionsAndDetainWorkers([DetentionId],[WorkerId]) VALUES (@DetentionId,@WorkerId)

@@ -15,6 +15,8 @@ namespace Special_Insulator.DAL
             For<IDetaineeData>().Singleton().Use<DataineeData>();
             For<IPersonData>().Singleton().Use<PersonData>();
             For<IDetentionData>().Singleton().Use<DetentionData>();
+            For<IWorkerData>().Singleton().Use<WorkerData>();
+            For<IDepartmentData>().Singleton().Use<DepartmentData>();
         }
     }
 }

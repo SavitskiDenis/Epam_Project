@@ -21,7 +21,7 @@ namespace Special_Insulator.WEB.Models
         public string Address { get; set; }
 
 
-        public string Additional_information { get; set; }
+        public string AdditionalInformation { get; set; }
         
     }
 }

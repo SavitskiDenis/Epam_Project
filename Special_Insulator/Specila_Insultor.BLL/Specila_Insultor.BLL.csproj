@@ -54,11 +54,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BLLRegistry.cs" />
+    <Compile Include="DepartmentBusiness.cs" />
     <Compile Include="DetaineeBusiness.cs" />
     <Compile Include="DetentionBusiness.cs" />
+    <Compile Include="Interfaces\IDepartmentBusiness.cs" />
     <Compile Include="Interfaces\IDetaineeBusiness.cs" />
     <Compile Include="Interfaces\IDetentionBusiness.cs" />
+    <Compile Include="Interfaces\IWorkerBusiness.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WorkerBusiness.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

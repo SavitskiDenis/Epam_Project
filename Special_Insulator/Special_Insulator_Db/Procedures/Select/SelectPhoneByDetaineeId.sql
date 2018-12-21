@@ -2,6 +2,6 @@
 GO
 
 CREATE PROC SelectPhoneByDetaineeId
-@Detainee_Id int
+@DetaineeId int
 AS
-	Select * From Phones Where [Detainee_Id] = @Detainee_Id
+	Select * From Phones Where [DetaineeId] = @DetaineeId

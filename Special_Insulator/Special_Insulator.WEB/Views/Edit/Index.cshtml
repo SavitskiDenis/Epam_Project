@@ -4,7 +4,9 @@
     ViewBag.Title = "Режим редактирования";
 }
 <div class="row justify-content-end" style="margin-bottom:35px;margin-top:25px">
-    <a class="col-lg-2" onclick="location.href = '@Url.Action("AddDetainee", "AddInformation")'" title="Добавить"><img src="https://img.icons8.com/windows/32/000000/add.png"></a>
+    <a class="col-lg-2" onclick="location.href = '@Url.Action("AddDetainee", "Detainees")'" title="Добавить задержанного"><img src="https://img.icons8.com/windows/32/000000/add.png"></a>
+    <a class="col-lg-2" onclick="location.href = '@Url.Action("AddWorker", "Workers")'" title="Добавить сотрудника"><img src="https://img.icons8.com/windows/32/000000/add.png"></a>
+    <a class="col-lg-2" onclick="location.href = '@Url.Action("AddDepartment", "Departments")'" title="Добавить отдел"><img src="https://img.icons8.com/windows/32/000000/add.png"></a>
 </div>
 <div class="container-fluid">
 

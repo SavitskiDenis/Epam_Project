@@ -4,4 +4,4 @@ GO
 CREATE PROC Delete_UserRole
 	@Id int 
 AS
-	Delete From UserAndRole Where [User_Id] = @Id;
+	Delete From UserAndRole Where [UserId] = @Id;

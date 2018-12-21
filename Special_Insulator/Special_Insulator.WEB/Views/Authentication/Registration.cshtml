@@ -13,8 +13,8 @@
             </div>
             <div >
                 <label >E-mail</label>
-                @Html.TextBoxFor(model => model.E_mail, new { @class = "form-control",@style="margin:0 auto;" })
-                @Html.ValidationMessageFor(model => model.E_mail)
+                @Html.TextBoxFor(model => model.Email, new { @class = "form-control",@style="margin:0 auto;" })
+                @Html.ValidationMessageFor(model => model.Email)
             </div>
             <div style="margin:0 auto;margin-bottom:5px">
                 <label >Пароль</label>
@@ -23,8 +23,8 @@
             </div>
             <div  style="margin:0 auto;margin-bottom:5px">
                 <label>Подтверждение</label>
-                @Html.PasswordFor(model => model.Re_Password, new { @class = "form-control", @style = "margin:0 auto;" })
-                @Html.ValidationMessageFor(model => model.Re_Password)
+                @Html.PasswordFor(model => model.RePassword, new { @class = "form-control", @style = "margin:0 auto;" })
+                @Html.ValidationMessageFor(model => model.RePassword)
             </div>
             <div class="form-group" style="display:block; margin:0 auto; margin-bottom:20px; margin-top:20px">
                 <input type="submit" class="btn btn-dark" value="Подтвердить" />

@@ -2,7 +2,7 @@
 GO
 
 CREATE PROC SelectDetentionsByDetaineeId
-@Detainee_Id int
+@DetaineeId int
 AS
-	Select * From Detentions Where [Detainee_Id] = @Detainee_Id 
+	Select * From Detentions Where [DetaineeId] = @DetaineeId 
 

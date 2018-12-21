@@ -35,6 +35,6 @@ namespace Special_Insulator.WEB.Models
         [Required(ErrorMessage = "Поле не должно быть пустым")]
         public string Address { get; set; }
 
-        public string Additional_information { get; set; }
+        public string AdditionalInformation { get; set; }
     }
 }

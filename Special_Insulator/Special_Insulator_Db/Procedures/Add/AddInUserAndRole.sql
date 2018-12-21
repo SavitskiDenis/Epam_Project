@@ -2,7 +2,7 @@
 GO
 
 CREATE PROC AddInUserAndRole
-	@User_Id int,
-	@Role_Id int
+	@UserId int,
+	@RoleId int
 AS
-	INSERT INTO UserAndRole([User_Id],Role_Id) VALUES (@User_Id,@Role_Id)
+	INSERT INTO UserAndRole([UserId],RoleId) VALUES (@UserId,@RoleId)

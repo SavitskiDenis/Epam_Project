@@ -3,20 +3,20 @@ GO
 
 CREATE PROC UpdateDetention
 	@Id int,
-	@Detainee_Id int,
+	@DetaineeId int,
 	@DetentionDate datetime ,
 	@DeliveryDate datetime ,
 	@LiberationDate datetime ,
-	@Department_Id  int ,
+	@DepartmentId  int ,
 	@AccruedAmount decimal ,
 	@PaidAmount decimal 
 	
 AS
-	UPDATE Detentions Set [Detainee_Id] = @Detainee_Id,
+	UPDATE Detentions Set [DetaineeId] = @DetaineeId,
 	[DetentionDate] = @DetentionDate,
 	[DeliveryDate] = @DeliveryDate,
 	[LiberationDate] = @LiberationDate,
-	[Department_Id] = @Department_Id,
+	[DepartmentId] = @DepartmentId,
 	[AccruedAmount] = @AccruedAmount,
 	[PaidAmount] = @PaidAmount
 	Where Id = @Id

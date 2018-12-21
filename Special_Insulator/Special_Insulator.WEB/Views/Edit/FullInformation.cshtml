@@ -9,7 +9,7 @@
             <a onclick="location.href = '@Url.Action("Index","Edit",new { Model.detainee.Id})'"><img src="https://img.icons8.com/windows/32/000000/back.png"></a>
         </div>
         <div class="col offset-lg-4" >
-            <a onclick="location.href = '@Url.Action("EditDetaineeInfo","EditInformation",new { Model.detainee.Id})'" title="Изменить"><img src="https://img.icons8.com/ios/32/000000/edit-column.png"></a>
+            <a onclick="location.href = '@Url.Action("EditDetaineeInfo","Detainees",new { Model.detainee.Id})'" title="Изменить"><img src="https://img.icons8.com/ios/32/000000/edit-column.png"></a>
         </div>
     </div>
     
@@ -29,7 +29,7 @@
             <p>Место работы</p>
             <textarea cols="50" rows="3" disabled="disabled" style="resize:none">@Model.detainee.Workplace</textarea>
             <p>Дополнительная информация</p>
-            <textarea cols="50" rows="3" disabled="disabled" style="resize:none">@Model.detainee.Additional_information</textarea>
+            <textarea cols="50" rows="3" disabled="disabled" style="resize:none">@Model.detainee.AdditionalInformation</textarea>
         </div>
     </div>
 

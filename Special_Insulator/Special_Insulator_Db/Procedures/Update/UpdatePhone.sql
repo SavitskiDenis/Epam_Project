@@ -3,10 +3,10 @@ GO
 
 CREATE PROC UpdatePhone
 	@Id int,
-	@Detainee_Id int,
+	@DetaineeId int,
 	@Number varchar(50)
 AS
-	UPDATE Phones Set [Detainee_Id] = @Detainee_Id, [Number] = @Number
+	UPDATE Phones Set [DetaineeId] = @DetaineeId, [Number] = @Number
 	Where Id = @Id
 
 	

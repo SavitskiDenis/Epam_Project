@@ -2,7 +2,7 @@
 GO
 
 CREATE PROC AddPhone
-	@Detainee_Id int,
+	@DetaineeId int,
 	@Number varchar(50)
 AS
-	INSERT INTO Phones([Detainee_Id] ,[Number] ) VALUES (@Detainee_Id, @Number)
+	INSERT INTO Phones([DetaineeId] ,[Number] ) VALUES (@DetaineeId, @Number)

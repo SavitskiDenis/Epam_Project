@@ -18,30 +18,28 @@ namespace Special_Insulator.DAL
         {
             Person person = new Person();
 
-            string connectionString = @"Data Source=.\;Initial Catalog=SIDb;Integrated Security=True";
+            //string connectionString = @"Data Source=.\;Initial Catalog=SIDb;Integrated Security=True";
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 connection.Open();
                 SqlDataReader PReader;
                 SqlCommand getPerson;
-                    getPerson = new SqlCommand("SelectPersonById", connection);
-                    getPerson.CommandType = System.Data.CommandType.StoredProcedure;
-                    getPerson.Parameters.Add(new SqlParameter
-                    {
-                        ParameterName = "@Id",
-                        Value = id
-                    });
+                getPerson = new SqlCommand("SelectPersonById", connection);
+                getPerson.CommandType = System.Data.CommandType.StoredProcedure;
+                getPerson.Parameters.Add(new SqlParameter("@Id", id));
+                   
 
-                    PReader = getPerson.ExecuteReader();
-                    PReader.Read();
-                    person = new Person()
-                    {
-                        FirstName = (string)PReader.GetValue(1),
-                        Id = (int)PReader.GetValue(0),
-                        LastName = (string)PReader.GetValue(2)
-                    };
-                    PReader.Close();
+                PReader = getPerson.ExecuteReader();
+                PReader.Read();
+
+                person = new Person()
+                {
+                    FirstName = (string)PReader.GetValue(1),
+                    Id = (int)PReader.GetValue(0),
+                    LastName = (string)PReader.GetValue(2)
+                };
+                PReader.Close();
             }
             return person;
         }
@@ -58,11 +56,8 @@ namespace Special_Insulator.DAL
                 SqlCommand getNumber;
                 getNumber = new SqlCommand("SelectPhoneByDetaineeId", connection);
                 getNumber.CommandType = System.Data.CommandType.StoredProcedure;
-                getNumber.Parameters.Add(new SqlParameter
-                {
-                    ParameterName = "@Detainee_Id",
-                    Value = id
-                });
+                getNumber.Parameters.Add(new SqlParameter("@DetaineeId", id));
+                
 
                 PReader = getNumber.ExecuteReader();
                 if (PReader.HasRows)
@@ -76,7 +71,7 @@ namespace Special_Insulator.DAL
             return number;
         }
 
-        public void DeletePersonById(int person_id)
+        public void DeletePersonById(int personId)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -84,11 +79,7 @@ namespace Special_Insulator.DAL
                 SqlCommand deletePerson = new SqlCommand("Delete_People", connection);
                 deletePerson.CommandType = System.Data.CommandType.StoredProcedure;
 
-                deletePerson.Parameters.Add(new SqlParameter
-                {
-                    ParameterName = "@Id",
-                    Value = person_id
-                });
+                deletePerson.Parameters.Add(new SqlParameter("@Id", personId));
                 var result = deletePerson.ExecuteNonQuery();
             }
                

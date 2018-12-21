@@ -67,12 +67,16 @@
     </Compile>
     <Compile Include="DALRegistry.cs" />
     <Compile Include="DataineeData.cs" />
+    <Compile Include="DepartmentData.cs" />
     <Compile Include="DetentionData.cs" />
+    <Compile Include="Interfaces\IDepartmentData.cs" />
     <Compile Include="Interfaces\IDetaineeData.cs" />
     <Compile Include="Interfaces\IDetentionData.cs" />
     <Compile Include="Interfaces\IPersonData.cs" />
+    <Compile Include="Interfaces\IWorkerData.cs" />
     <Compile Include="PersonData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WorkerData.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

@@ -8,8 +8,9 @@ namespace Common.Entity
 {
     public class Worker
     {
-        public int People_Id { get; set; }
+        public int Id { get; set; }
+        public int PeopleId { get; set; }
         public string WorkerPost { get; set; }
-        public int User_Id { get; set; }
+        public int? UserId { get; set; }
     }
 }
