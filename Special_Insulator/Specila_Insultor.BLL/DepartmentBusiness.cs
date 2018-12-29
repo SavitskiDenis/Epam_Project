@@ -22,5 +22,25 @@ namespace Specila_Insultor.BLL
         {
             data.AddDepartment(department);
         }
+
+        public void DeleteDepartmentsById(int Id)
+        {
+            data.DeleteDepartmentsById(Id);
+        }
+
+        public List<Department> GetAllDepartments()
+        {
+            return data.GetAllDepartments();
+        }
+
+        public Department GetDepartmnetnById(int Id)
+        {
+            return data.GetDepartmnetnById(Id);
+        }
+
+        public void EditDepartment(Department department)
+        {
+            data.EditDepartment(department);
+        }
     }
 }

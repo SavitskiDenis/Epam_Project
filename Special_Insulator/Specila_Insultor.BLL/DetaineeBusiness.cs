@@ -37,9 +37,9 @@ namespace Specila_Insultor.BLL
             return data.GetDeteineeById(Id);
         }
 
-        public void UpdateDetaineeInfo(Detainee detainee)
+        public void EditDetaineeInfo(DetaineeWithName detainee)
         {
-            data.UpdateDetaineeInfo(detainee);
+            data.EditDetaineeInfo(detainee);
         }
     }
 }

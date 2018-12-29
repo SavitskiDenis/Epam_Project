@@ -1,5 +1,6 @@
 ﻿using Common.Entity;
 using Specila_Insultor.BLL;
+using Specila_Insultor.BLL.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,10 +13,12 @@ namespace Special_Insulator.WEB.Controllers
     {
 
         private IDetaineeBusiness data;
+        private IDetentionBusiness detentionData;
 
-        public EditController(IDetaineeBusiness data)
+        public EditController(IDetaineeBusiness data, IDetentionBusiness detentionData)
         {
             this.data = data;
+            this.detentionData = detentionData;
         }
 
         public ActionResult Index()
@@ -31,7 +34,9 @@ namespace Special_Insulator.WEB.Controllers
 
         public ActionResult FullInformation(int Id )
         {
-            return View(data.GetDeteineeById(Id));
+            DetaineeWithName mydetainee = data.GetDeteineeById(Id);
+            mydetainee.detainee.Detentions = detentionData.GetDetentionsByDetaineeId(Id);
+            return View(mydetainee);
         }
 
         

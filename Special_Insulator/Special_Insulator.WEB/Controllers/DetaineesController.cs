@@ -30,8 +30,9 @@ namespace Special_Insulator.WEB.Controllers
 
         public ActionResult FullInformation(int Id)
         {
-            
-            return View(data.GetDeteineeById(Id));
+            DetaineeWithName mydetainee =  data.GetDeteineeById(Id);
+            mydetainee.detainee.Detentions = detention.GetDetentionsByDetaineeId(Id);
+            return View(mydetainee);
         }
 
         [HttpGet]
@@ -41,12 +42,12 @@ namespace Special_Insulator.WEB.Controllers
         }
 
         [HttpPost]
-        public ActionResult AddDetainee(CreateDetaineeWithName detainee)
+        public ActionResult AddDetainee(DetaineeWithNameMod detainee)
         {
             if (ModelState.IsValid)
             {
-                var addDetainee = Mapper.MapToItem<CreateDetaineeWithName, Detainee>(detainee);
-                var addPerson = Mapper.MapToItem<CreateDetaineeWithName, Person>(detainee);
+                var addDetainee = Mapper.MapToItem<DetaineeWithNameMod, Detainee>(detainee);
+                var addPerson = Mapper.MapToItem<DetaineeWithNameMod, Person>(detainee);
 
                 data.AddDetainee(addPerson, addDetainee);
 
@@ -60,34 +61,20 @@ namespace Special_Insulator.WEB.Controllers
         public ActionResult EditDetaineeInfo(int Id)
         {
             DetaineeWithName myDetainee = data.GetDeteineeById(Id);
-            var editDitanee = Mapper.MapToItem<Detainee, EditDitanee>(myDetainee.detainee);
-            //EditDitanee editDitanee = new EditDitanee()
-            //{
-            //    Id = myDetainee.detainee.Id,
-            //    Status = myDetainee.detainee.Status,
-            //    Workplace = myDetainee.detainee.Workplace,
-            //    Address = myDetainee.detainee.Address,
-            //    AdditionalInformation = myDetainee.detainee.AdditionalInformation
-            //};
-
-            return View(editDitanee);
+            DetaineeWithNameMod editDetainee = Mapper.MapToItem<Person, DetaineeWithNameMod>(myDetainee.person);
+            editDetainee = Mapper.UpdateInfo(editDetainee, myDetainee.detainee);
+            return View(editDetainee);
         }
 
         [HttpPost]
-        public ActionResult EditDetaineeInfo(EditDitanee editDitanee)
+        public ActionResult EditDetaineeInfo(DetaineeWithNameMod editDitanee)
         {
             if (ModelState.IsValid)
-            {
-                DetaineeWithName myDetainee = data.GetDeteineeById(editDitanee.Id);
-                myDetainee.detainee.Status = editDitanee.Status;
-                myDetainee.detainee.Workplace = editDitanee.Workplace;
-                myDetainee.detainee.Address = editDitanee.Address;
-                myDetainee.detainee.AdditionalInformation = editDitanee.AdditionalInformation;
-
-                //var editDitanee = Mapper.MapToItem<EditDitanee, Detainee>(myDetainee);
-                data.UpdateDetaineeInfo(myDetainee.detainee);
-
-                return RedirectToAction("FullInformation", "Edit", new { myDetainee.detainee.Id });
+            { 
+                var person = Mapper.MapToItem<DetaineeWithNameMod, Person>(editDitanee);
+                var detainee = Mapper.MapToItem<DetaineeWithNameMod, Detainee>(editDitanee);
+                data.EditDetaineeInfo(new DetaineeWithName(detainee,person));
+                return RedirectToAction("FullInformation", "Edit", new { editDitanee.Id});
             }
             return View(editDitanee);
         }

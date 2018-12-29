@@ -24,9 +24,16 @@ namespace Common.Mapper
                     if(findProperty.PropertyType.Name == "DateTime" && property.PropertyType.Name == "String")
                     {
                         var value = property.GetValue(create,null);
-                        string[] dates = value.ToString().Split('/');
+                        string[] dates = value.ToString().Split(new char[] { '/' ,'.'});
                         DateTime date = new DateTime(int.Parse(dates[2]),int.Parse(dates[1]),int.Parse(dates[0]));
                         findProperty.SetValue(toItem,date);
+                    }
+                    else if(findProperty.PropertyType.Name == "Decimal" && property.PropertyType.Name == "String")
+                    {
+                        var value = property.GetValue(create, null);
+                        value = value.ToString().Replace('.', ',');
+                        decimal data = decimal.Parse(value.ToString());
+                        findProperty.SetValue(toItem, data);
                     }
                     else if(findProperty.PropertyType.Name == property.PropertyType.Name)
                     {
@@ -39,6 +46,50 @@ namespace Common.Mapper
 
 
             return toItem;
+        }
+
+        public static E UpdateInfo <T,E> (E edit,T editor)
+        {
+            var tProperties = typeof(T).GetProperties();
+            var eProperties = typeof(E).GetProperties();
+
+            foreach (var property in eProperties)
+            {
+                var findProperty = tProperties.FirstOrDefault(item => item.Name == property.Name);
+
+                if (findProperty != null )
+                {
+                    if(findProperty.PropertyType.Name == "DateTime" && property.PropertyType.Name == "String")
+                    {
+                        DateTime date = (DateTime)findProperty.GetValue(editor, null);
+                        property.SetValue(edit, date.Day+"/"+date.Month+"/"+date.Year);
+                    }
+                    else if(findProperty.PropertyType.Name == property.PropertyType.Name)
+                    {
+                        var value = findProperty.GetValue(editor, null);
+                        property.SetValue(edit, value);
+                    }
+                        
+                }
+
+            }
+
+            return edit;
+        }
+
+        public static List<T> MapCollection<T>(List<WorkerAndName> oldCol) where T:class,new()
+        {
+            List<T> workers = new List<T>();
+            foreach (var item in oldCol)
+            {
+                T myItem = new T();
+                myItem = Mapper.MapToItem<Person, T>(item.Person);
+                myItem = Mapper.UpdateInfo<Worker, T>(myItem, item.Worker);
+
+                workers.Add(myItem);
+            }
+
+            return workers;
         }
     }
 }

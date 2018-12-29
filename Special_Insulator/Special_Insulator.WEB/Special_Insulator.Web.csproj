@@ -159,6 +159,7 @@
     <Compile Include="Controllers\AuthenticationController.cs" />
     <Compile Include="Controllers\DepartmentsController.cs" />
     <Compile Include="Controllers\DetaineesController.cs" />
+    <Compile Include="Controllers\DetentionsController.cs" />
     <Compile Include="Controllers\EditController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\WorkersController.cs" />
@@ -171,9 +172,9 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\DepartmentMod.cs" />
-    <Compile Include="Models\CreateDetaineeWithName.cs" />
+    <Compile Include="Models\DetaineeWithNameMod.cs" />
+    <Compile Include="Models\DetentionMod.cs" />
     <Compile Include="Models\WorkerWithName.cs" />
-    <Compile Include="Models\EditDitanee.cs" />
     <Compile Include="Models\UserLogin.cs" />
     <Compile Include="Models\UserRegistration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -205,6 +206,11 @@
     <Content Include="Views\Detainees\EditDetaineeInfo.cshtml" />
     <Content Include="Views\Workers\AddWorker.cshtml" />
     <Content Include="Views\Departments\AddDepartment.cshtml" />
+    <Content Include="Views\Workers\Index.cshtml" />
+    <Content Include="Views\Departments\Index.cshtml" />
+    <Content Include="Views\Departments\EditDepartment.cshtml" />
+    <Content Include="Views\Workers\EditWorker.cshtml" />
+    <Content Include="Views\Detentions\AddDetention.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -222,6 +228,10 @@
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Special_Insulator.DAL\Special_Insulator.DAL.csproj">
+      <Project>{e36d8042-6e03-4d48-82d0-508a56dc3a9d}</Project>
+      <Name>Special_Insulator.DAL</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Special_Insulator.Dependency\Special_Insulator.Dependency.csproj">
       <Project>{55fb3b48-f153-4577-814a-a9fbf26e043b}</Project>
       <Name>Special_Insulator.Dependency</Name>

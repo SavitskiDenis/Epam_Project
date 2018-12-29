@@ -11,16 +11,21 @@ namespace Specila_Insultor.BLL
 {
     class DetentionBusiness : IDetentionBusiness
     {
-        IDetentionData detention;
+        IDetentionData detentionData;
 
         public DetentionBusiness(IDetentionData detention)
         {
-            this.detention = detention;
+            detentionData = detention;
+        }
+
+        public void AddDetention(Detention detention)
+        {
+            detentionData.AddDetention(detention);
         }
 
         public List<Detention> GetDetentionsByDetaineeId(int id)
         {
-            return detention.GetDetentionsByDetaineeId(id);
+            return detentionData.GetDetentionsByDetaineeId(id);
         }
     }
 }

@@ -61,6 +61,7 @@
     <Compile Include="Entity\Role.cs" />
     <Compile Include="Entity\User.cs" />
     <Compile Include="Entity\Worker.cs" />
+    <Compile Include="Entity\WorkerAndName.cs" />
     <Compile Include="Mapper\Mapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

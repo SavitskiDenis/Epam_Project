@@ -1,4 +1,4 @@
-﻿@model Special_Insulator.WEB.Models.EditDitanee
+﻿@model Special_Insulator.WEB.Models.DetaineeWithNameMod
 @{
     ViewBag.Title = "Изменение";
 }
@@ -7,6 +7,23 @@
     <div class="row justify-content-center" }>
         @using (@Html.BeginForm("EditDetaineeInfo", "Detainees", FormMethod.Post, new { @style = "border:1px solid #000000;border-radius:20px", @class = "col-lg-6" }))
         {
+            @Html.HiddenFor(model => model.Id);
+            @Html.HiddenFor(model => model.PeopleId);
+            <div style="margin:0 auto;margin-bottom:5px ; margin-top:10px">
+                <label>Имя</label>
+                @Html.TextBoxFor(model => model.FirstName, new { @class = "form-control", @style = "margin:0 auto;" })
+                @Html.ValidationMessageFor(model => model.FirstName)
+            </div>
+            <div style="margin:0 auto;margin-bottom:5px ; margin-top:10px">
+                <label>Фамилия</label>
+                @Html.TextBoxFor(model => model.LastName, new { @class = "form-control", @style = "margin:0 auto;" })
+                @Html.ValidationMessageFor(model => model.LastName)
+            </div>
+            <div>
+                <label>Дата рождения</label>
+                @Html.TextBoxFor(model => model.BornDate, new { @class = "form-control", @style = "margin:0 auto;" })
+                @Html.ValidationMessageFor(model => model.BornDate)
+            </div>
             <div style="margin:0 auto;margin-bottom:5px">
                 <label>Место проживания</label>
                 @Html.TextAreaFor(model => model.Address, new { @class = "form-control", @style = "margin:0 auto;" })
@@ -21,6 +38,11 @@
                 <label>Семейное положение</label>
                 @Html.TextBoxFor(model => model.Status, new { @class = "form-control", @style = "margin:0 auto;" })
                 @Html.ValidationMessageFor(model => model.Status)
+            </div>
+            <div style="margin:0 auto;margin-bottom:5px">
+                <label>Номер телефона</label>
+                @Html.TextBoxFor(model => model.Phone, new { @class = "form-control", @style = "margin:0 auto;" })
+                @Html.ValidationMessageFor(model => model.Phone)
             </div>
             <div style="margin:0 auto;margin-bottom:5px">
                 <label>Дополнительная информация</label>

@@ -10,5 +10,13 @@ namespace Special_Insulator.DAL.Interfaces
     public interface IWorkerData
     {
         void AddWorker(Worker worker,Person person);
+
+        List<WorkerAndName> GetAllWorkers();
+
+        WorkerAndName GetWorkerById(int Id);
+
+        void DeleteWorkerById(int Id);
+
+        void EditWorker(WorkerAndName workerAndName);
     }
 }

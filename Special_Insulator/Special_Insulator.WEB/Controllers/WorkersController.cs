@@ -19,6 +19,11 @@ namespace Special_Insulator.WEB.Controllers
             this.data = data;
         }
 
+        public ActionResult Index()
+        {
+            return View(data.GetAllWorkers());
+        }
+
         [HttpGet]
         public ActionResult AddWorker()
         {
@@ -41,6 +46,34 @@ namespace Special_Insulator.WEB.Controllers
             return View(worker);
         }
 
+        public ActionResult DeleteWorker(int Id)
+        {
+            data.DeleteWorkerById(Id);
+            return RedirectToAction("Index","Workers");
+        }
 
+        [HttpGet]
+        public ActionResult EditWorker(int Id)
+        {
+            WorkerAndName myWorker = data.GetWorkerById(Id);
+            WorkerWithName editWorker = Mapper.MapToItem<Person, WorkerWithName>(myWorker.Person);
+            editWorker = Mapper.UpdateInfo<Worker, WorkerWithName>(editWorker, myWorker.Worker);
+
+            return View(editWorker);
+        }
+
+        [HttpPost]
+        public ActionResult EditWorker(WorkerWithName editWorker)
+        {
+            if (ModelState.IsValid)
+            {
+                var person = Mapper.MapToItem<WorkerWithName, Person>(editWorker);
+                var worker = Mapper.MapToItem<WorkerWithName, Worker>(editWorker);
+                data.EditWorker(new WorkerAndName(worker, person));
+                return RedirectToAction("Index", "Workers");
+            }
+
+            return View(editWorker);
+        }
     }
 }

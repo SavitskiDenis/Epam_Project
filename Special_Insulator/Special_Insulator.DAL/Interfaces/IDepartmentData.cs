@@ -10,5 +10,13 @@ namespace Special_Insulator.DAL.Interfaces
     public interface IDepartmentData
     {
         void AddDepartment(Department departmnet);
+
+        List<Department> GetAllDepartments();
+
+        Department GetDepartmnetnById(int Id);
+
+        void DeleteDepartmentsById(int Id);
+
+        void EditDepartment(Department department);
     }
 }

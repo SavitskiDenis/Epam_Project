@@ -66,7 +66,7 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
     <Compile Include="DALRegistry.cs" />
-    <Compile Include="DataineeData.cs" />
+    <Compile Include="DetaineeData.cs" />
     <Compile Include="DepartmentData.cs" />
     <Compile Include="DetentionData.cs" />
     <Compile Include="Interfaces\IDepartmentData.cs" />

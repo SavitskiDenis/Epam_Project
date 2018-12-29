@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace Special_Insulator.DAL
 {
     
-    class PersonData : IPersonData
+    public class PersonData : IPersonData
     {
         public string connectionString = @"Data Source=.\;Initial Catalog=SIDb;Integrated Security=True";
 
@@ -83,6 +83,27 @@ namespace Special_Insulator.DAL
                 var result = deletePerson.ExecuteNonQuery();
             }
                
+        }
+
+        public void EditPerson(Person person)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                SqlCommand updatePerson = new SqlCommand("UpdatePeople", connection);
+                updatePerson.CommandType = System.Data.CommandType.StoredProcedure;
+
+                SqlParameter[] parameters = new SqlParameter[]
+                {
+                    new SqlParameter("@Id",person.Id),
+                    new SqlParameter("@FirstName",person.FirstName),
+                    new SqlParameter("@LastName",person.LastName),
+                };
+
+                updatePerson.Parameters.AddRange(parameters);
+
+                int result = updatePerson.ExecuteNonQuery();
+            }
         }
     }
 }

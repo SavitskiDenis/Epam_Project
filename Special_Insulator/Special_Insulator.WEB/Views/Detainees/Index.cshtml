@@ -20,18 +20,9 @@
             <th>
                 Место работы
             </th>
-            @*<th>
-                Семейное положение
-            </th>*@
             <th>
                 Телефон
             </th>
-            @*<th>
-                Адрес прописки
-            </th>
-            <th>
-                Дополнительная информация
-            </th>*@
             <th></th>
 
         </tr>
@@ -52,18 +43,9 @@
                 <td>
                     @Html.TextAreaFor(modelItem => item.detainee.Workplace, new { disabled = "disabled" })
                 </td>
-                @*<td>
-                    @Html.DisplayFor(modelItem => item.detainee.Status)
-                </td>*@
                 <td>
                     @Html.DisplayFor(modelItem => item.detainee.Phone)
                 </td>
-                @*<td>
-                    @Html.TextAreaFor(modelItem => item.Address, new { disabled = "disabled" })
-                </td>
-                <td>
-                    @Html.TextAreaFor(modelItem => item.Additional_information, new { disabled = "disabled" })
-                </td>*@
                 <td>
                     <button title="Подробнее" class="btn btn-default" style="margin-top:5px;" onclick="location.href = '@Url.Action("FullInformation", "Detainees",new { item.detainee.Id})'"><img height="20" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAGnSURBVGhD7Zm7LgVRFIZP684biN4rSFxCqJQarUTrAUR0ahqJa6GTKJSIQuMZvADRiUqD/5dMrOysOZk1s2fvIetLvuLs7LNmvjjOPoee4zjOv2MBnsGbTJ7COdiIXfjVEXdgLeahNjCns9DMOdSG5fQEmrmH2rCc8p7MPEBtWE55T2Y8pEWjhPDxYWK1ezATDtmEqeE15T14iBziIQ3wEImHRCRLyCicKHEI1iFpyAC8g3Kv5gG0kjRkCcp9ZX7CQWghaQhfUi9Q7i1zDFpIGkKm4SuU+zU7H0IY8wblc0L/RMgWlPs1Ox9SJYJ2OqQs4l1ZyxJyBeWQNRhSFsF17Q2A73AWooTwfPiAHPAEx6GkX0QBY54h1x+5YCRKCJmCy3Dk59EvVSIK+NwZaD0MSbQQDUtEU1oLSRlBWglJHUGih+SIIFFDckWQaCFVI/jliefMRmQvoLxurT9ir0M5pDCM4CHHc0bbG9tjaOYahoO0l9MKDPe1Jc8jM3tQDin7nZiExSeANt2GtRiG+/AWrnKhD4vwEmr/zGzqEaz1k3Acx+kqvd43MSjmILIPTOIAAAAASUVORK5CYII="></button>
                 </td>

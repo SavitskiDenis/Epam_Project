@@ -19,6 +19,11 @@ namespace Special_Insulator.WEB.Controllers
             this.data = data;
         }
 
+        public ActionResult Index()
+        {
+            return View(data.GetAllDepartments());
+        }
+
         [HttpGet]
         public ActionResult AddDepartment()
         {
@@ -37,5 +42,31 @@ namespace Special_Insulator.WEB.Controllers
 
             return View(department);
         }
+
+        [HttpGet]
+        public ActionResult EditDepartment(int Id)
+        {
+            DepartmentMod department = Mapper.MapToItem<Department,DepartmentMod>(data.GetDepartmnetnById(Id));
+            return View(department);
+        }
+
+        [HttpPost]
+        public ActionResult EditDepartment(DepartmentMod department)
+        {
+            if (ModelState.IsValid)
+            {
+                Department dep = Mapper.MapToItem<DepartmentMod, Department>(department);
+                data.EditDepartment(dep);
+                return RedirectToAction("Index","Departments");
+            }
+            return View(department);
+        }
+
+        public ActionResult DeleteDepartment(int Id)
+        {
+            data.DeleteDepartmentsById(Id);
+            return RedirectToAction("Index","Departments");
+        }
+
     }
 }

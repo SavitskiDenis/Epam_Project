@@ -11,3 +11,4 @@ CREATE PROC AddDetainee
 	@AdditionalInformation varchar(200)=''
 AS
 	INSERT INTO Detainees([PeopleId],[BornDate],[Status],[Workplace],[Photo],[Address],[AdditionalInformation]) VALUES (@PeopleId,@BornDate,@Status,@Workplace,@Photo,@Address,@AdditionalInformation)
+	Select SCOPE_IDENTITY()

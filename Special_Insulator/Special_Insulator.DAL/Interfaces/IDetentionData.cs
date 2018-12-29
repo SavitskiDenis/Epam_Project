@@ -11,5 +11,6 @@ namespace Special_Insulator.DAL.Interfaces
     {
         List<Detention> GetDetentionsByDetaineeId(int id);
 
+        void AddDetention(Detention detention);
     }
 }

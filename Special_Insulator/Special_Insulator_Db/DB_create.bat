@@ -53,6 +53,13 @@ sqlcmd -S.\ -E -i %Procedures/Select/SelectPhoneByDetaineeId.sql
 sqlcmd -S.\ -E -i %Procedures/Select/SelectAllPeople.sql
 sqlcmd -S.\ -E -i %Procedures/Select/SelectDetaineeById.sql
 sqlcmd -S.\ -E -i %Procedures/Select/SelectDetentionsByDetaineeId.sql
+sqlcmd -S.\ -E -i %Procedures/Select/SelectAllDepartments.sql
+sqlcmd -S.\ -E -i %Procedures/Select/SelectAllWorkers.sql
+sqlcmd -S.\ -E -i %Procedures/Select/SelectDepartmentById.sql
+sqlcmd -S.\ -E -i %Procedures/Select/SelectWorkerById.sql
+sqlcmd -S.\ -E -i %Procedures/Select/SelectDeliveryWorkerId.sql
+sqlcmd -S.\ -E -i %Procedures/Select/SelectDetainWorkerId.sql
+sqlcmd -S.\ -E -i %Procedures/Select/SelectReleaseWorkerId.sql
 
 
 

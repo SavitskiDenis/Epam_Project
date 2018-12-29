@@ -17,6 +17,6 @@ namespace Specila_Insultor.BLL
 
         DetaineeWithName GetDeteineeById(int Id);
 
-        void UpdateDetaineeInfo(Detainee detainee);
+        void EditDetaineeInfo(DetaineeWithName detainee);
     }
 }

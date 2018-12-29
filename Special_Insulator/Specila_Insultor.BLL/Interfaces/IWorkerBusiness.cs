@@ -9,6 +9,15 @@ namespace Specila_Insultor.BLL.Interfaces
 {
     public interface IWorkerBusiness
     {
-        void AddWorker(Worker worker,Person person); 
+        void AddWorker(Worker worker,Person person);
+
+        List<WorkerAndName> GetAllWorkers();
+
+        WorkerAndName GetWorkerById(int Id);
+
+        void DeleteWorkerById(int Id);
+
+        void EditWorker(WorkerAndName workerAndName);
+
     }
 }

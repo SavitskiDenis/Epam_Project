@@ -8,8 +8,9 @@
         <div class="col">
             <a onclick="location.href = '@Url.Action("Index","Edit",new { Model.detainee.Id})'"><img src="https://img.icons8.com/windows/32/000000/back.png"></a>
         </div>
-        <div class="col offset-lg-4" >
+        <div class="col offset-lg-4">
             <a onclick="location.href = '@Url.Action("EditDetaineeInfo","Detainees",new { Model.detainee.Id})'" title="Изменить"><img src="https://img.icons8.com/ios/32/000000/edit-column.png"></a>
+            <a onclick="location.href = '@Url.Action("AddDetention","Detentions",new { Model.detainee.Id})'" title="Добавить задержание"><img src="https://img.icons8.com/windows/32/000000/add.png"></a>
         </div>
     </div>
     
@@ -34,17 +35,37 @@
     </div>
 
 
-    <table>
+    <table class="table table-sm">
         <tr>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
+            <th>Даты</th>
+            <th>Сотрудники</th>
+            <th>Адресс</th>
+            <th>Суммы</th>
         </tr>
         @foreach (var item in Model.detainee.Detentions)
         {
-            <tr></tr>
+            <tr>
+                <td>
+                    <p>Дата задержания: @item.DetentionDate.ToShortDateString()</p>
+                    <p>Дата доставки: @item.DeliveryDate.ToShortDateString()</p>
+                    <p>Дата освобождения: @item.LiberationDate.ToShortDateString()</p>
+                </td>
+                <td>
+                    <p>ФИ: @item.DetainWorker.Person.LastName . @item.DetainWorker.Person.FirstName[0]</p>
+                    <p>Должность: @item.DetainWorker.Worker.WorkerPost</p>
+                    <p>ФИ: @item.DeliveryWorker.Person.LastName . @item.DeliveryWorker.Person.FirstName[0]</p>
+                    <p>Должность: @item.DeliveryWorker.Worker.WorkerPost</p>
+                    <p>ФИ: @item.ReleaseWorker.Person.LastName . @item.ReleaseWorker.Person.FirstName[0]</p>
+                    <p>Должность: @item.ReleaseWorker.Worker.WorkerPost</p>
+                </td>
+                <td>
+                    @item.Address
+                </td>
+                <td>
+                    <p>Начисленная: @item.AccruedAmount</p>
+                    <p>Выплаченная: @item.PaidAmount</p>
+                </td>
+            </tr>
         }
 
     </table>

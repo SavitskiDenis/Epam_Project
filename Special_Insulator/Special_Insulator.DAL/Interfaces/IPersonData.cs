@@ -12,5 +12,6 @@ namespace Special_Insulator.DAL.Interfaces
         Person GetPersonById(int id);
         string GetPhoneByDetaineeId(int id);
         void DeletePersonById(int personId);
+        void EditPerson(Person person);
     }
 }

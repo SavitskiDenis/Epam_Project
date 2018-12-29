@@ -12,7 +12,7 @@ namespace Special_Insulator.DAL
     {
         public DALRegistry()
         {
-            For<IDetaineeData>().Singleton().Use<DataineeData>();
+            For<IDetaineeData>().Singleton().Use<DetaineeData>();
             For<IPersonData>().Singleton().Use<PersonData>();
             For<IDetentionData>().Singleton().Use<DetentionData>();
             For<IWorkerData>().Singleton().Use<WorkerData>();

@@ -109,6 +109,13 @@
     <None Include="Procedures\Select\SelectDetaineeById.sql" />
     <None Include="Procedures\Select\SelectAllPeople.sql" />
     <None Include="Procedures\Select\SelectDetentionsByDetaineeId.sql" />
+    <None Include="Procedures\Select\SelectAllDepartments.sql" />
+    <None Include="Procedures\Select\SelectAllWorkers.sql" />
+    <None Include="Procedures\Select\SelectWorkerById.sql" />
+    <None Include="Procedures\Select\SelectDepartmentById.sql" />
+    <None Include="Procedures\Select\SelectDetainWorkerId.sql" />
+    <None Include="Procedures\Select\SelectDeliveryWorkerId.sql" />
+    <None Include="Procedures\Select\SelectReleaseWorkerId.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Procedures\Add\AddDepartment.sql" />

@@ -10,5 +10,7 @@ namespace Specila_Insultor.BLL.Interfaces
     public interface IDetentionBusiness
     {
         List<Detention> GetDetentionsByDetaineeId(int id);
+
+        void AddDetention(Detention detention);
     }
 }

@@ -10,5 +10,13 @@ namespace Specila_Insultor.BLL.Interfaces
     public interface IDepartmentBusiness
     {
         void AddDepartment(Department department);
+
+        List<Department> GetAllDepartments();
+
+        Department GetDepartmnetnById(int Id);
+
+        void DeleteDepartmentsById(int Id);
+
+        void EditDepartment(Department department);
     }
 }
