@@ -23,9 +23,24 @@ namespace Specila_Insultor.BLL
             detentionData.AddDetention(detention);
         }
 
+        public void DeleteDetention(int Id)
+        {
+            detentionData.DeleteDetention(Id);
+        }
+
         public List<Detention> GetDetentionsByDetaineeId(int id)
         {
             return detentionData.GetDetentionsByDetaineeId(id);
+        }
+
+        public Detention GetDetentionById(int Id)
+        {
+            return detentionData.GetDetentionById(Id);
+        }
+
+        public void EditDetention(Detention detention)
+        {
+            detentionData.EditDetention(detention);
         }
     }
 }

@@ -64,9 +64,19 @@
     <Compile Include="Entity\WorkerAndName.cs" />
     <Compile Include="Mapper\Mapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Reader\ReadDepartment.cs" />
+    <Compile Include="Reader\ReadDetainee.cs" />
+    <Compile Include="Reader\IReader.cs" />
+    <Compile Include="Reader\ReadDetention.cs" />
+    <Compile Include="Reader\ReadPerson.cs" />
+    <Compile Include="Reader\ReadId.cs" />
+    <Compile Include="Reader\ReadPhoneNumber.cs" />
+    <Compile Include="Reader\ReadWorker.cs" />
+    <Compile Include="SQLExecuter\Executer.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

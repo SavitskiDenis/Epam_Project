@@ -4,23 +4,23 @@
     ViewBag.Title = "Режим редактирования";
 }
 <div class="row justify-content-center" style="margin-bottom:35px;margin-top:25px">
-    <div>
-        <a class="col-lg-2" onclick="location.href = '@Url.Action("AddDetainee", "Detainees")'" title="Добавить задержанного"><img src="https://img.icons8.com/windows/32/000000/add.png"></a>
-    </div>
+    <button class="btn btn-outline-info" style="margin-right:5px" onclick="location.href = '@Url.Action("AddDetainee", "Detainees")'" title="Добавить задержанного">
+        <img src="https://img.icons8.com/windows/32/000000/add.png">
+    </button>
 
-    <button  class="btn btn-dark" style="margin-right:5px" onclick="location.href = '@Url.Action("AddWorker", "Workers")'">
+    <button  class="btn btn-outline-info" style="margin-right:5px" onclick="location.href = '@Url.Action("AddWorker", "Workers")'">
         Добавить сотрудника
     </button>
 
-    <button  class="btn btn-dark" style="margin-right:5px" onclick="location.href = '@Url.Action("Index", "Workers")'">
+    <button  class="btn btn-outline-info" style="margin-right:5px" onclick="location.href = '@Url.Action("Index", "Workers")'">
         Список сотрудников
     </button>
 
-    <button  class="btn btn-dark" style="margin-right:5px" onclick="location.href = '@Url.Action("AddDepartment", "Departments")'">
+    <button class="btn btn-outline-info" style="margin-right:5px" onclick="location.href = '@Url.Action("AddDepartment", "Departments")'">
         Добавить отдел
     </button>
 
-    <button  class="btn btn-dark" style="margin-right:5px" onclick="location.href = '@Url.Action("Index", "Departments")'">
+    <button  class="btn btn-outline-info"" style="margin-right:5px" onclick="location.href = '@Url.Action("Index", "Departments")'">
         Список отделов
     </button>
 
@@ -70,7 +70,9 @@
                 <td>
                     <button title="Подробнее" class="btn btn-default" style="margin-top:5px;" onclick="location.href = '@Url.Action("FullInformation", "Edit",new { item.detainee.Id})'"><img height="20" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAGnSURBVGhD7Zm7LgVRFIZP684biN4rSFxCqJQarUTrAUR0ahqJa6GTKJSIQuMZvADRiUqD/5dMrOysOZk1s2fvIetLvuLs7LNmvjjOPoee4zjOv2MBnsGbTJ7COdiIXfjVEXdgLeahNjCns9DMOdSG5fQEmrmH2rCc8p7MPEBtWE55T2Y8pEWjhPDxYWK1ezATDtmEqeE15T14iBziIQ3wEImHRCRLyCicKHEI1iFpyAC8g3Kv5gG0kjRkCcp9ZX7CQWghaQhfUi9Q7i1zDFpIGkKm4SuU+zU7H0IY8wblc0L/RMgWlPs1Ox9SJYJ2OqQs4l1ZyxJyBeWQNRhSFsF17Q2A73AWooTwfPiAHPAEx6GkX0QBY54h1x+5YCRKCJmCy3Dk59EvVSIK+NwZaD0MSbQQDUtEU1oLSRlBWglJHUGih+SIIFFDckWQaCFVI/jliefMRmQvoLxurT9ir0M5pDCM4CHHc0bbG9tjaOYahoO0l9MKDPe1Jc8jM3tQDin7nZiExSeANt2GtRiG+/AWrnKhD4vwEmr/zGzqEaz1k3Acx+kqvd43MSjmILIPTOIAAAAASUVORK5CYII="></button>
                 </td>
-                <td><button title="Удалить" class="btn btn-default" style="margin-top:5px;" onclick="location.href = '@Url.Action("DeleteDetainee", "Edit", new { item.detainee.Id })'"><img height="20" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAEOSURBVGhD7do/DgFRGATwPYzo3EAicQdXkChUClG5BG4g3EEponEPdyDBfN3LZvxJdt6zxUzy677d7w2ChMpxnOJZwOWLmGl1lvD8UcwWTTx6hx+cgB34k7iG3atO8gxugR2ipDhD47iIkKTIEMZ/FmdwnLanD+z1m1PslGcD7B0lp9gpj4s0ULTIFdLvRWdgc6mYSa+Je7C5okXqn7o9YHOpmEnz7tuDi3yKixAuooiLEC6iiIsQLqKIixAuooiLEC6iiIsQLqKIixB/LbIGtuwIo8QM2FwqZtJr4h5sbgXyxO94bFlOc5CnC3dgC3O4QQeyZAoPYIuVYscEsmYAe2B/BFDYQexwHEeWqnoBb8JjUY+wGHoAAAAASUVORK5CYII="></button>
+                <td>
+                    <button title="Удалить" class="btn btn-default" style="margin-top:5px;" onclick="location.href = '@Url.Action("DeleteDetainee", "Detainees", new { item.detainee.Id })'"><img height="20" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAEOSURBVGhD7do/DgFRGATwPYzo3EAicQdXkChUClG5BG4g3EEponEPdyDBfN3LZvxJdt6zxUzy677d7w2ChMpxnOJZwOWLmGl1lvD8UcwWTTx6hx+cgB34k7iG3atO8gxugR2ipDhD47iIkKTIEMZ/FmdwnLanD+z1m1PslGcD7B0lp9gpj4s0ULTIFdLvRWdgc6mYSa+Je7C5okXqn7o9YHOpmEnz7tuDi3yKixAuooiLEC6iiIsQLqKIixAuooiLEC6iiIsQLqKIixB/LbIGtuwIo8QM2FwqZtJr4h5sbgXyxO94bFlOc5CnC3dgC3O4QQeyZAoPYIuVYscEsmYAe2B/BFDYQexwHEeWqnoBb8JjUY+wGHoAAAAASUVORK5CYII="></button>
+                </td>
                 
             </tr>
         }

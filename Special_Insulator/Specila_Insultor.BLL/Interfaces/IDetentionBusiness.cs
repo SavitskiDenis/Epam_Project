@@ -12,5 +12,11 @@ namespace Specila_Insultor.BLL.Interfaces
         List<Detention> GetDetentionsByDetaineeId(int id);
 
         void AddDetention(Detention detention);
+
+        void DeleteDetention(int Id);
+
+        Detention GetDetentionById(int Id);
+
+        void EditDetention(Detention detention);
     }
 }

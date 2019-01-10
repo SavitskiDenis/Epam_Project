@@ -116,6 +116,12 @@
     <None Include="Procedures\Select\SelectDetainWorkerId.sql" />
     <None Include="Procedures\Select\SelectDeliveryWorkerId.sql" />
     <None Include="Procedures\Select\SelectReleaseWorkerId.sql" />
+    <None Include="Procedures\Select\SelectDetentionById.sql" />
+    <None Include="Procedures\Update\UpdateInDetensionsAndDetainWorkers.sql" />
+    <None Include="Procedures\Update\UpdateInDetentionsAndDeliveryWorkers.sql" />
+    <None Include="Procedures\Update\UpdateInDetentionsAndReleaseWorkers.sql" />
+    <None Include="Procedures\Delete\DeleteDetentionByDetaineeId.sql" />
+    <None Include="Procedures\Select\SelectDetentionsIdByDetaineeId.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Procedures\Add\AddDepartment.sql" />

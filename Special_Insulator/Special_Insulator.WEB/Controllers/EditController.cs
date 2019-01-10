@@ -26,16 +26,12 @@ namespace Special_Insulator.WEB.Controllers
             return View(data.GetAllDetainees());
         }
 
-        public ActionResult DeleteDetainee(int id )
-        {
-            data.DeleteDetaineeById(id);
-            return RedirectToAction("Index","Edit");
-        }
-
+        
         public ActionResult FullInformation(int Id )
         {
             DetaineeWithName mydetainee = data.GetDeteineeById(Id);
             mydetainee.detainee.Detentions = detentionData.GetDetentionsByDetaineeId(Id);
+            ViewBag.DetaineeId = Id;
             return View(mydetainee);
         }
 

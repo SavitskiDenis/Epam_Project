@@ -8,16 +8,17 @@
     <link href="~/Content/bootstrap.css" rel="stylesheet" />
     <link href="~/Content/Styles.css" rel="stylesheet" />
     <script src="~/Scripts/modernizr-2.6.2.js"></script>
+
 </head>
 <body style="padding:0">
-    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color:#9040D5">
+    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color:#32bce9">
         <div class="container">
             <a title="Главная страница" class="navbar-brand" onclick="location.href = '@Url.Action("Index", "Home")'"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAPoSURBVGhDzZpbqFVFGICPlZBlaJqJD1aakRcUtALJJEGRUFAIMTEQRQRv4QWUSstMQkQQNfNB8UkFLyiKFEoYRtCLIKX5ICWmokh5yTJRTPP7BkY26Npn733WWns++B5mzqxZ/6w9a9ZcTktBDMUv8Re8iZfwe5yH3TB5huFh/L+KN3AVPofJ8QZ+gzHYa7gGzX8Sn8eJeBDvoWX+xhX4LDadN7GyAX/hZ9gZs3gdD2C85jraoK5YKk/gBLTPVzbgc6zn6fprfY2xDrvcRuyPheINluN5jDf/E5diJ2yUwbgH76J12vV8z6ZgW+p9wGM4BJfgcYzB61Gcivb/vOiFq/Eyxvvcwn34PnbHmumHs3E3Vlao59Ab+QSLpAO+h3vRhsT7+0s5nK/D8dgFM6kM3AuPoUPlcPQXKhu7ll1sG/6BlfFtx0xioWnokJkS7dDesBON0YEhE0cfC5U+FNbBR2iMdvNMLqKFfPFSZSUao9+rTE6jhQaFVJrYpYxxcUhlEIfZt0IqTXzJjXFWSGXwHVpoXEilifM1Y3w3pDLYjBaaG1Jp8isaY9XuH0cEPzop4jzvDhpjRzOy8ItqISdzKdIHjc/RtSpOsS3oz5ciY9D4fgipKjyD/6E/31NmJManaEPWh1Qr/IQWHhFSaXEIjc3VZqtsQAu7zkiJx9HlsbH1MKM1JqOFHa9TwrWRcf0WUjXwInqBa+n2ZiSCCzzj8ltXMz+jF70TUmng2qjumD5BL9oSUs2nNxrPFayrl/RFL7yKKXQvZ7oNP9gT6MVjQ6p5uMSO86tRZtTLB+jFzR69fJDGcRJd7taNu4X/oJsQhW+aVSFO22eEVIM4FbCSTSFVPm42+CDdCHSbqGGcbTrvcn/pJTNKJu4rfxxSbcRfw8rcWyoTl9ve9wLmMoF1XvMvujdb9C5jxHmV27I2ZLoZeeFOu5X+iN6kaDzZ8n7OMHK939PoZM3KF5pRID3R0dJ38zUz8uZtdATxTPAVMwrApx/PXdyIKwwPOL2Ji68iVpCev1i/+2t5Hlk8hMHHWehWM3LEvTSX2S4fXjWjaNwXdhZqYz40IwcGokdv1umxXmmMxNvoO+NpUlt4GeNx3jIzysYG2BBHl0lmNMAL+DvaiKrnHUWzAG2MfduTpXoYgGfRRuzCMr5PVZmJfvVt0BdYyxGdXTMeKu3ApjciYtfy+2Jg+9GNviw81vP9suxXmEwjIs7DzqABnkL/K6ISDzadePp336s5mCyePX6LBmt3W4su0Nz5iC+1+wCjMXnsKovQGbOBx++DHsGUzycfiVs4cWHkJHA+NuOsPjdcINW0V9s4LS33Aa12D5GR+vfLAAAAAElFTkSuQmCC"></a>
-            <div class="btn-group dropright navbar-nav mr-auto" >
-                <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="background-color:#9040D5">
-                Навигация
+            <div class="btn-group dropright navbar-nav mr-auto">
+                <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="background-color:#32bce9">
+                    Навигация
                 </button>
-                <div class="dropdown-menu "  aria-labelledby="dropdownMenuButton">
+                <div class="dropdown-menu " aria-labelledby="dropdownMenuButton">
                     <a class="dropdown-item" onclick="location.href = '@Url.Action("Index", "Detainees")'">Список задержанных</a>
                     <a class="dropdown-item" onclick="location.href = '#'">Другое</a>
                 </div>
@@ -25,8 +26,12 @@
             <a class="nav-link navbar-nav ml-auto" onclick="location.href = '@Url.Action("Login", "Authentication")'">Вход</a>
         </div>
     </nav>
+    <div>
         @RenderBody()
+    </div>
+   
     <script src="~/Scripts/jquery-3.3.1.js"></script>
     <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
 </body>
 </html>

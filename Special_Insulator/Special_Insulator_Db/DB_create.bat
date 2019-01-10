@@ -37,6 +37,7 @@ sqlcmd -S.\ -E -i %Procedures/Delete/DeletePhone.sql
 sqlcmd -S.\ -E -i %Procedures/Delete/DeleteRole.sql
 sqlcmd -S.\ -E -i %Procedures/Delete/DeleteUser.sql
 sqlcmd -S.\ -E -i %Procedures/Delete/DeleteWorker.sql
+sqlcmd -S.\ -E -i %Procedures/Delete/DeleteDetentionByDetaineeId.sql
 
 sqlcmd -S.\ -E -i %Procedures/Update/UpdateDepartment.sql
 sqlcmd -S.\ -E -i %Procedures/Update/UpdateDetainee.sql
@@ -46,6 +47,9 @@ sqlcmd -S.\ -E -i %Procedures/Update/UpdatePhone.sql
 sqlcmd -S.\ -E -i %Procedures/Update/UpdateRole.sql
 sqlcmd -S.\ -E -i %Procedures/Update/UpdateUser.sql
 sqlcmd -S.\ -E -i %Procedures/Update/UpdateWorker.sql
+sqlcmd -S.\ -E -i %Procedures/Update/UpdateInDetensionsAndDetainWorkers.sql
+sqlcmd -S.\ -E -i %Procedures/Update/UpdateInDetentionsAndDeliveryWorkers.sql
+sqlcmd -S.\ -E -i %Procedures/Update/UpdateInDetentionsAndReleaseWorkers.sql
 
 sqlcmd -S.\ -E -i %Procedures/Select/SelectAllDetainees.sql
 sqlcmd -S.\ -E -i %Procedures/Select/SelectPersonById.sql
@@ -60,6 +64,8 @@ sqlcmd -S.\ -E -i %Procedures/Select/SelectWorkerById.sql
 sqlcmd -S.\ -E -i %Procedures/Select/SelectDeliveryWorkerId.sql
 sqlcmd -S.\ -E -i %Procedures/Select/SelectDetainWorkerId.sql
 sqlcmd -S.\ -E -i %Procedures/Select/SelectReleaseWorkerId.sql
+sqlcmd -S.\ -E -i %Procedures/Select/SelectDetentionById.sql
+sqlcmd -S.\ -E -i %Procedures/Select/SelectDetentionsIdByDetaineeId.sql
 
 
 

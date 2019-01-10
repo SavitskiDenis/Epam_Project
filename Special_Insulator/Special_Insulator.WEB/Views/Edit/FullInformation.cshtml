@@ -13,7 +13,7 @@
             <a onclick="location.href = '@Url.Action("AddDetention","Detentions",new { Model.detainee.Id})'" title="Добавить задержание"><img src="https://img.icons8.com/windows/32/000000/add.png"></a>
         </div>
     </div>
-    
+
     <div>
         <img class="rounded-circle mx-auto d-block" src="https://image.freepik.com/free-icon/male-user-close-up-shape-for-facebook_318-37635.jpg" width="200" style="border:2px solid #0094ff;border-radius:50px" />
     </div>
@@ -33,18 +33,17 @@
             <textarea cols="50" rows="3" disabled="disabled" style="resize:none">@Model.detainee.AdditionalInformation</textarea>
         </div>
     </div>
-
-
     <table class="table table-sm">
         <tr>
             <th>Даты</th>
             <th>Сотрудники</th>
             <th>Адресс</th>
             <th>Суммы</th>
+            <th></th>
         </tr>
         @foreach (var item in Model.detainee.Detentions)
         {
-            <tr>
+            <tr class="vision">
                 <td>
                     <p>Дата задержания: @item.DetentionDate.ToShortDateString()</p>
                     <p>Дата доставки: @item.DeliveryDate.ToShortDateString()</p>
@@ -64,6 +63,10 @@
                 <td>
                     <p>Начисленная: @item.AccruedAmount</p>
                     <p>Выплаченная: @item.PaidAmount</p>
+                </td>
+                <td>
+                    <button title="Изменить" class="btn btn-outline-info" style="margin-top:5px;" onclick="location.href = '@Url.Action("EditDetention", "Detentions", new {item.Id})'"><img height="20" src="https://img.icons8.com/ios/32/000000/edit-column.png"></button>
+                    <button title="Удалить" class="btn btn-outline-info" style="margin-top:5px;" onclick="location.href = '@Url.Action("DeleteDetention", "Detentions", new {item.Id})'"><img height="20" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAEOSURBVGhD7do/DgFRGATwPYzo3EAicQdXkChUClG5BG4g3EEponEPdyDBfN3LZvxJdt6zxUzy677d7w2ChMpxnOJZwOWLmGl1lvD8UcwWTTx6hx+cgB34k7iG3atO8gxugR2ipDhD47iIkKTIEMZ/FmdwnLanD+z1m1PslGcD7B0lp9gpj4s0ULTIFdLvRWdgc6mYSa+Je7C5okXqn7o9YHOpmEnz7tuDi3yKixAuooiLEC6iiIsQLqKIixAuooiLEC6iiIsQLqKIixB/LbIGtuwIo8QM2FwqZtJr4h5sbgXyxO94bFlOc5CnC3dgC3O4QQeyZAoPYIuVYscEsmYAe2B/BFDYQexwHEeWqnoBb8JjUY+wGHoAAAAASUVORK5CYII="></button>
                 </td>
             </tr>
         }

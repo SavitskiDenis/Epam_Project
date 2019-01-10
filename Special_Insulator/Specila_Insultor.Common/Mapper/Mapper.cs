@@ -64,6 +64,11 @@ namespace Common.Mapper
                         DateTime date = (DateTime)findProperty.GetValue(editor, null);
                         property.SetValue(edit, date.Day+"/"+date.Month+"/"+date.Year);
                     }
+                    else if (findProperty.PropertyType.Name == "Decimal" && property.PropertyType.Name == "String")
+                    {
+                        decimal money = (decimal)findProperty.GetValue(editor, null);
+                        property.SetValue(edit, money.ToString());
+                    }
                     else if(findProperty.PropertyType.Name == property.PropertyType.Name)
                     {
                         var value = findProperty.GetValue(editor, null);

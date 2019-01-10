@@ -28,6 +28,36 @@ namespace Special_Insulator.WEB.Controllers
             return View(data.GetAllDetainees());
         }
 
+        public ActionResult DeleteDetainee(int Id)
+        {
+            data.DeleteDetaineeById(Id);
+            return RedirectToAction("Index", "Edit");
+        }
+
+        [HttpPost]
+        public ActionResult FindDetainee(string search,string type = "All")
+        {
+            IEnumerable<DetaineeWithName> collection ;
+            if (type == "Все")
+            {
+                collection = data.GetAllDetainees();
+            }
+            else if(type == "По ФИ")
+            {
+                collection = data.GetAllDetainees().FindAll(item => (item.person.LastName +" "+ item.person.FirstName) == search);
+            }
+            else if(type == "По адресу")
+            {
+                collection = data.GetAllDetainees().FindAll(item => item.detainee.Address == search);
+            }
+            else
+            {
+                collection = null;
+            }
+            
+            return PartialView(collection);
+        }
+
         public ActionResult FullInformation(int Id)
         {
             DetaineeWithName mydetainee =  data.GetDeteineeById(Id);
