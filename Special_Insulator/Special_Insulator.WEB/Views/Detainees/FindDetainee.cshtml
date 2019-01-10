@@ -1,0 +1,48 @@
+﻿@model IEnumerable<Common.Entity.DetaineeWithName>
+<script src="~/Scripts/bootstrap.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
+
+<table class="table table-sm">
+    <tr>
+        <th>
+            ФИО
+        </th>
+        <th>
+            Дата рождения
+        </th>
+        <th>
+            Адрес прописки
+        </th>
+        <th>
+            Телефон
+        </th>
+        <th></th>
+
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr class="vision">
+            <td>
+                <p>@item.person.FirstName</p>
+                <p>@item.person.LastName</p>
+            </td>
+            <td>
+                @{
+                    string date = item.detainee.BornDate.ToShortDateString();
+                    <p>@date</p>
+                }
+            </td>
+            <td>
+                @Html.TextAreaFor(modelItem => item.detainee.Address, new { disabled = "disabled" })
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.detainee.Phone)
+            </td>
+            <td>
+                <button title="Подробнее" class="btn btn-default" style="margin-top:5px;" onclick="location.href = '@Url.Action("FullInformation", "Detainees",new { item.detainee.Id})'"><img height="20" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAGnSURBVGhD7Zm7LgVRFIZP684biN4rSFxCqJQarUTrAUR0ahqJa6GTKJSIQuMZvADRiUqD/5dMrOysOZk1s2fvIetLvuLs7LNmvjjOPoee4zjOv2MBnsGbTJ7COdiIXfjVEXdgLeahNjCns9DMOdSG5fQEmrmH2rCc8p7MPEBtWE55T2Y8pEWjhPDxYWK1ezATDtmEqeE15T14iBziIQ3wEImHRCRLyCicKHEI1iFpyAC8g3Kv5gG0kjRkCcp9ZX7CQWghaQhfUi9Q7i1zDFpIGkKm4SuU+zU7H0IY8wblc0L/RMgWlPs1Ox9SJYJ2OqQs4l1ZyxJyBeWQNRhSFsF17Q2A73AWooTwfPiAHPAEx6GkX0QBY54h1x+5YCRKCJmCy3Dk59EvVSIK+NwZaD0MSbQQDUtEU1oLSRlBWglJHUGih+SIIFFDckWQaCFVI/jliefMRmQvoLxurT9ir0M5pDCM4CHHc0bbG9tjaOYahoO0l9MKDPe1Jc8jM3tQDin7nZiExSeANt2GtRiG+/AWrnKhD4vwEmr/zGzqEaz1k3Acx+kqvd43MSjmILIPTOIAAAAASUVORK5CYII="></button>
+            </td>
+        </tr>
+    }
+
+</table>
