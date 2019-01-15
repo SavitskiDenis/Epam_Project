@@ -61,6 +61,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdvertisingData.cs" />
     <Compile Include="Connected Services\ServiceReference1\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -70,13 +71,20 @@
     <Compile Include="DetaineeData.cs" />
     <Compile Include="DepartmentData.cs" />
     <Compile Include="DetentionData.cs" />
+    <Compile Include="Interfaces\IAdvertisingData.cs" />
     <Compile Include="Interfaces\IDepartmentData.cs" />
     <Compile Include="Interfaces\IDetaineeData.cs" />
     <Compile Include="Interfaces\IDetentionData.cs" />
     <Compile Include="Interfaces\IPersonData.cs" />
+    <Compile Include="Interfaces\IPostData.cs" />
+    <Compile Include="Interfaces\IRoleData.cs" />
+    <Compile Include="Interfaces\IUserData.cs" />
     <Compile Include="Interfaces\IWorkerData.cs" />
     <Compile Include="PersonData.cs" />
+    <Compile Include="PostData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RoleData.cs" />
+    <Compile Include="UserData.cs" />
     <Compile Include="WorkerData.cs" />
   </ItemGroup>
   <ItemGroup>

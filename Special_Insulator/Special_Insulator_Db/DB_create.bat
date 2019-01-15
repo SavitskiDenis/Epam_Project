@@ -11,6 +11,7 @@ sqlcmd -S.\ -E -i %Tables/CreatePhoneTable.sql
 sqlcmd -S.\ -E -i %Tables/DetensionsAndDetainWorkers.sql
 sqlcmd -S.\ -E -i %Tables/DetentionsAndDeliveryWorkers.sql
 sqlcmd -S.\ -E -i %Tables/DetentionsAndReleaseWorkers.sql
+sqlcmd -S.\ -E -i %Tables/CreatePostsTable.sql
 
 sqlcmd -S.\ -E -i %Procedures/Add/AddDepartment.sql
 sqlcmd -S.\ -E -i %Procedures/Add/AddDetainee.sql
@@ -24,6 +25,7 @@ sqlcmd -S.\ -E -i %Procedures/Add/AddPhone.sql
 sqlcmd -S.\ -E -i %Procedures/Add/AddRole.sql
 sqlcmd -S.\ -E -i %Procedures/Add/AddUser.sql
 sqlcmd -S.\ -E -i %Procedures/Add/AddWorker.sql
+sqlcmd -S.\ -E -i %Procedures/Add/AddPost.sql
 
 sqlcmd -S.\ -E -i %Procedures/Delete/DeleteDepartment.sql
 sqlcmd -S.\ -E -i %Procedures/Delete/DeleteDetainee.sql
@@ -38,6 +40,7 @@ sqlcmd -S.\ -E -i %Procedures/Delete/DeleteRole.sql
 sqlcmd -S.\ -E -i %Procedures/Delete/DeleteUser.sql
 sqlcmd -S.\ -E -i %Procedures/Delete/DeleteWorker.sql
 sqlcmd -S.\ -E -i %Procedures/Delete/DeleteDetentionByDetaineeId.sql
+sqlcmd -S.\ -E -i %Procedures/Delete/DeletePost.sql
 
 sqlcmd -S.\ -E -i %Procedures/Update/UpdateDepartment.sql
 sqlcmd -S.\ -E -i %Procedures/Update/UpdateDetainee.sql
@@ -50,6 +53,7 @@ sqlcmd -S.\ -E -i %Procedures/Update/UpdateWorker.sql
 sqlcmd -S.\ -E -i %Procedures/Update/UpdateInDetensionsAndDetainWorkers.sql
 sqlcmd -S.\ -E -i %Procedures/Update/UpdateInDetentionsAndDeliveryWorkers.sql
 sqlcmd -S.\ -E -i %Procedures/Update/UpdateInDetentionsAndReleaseWorkers.sql
+sqlcmd -S.\ -E -i %Procedures/Update/UpdatePost.sql
 
 sqlcmd -S.\ -E -i %Procedures/Select/SelectAllDetainees.sql
 sqlcmd -S.\ -E -i %Procedures/Select/SelectPersonById.sql
@@ -66,6 +70,13 @@ sqlcmd -S.\ -E -i %Procedures/Select/SelectDetainWorkerId.sql
 sqlcmd -S.\ -E -i %Procedures/Select/SelectReleaseWorkerId.sql
 sqlcmd -S.\ -E -i %Procedures/Select/SelectDetentionById.sql
 sqlcmd -S.\ -E -i %Procedures/Select/SelectDetentionsIdByDetaineeId.sql
+sqlcmd -S.\ -E -i %Procedures/Select/SelectLastDetentionDateByDetaineeId.sql
+sqlcmd -S.\ -E -i %Procedures/Select/SelectAllUsers.sql
+sqlcmd -S.\ -E -i %Procedures/Select/SelectRoleById.sql
+sqlcmd -S.\ -E -i %Procedures/Select/SelectRolesIdByUserId.sql
+sqlcmd -S.\ -E -i %Procedures/Select/SelectAllPosts.sql
+sqlcmd -S.\ -E -i %Procedures/Select/SelectPostById.sql
+
 
 
 

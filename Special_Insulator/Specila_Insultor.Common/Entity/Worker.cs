@@ -10,7 +10,7 @@ namespace Common.Entity
     {
         public int Id { get; set; }
         public int PeopleId { get; set; }
-        public string WorkerPost { get; set; }
+        public Post WorkerPost { get; set; }
         public int? UserId { get; set; }
     }
 }

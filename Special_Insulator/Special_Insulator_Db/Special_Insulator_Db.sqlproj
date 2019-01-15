@@ -122,6 +122,17 @@
     <None Include="Procedures\Update\UpdateInDetentionsAndReleaseWorkers.sql" />
     <None Include="Procedures\Delete\DeleteDetentionByDetaineeId.sql" />
     <None Include="Procedures\Select\SelectDetentionsIdByDetaineeId.sql" />
+    <None Include="Procedures\Select\SelectLastDetentionDateByDetaineeId.sql" />
+    <None Include="Procedures\Select\SelectAllUsers.sql" />
+    <None Include="Procedures\Select\SelectRolesIdByUserId.sql" />
+    <None Include="AddDefaulValues.sql" />
+    <None Include="Tables\CreatePostsTable.sql" />
+    <None Include="Procedures\Add\AddPost.sql" />
+    <None Include="Procedures\Delete\DeletePost.sql" />
+    <None Include="Procedures\Update\UpdatePost.sql" />
+    <None Include="Procedures\Select\SelectAllPosts.sql" />
+    <None Include="Procedures\Select\SelectPostById.sql" />
+    <None Include="Procedures\Select\SelectRolesId.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Procedures\Add\AddDepartment.sql" />
@@ -146,5 +157,8 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Procedures\Add\AddWorker.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Procedures\Select\SelectRoleById.sql" />
   </ItemGroup>
 </Project>

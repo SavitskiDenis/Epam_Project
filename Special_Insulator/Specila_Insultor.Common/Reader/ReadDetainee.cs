@@ -14,25 +14,33 @@ namespace Common.Reader
         {
             List<Detainee> detainees = new List<Detainee>();
             Detainee detainee;
-            if (dataReader.HasRows)
+            try
             {
-                while (dataReader.Read())
+                if (dataReader.HasRows)
                 {
-                    detainee = new Detainee()
+                    while (dataReader.Read())
                     {
-                        Id = (int)dataReader.GetValue(0),
-                        PeopleId = (int)dataReader.GetValue(1),
-                        BornDate = (DateTime)dataReader.GetValue(2),
-                        Status = (string)dataReader.GetValue(3),
-                        Workplace = (string)dataReader.GetValue(4),
-                        Phone = " +(nnn)-nn-nnn-nn-nn",
-                        Photo = "",
-                        Address = (string)dataReader.GetValue(6),
-                        AdditionalInformation = (string)dataReader.GetValue(7)
-                    };
-                    detainees.Add(detainee);
+                        detainee = new Detainee()
+                        {
+                            Id = (int)dataReader["Id"],
+                            PeopleId = (int)dataReader["PeopleId"],
+                            BornDate = (DateTime)dataReader["BornDate"],
+                            Status = (string)dataReader["Status"],
+                            Workplace = (string)dataReader["Workplace"],
+                            Phone = " +(nnn)-nn-nnn-nn-nn",
+                            Photo = (byte[])dataReader["Photo"],
+                            Address = (string)dataReader["Address"],
+                            AdditionalInformation = (string)dataReader["AdditionalInformation"]
+                        };
+                        detainees.Add(detainee);
+                    }
                 }
             }
+            catch
+            {
+                throw;
+            }
+            
             return detainees;
         }
 
@@ -45,20 +53,20 @@ namespace Common.Reader
 
                 detainee = new Detainee()
                 {
-                    Id = (int)dataReader.GetValue(0),
-                    PeopleId = (int)dataReader.GetValue(1),
-                    BornDate = (DateTime)dataReader.GetValue(2),
-                    Status = (string)dataReader.GetValue(3),
-                    Workplace = (string)dataReader.GetValue(4),
+                    Id = (int)dataReader["Id"],
+                    PeopleId = (int)dataReader["PeopleId"],
+                    BornDate = (DateTime)dataReader["BornDate"],
+                    Status = (string)dataReader["Status"],
+                    Workplace = (string)dataReader["Workplace"],
                     Phone = " +(nnn)-nn-nnn-nn-nn",
-                    Photo = "",
-                    Address = (string)dataReader.GetValue(6),
-                    AdditionalInformation = (string)dataReader.GetValue(7)
+                    Photo = (byte[])dataReader["Photo"],
+                    Address = (string)dataReader["Address"],
+                    AdditionalInformation = (string)dataReader["AdditionalInformation"]
                 };
             }
             catch
             {
-                return null;
+                throw;
             }
             return detainee;
         }

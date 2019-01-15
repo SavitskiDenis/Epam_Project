@@ -14,19 +14,25 @@ namespace Special_Insulator.WEB.Controllers
 
         private IDetaineeBusiness data;
         private IDetentionBusiness detentionData;
+        private IAdvertisingBusiness advertising;
 
-        public EditController(IDetaineeBusiness data, IDetentionBusiness detentionData)
+        public EditController(IDetaineeBusiness data, IDetentionBusiness detentionData, IAdvertisingBusiness advertising)
         {
             this.data = data;
             this.detentionData = detentionData;
+            this.advertising = advertising;
         }
 
-        public ActionResult Index()
+        [Authorize(Roles = "Editor")]
+        public ActionResult Index(string error = "")
         {
+            var collection = advertising.GetLinks();
+            ViewBag.Advertising = collection;
+            ViewBag.Error = error;
             return View(data.GetAllDetainees());
         }
 
-        
+        [Authorize(Roles = "Editor")]
         public ActionResult FullInformation(int Id )
         {
             DetaineeWithName mydetainee = data.GetDeteineeById(Id);

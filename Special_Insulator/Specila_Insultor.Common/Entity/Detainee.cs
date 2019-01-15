@@ -16,7 +16,7 @@ namespace Common.Entity
         public string Status { get; set; }
         public string Workplace { get; set; }
         public string Phone { get; set; }
-        public string Photo { get; set; }
+        public byte[] Photo { get; set; }
         public string Address { get; set; }
         public string AdditionalInformation { get; set; }
         public List<Detention> Detentions { get; set; }

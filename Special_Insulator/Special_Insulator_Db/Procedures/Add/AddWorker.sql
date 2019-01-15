@@ -2,7 +2,7 @@
 GO
 
 CREATE PROC AddWorker
-	@WorkerPost varchar(50),
+	@WorkerPostId int,
 	@PeopleId int
 AS
-	INSERT INTO Workers([WorkerPost],[PeopleId]) VALUES (@WorkerPost, @PeopleId)
+	INSERT INTO Workers([WorkerPostId],[PeopleId]) VALUES (@WorkerPostId, @PeopleId)

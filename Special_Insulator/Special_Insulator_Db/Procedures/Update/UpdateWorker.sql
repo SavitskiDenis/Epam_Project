@@ -3,11 +3,11 @@ GO
 
 CREATE PROC UpdateWorker
 	@Id int,
-	@WorkerPost varchar(50),
+	@WorkerPostId int,
 	@PeopleId int 
 	
 AS
-	UPDATE Workers Set [WorkerPost] = @WorkerPost,
+	UPDATE Workers Set [WorkerPostId] = @WorkerPostId,
 	[PeopleId]  = @PeopleId
 	Where Id = @Id
 

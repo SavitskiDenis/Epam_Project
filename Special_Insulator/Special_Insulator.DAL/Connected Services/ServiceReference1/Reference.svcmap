@@ -25,9 +25,9 @@
     <MetadataFile FileName="service.wsdl" MetadataType="Wsdl" ID="0a096230-6451-443e-804d-9bbeac8946cd" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/Special_Insulator.Advertising/Service1/mex" />
     <MetadataFile FileName="service.xsd" MetadataType="Schema" ID="d2608241-3b85-45aa-8756-cf8ad2b15e06" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/Special_Insulator.Advertising/Service1/mex" />
     <MetadataFile FileName="service1.xsd" MetadataType="Schema" ID="aca1e076-d376-4427-8a06-06eb0832eba0" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/Special_Insulator.Advertising/Service1/mex" />
+    <MetadataFile FileName="Arrays.xsd" MetadataType="Schema" ID="dbb4342f-1c5b-4dbe-b34f-b95aa1441516" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/Special_Insulator.Advertising/Service1/mex" />
     <MetadataFile FileName="System.Security.Policy.xsd" MetadataType="Schema" ID="59bca682-a6ed-491d-bd6f-16d6e7f43b45" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/Special_Insulator.Advertising/Service1/mex" />
     <MetadataFile FileName="System.Security.Util.xsd" MetadataType="Schema" ID="515b02eb-43b8-4ab7-87f1-b131dda1017a" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/Special_Insulator.Advertising/Service1/mex" />
-    <MetadataFile FileName="Arrays.xsd" MetadataType="Schema" ID="dbb4342f-1c5b-4dbe-b34f-b95aa1441516" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/Special_Insulator.Advertising/Service1/mex" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

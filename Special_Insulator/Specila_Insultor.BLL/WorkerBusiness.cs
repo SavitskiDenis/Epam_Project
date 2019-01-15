@@ -44,5 +44,17 @@ namespace Specila_Insultor.BLL
             workerData.EditWorker(workerAndName);
         }
 
+        public List<WorkerAndName> SwapItems(List<WorkerAndName> workers, int Id)
+        {
+            int index = workers.IndexOf(workers.Where(item => item.Worker.Id == Id).FirstOrDefault());
+            if(index > 0)
+            {
+                WorkerAndName worker = workers[index];
+                workers[index] = workers[0];
+                workers[0] = worker;
+            }
+            
+            return workers;
+        }
     }
 }

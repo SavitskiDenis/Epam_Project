@@ -8,6 +8,6 @@ create table Detentions (
 	[DeliveryDate] datetime NOT NULL,
 	[LiberationDate] datetime NOT NULL,
 	[DepartmentId]  int NOT NULL,
-	[AccruedAmount] decimal NOT NULL,
-	[PaidAmount] decimal NOT NULL,
+	[AccruedAmount] varchar(50) NOT NULL,
+	[PaidAmount] varchar(50) NOT NULL,
 )

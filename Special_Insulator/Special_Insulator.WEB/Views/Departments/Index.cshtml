@@ -3,25 +3,33 @@
 @{
     ViewBag.Title = "Список отделов";
 }
+<div>
+    @*<a onclick="location.href = '@Url.Action("Index","Edit")'"><img src="https://img.icons8.com/windows/32/000000/back.png"></a>*@
+    <button onclick="location.href = '@Url.Action("Index","Edit")'" class="btn btn-outline-info" ><img height="20" src="https://img.icons8.com/windows/32/000000/back.png"></button>
+</div>
+<div class="container">
 
-<table class="table table-sm">
-    <tr>
-        <th>
-            Адрес
-        </th>
-        
-    </tr>
+    <table class="table table-sm">
+        <tr>
+            <th>
+                Адрес
+            </th>
+            <th></th>
+        </tr>
 
-@foreach (var item in Model) {
-    <tr class="vision">
-        <td>
-            @Html.DisplayFor(modelItem => item.Address)
-        </td>
-        <td>
-            <button title="Удалить" class="btn btn-default" style="margin-top:5px;" onclick="location.href = '@Url.Action("DeleteDepartment", "Departments", new { item.Id })'"><img height="20" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAEOSURBVGhD7do/DgFRGATwPYzo3EAicQdXkChUClG5BG4g3EEponEPdyDBfN3LZvxJdt6zxUzy677d7w2ChMpxnOJZwOWLmGl1lvD8UcwWTTx6hx+cgB34k7iG3atO8gxugR2ipDhD47iIkKTIEMZ/FmdwnLanD+z1m1PslGcD7B0lp9gpj4s0ULTIFdLvRWdgc6mYSa+Je7C5okXqn7o9YHOpmEnz7tuDi3yKixAuooiLEC6iiIsQLqKIixAuooiLEC6iiIsQLqKIixB/LbIGtuwIo8QM2FwqZtJr4h5sbgXyxO94bFlOc5CnC3dgC3O4QQeyZAoPYIuVYscEsmYAe2B/BFDYQexwHEeWqnoBb8JjUY+wGHoAAAAASUVORK5CYII="></button>
-            <button title="Изменить" class="btn btn-default"style="margin-top:5px;" onclick="location.href = '@Url.Action("EditDepartment", "Departments", new { item.Id })'" ><img height="20" src="https://img.icons8.com/ios/50/000000/edit-column.png"></button>
-        </td>
-    </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Address)
+                </td>
+                <td>
+                    <button title="Удалить" class="btn btn-outline-info" style="margin-top:5px;" onclick="location.href = '@Url.Action("DeleteDepartment", "Departments", new { item.Id })'"><img height="20" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAEOSURBVGhD7do/DgFRGATwPYzo3EAicQdXkChUClG5BG4g3EEponEPdyDBfN3LZvxJdt6zxUzy677d7w2ChMpxnOJZwOWLmGl1lvD8UcwWTTx6hx+cgB34k7iG3atO8gxugR2ipDhD47iIkKTIEMZ/FmdwnLanD+z1m1PslGcD7B0lp9gpj4s0ULTIFdLvRWdgc6mYSa+Je7C5okXqn7o9YHOpmEnz7tuDi3yKixAuooiLEC6iiIsQLqKIixAuooiLEC6iiIsQLqKIixB/LbIGtuwIo8QM2FwqZtJr4h5sbgXyxO94bFlOc5CnC3dgC3O4QQeyZAoPYIuVYscEsmYAe2B/BFDYQexwHEeWqnoBb8JjUY+wGHoAAAAASUVORK5CYII="></button>
+                    <button title="Изменить" class="btn btn-outline-info" style="margin-top:5px;" onclick="location.href = '@Url.Action("EditDepartment", "Departments", new { item.Id })'"><img height="20" src="https://img.icons8.com/ios/50/000000/edit-column.png"></button>
+                </td>
+            </tr>
+        }
 
-</table>
+    </table>
+
+</div>

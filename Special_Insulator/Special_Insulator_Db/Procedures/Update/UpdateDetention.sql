@@ -7,8 +7,8 @@ CREATE PROC UpdateDetention
 	@DeliveryDate datetime ,
 	@LiberationDate datetime ,
 	@DepartmentId  int ,
-	@AccruedAmount decimal ,
-	@PaidAmount decimal 
+	@AccruedAmount varchar(50) ,
+	@PaidAmount varchar(50) 
 	
 AS
 	UPDATE Detentions Set

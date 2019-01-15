@@ -20,6 +20,9 @@ namespace Specila_Insultor.BLL
             For<IDetaineeBusiness>().Use<DetaineeBusiness>();
             For<IDetentionBusiness>().Use<DetentionBusiness>();
             For<IWorkerBusiness>().Use<WorkerBusiness>();
+            For<IUserBusiness>().Use<UserBusiness>();
+            For<IAdvertisingBusiness>().Use<AdvertisingBusiness>();
+            For<IPostBusiness>().Use<PostBusiness>();
         }
 
     }

@@ -20,6 +20,8 @@ Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "Special_Insulator_Db", "Spe
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Special_Insulator.Advertising", "Special_Insulator.Advertising\Special_Insulator.Advertising.csproj", "{F71FE9B0-567F-45AF-83AA-7DD10235F49B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Special_Insulator.BLL.Tests", "Special_Insulator.BLL.Tests\Special_Insulator.BLL.Tests.csproj", "{9681C7AD-CD6F-4078-8123-D3627AC22722}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -56,6 +58,10 @@ Global
 		{F71FE9B0-567F-45AF-83AA-7DD10235F49B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F71FE9B0-567F-45AF-83AA-7DD10235F49B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F71FE9B0-567F-45AF-83AA-7DD10235F49B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9681C7AD-CD6F-4078-8123-D3627AC22722}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9681C7AD-CD6F-4078-8123-D3627AC22722}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9681C7AD-CD6F-4078-8123-D3627AC22722}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9681C7AD-CD6F-4078-8123-D3627AC22722}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

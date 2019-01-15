@@ -7,7 +7,7 @@ create table Detainees (
 	[BornDate] datetime NOT NULL,
 	[Status] varchar(25) NOT NUll,
 	[Workplace] varchar(50) NOT NULL,
-	[Photo] varchar(50) NULL,
+	[Photo] varbinary(MAX) NULL,
 	[Address] varchar(200) NOT NULL,
 	[AdditionalInformation] varchar(200) NULL,
 

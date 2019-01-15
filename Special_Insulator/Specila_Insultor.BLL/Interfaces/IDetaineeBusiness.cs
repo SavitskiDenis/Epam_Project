@@ -11,12 +11,12 @@ namespace Specila_Insultor.BLL
     {
         List<DetaineeWithName> GetAllDetainees();
 
-        void AddDetainee(Person addPerson,Detainee addDetainee);
+        bool AddDetainee(Person addPerson,Detainee addDetainee);
 
-        void DeleteDetaineeById(int id);
+        bool DeleteDetaineeById(int? id);
 
-        DetaineeWithName GetDeteineeById(int Id);
+        DetaineeWithName GetDeteineeById(int? Id);
 
-        void EditDetaineeInfo(DetaineeWithName detainee);
+        bool EditDetaineeInfo(DetaineeWithName detainee);
     }
 }

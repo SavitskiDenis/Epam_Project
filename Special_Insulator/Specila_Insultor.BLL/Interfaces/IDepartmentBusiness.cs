@@ -13,6 +13,8 @@ namespace Specila_Insultor.BLL.Interfaces
 
         List<Department> GetAllDepartments();
 
+        List<Department> GetAllDepartmentsAndSwap(int Id);
+
         Department GetDepartmnetnById(int Id);
 
         void DeleteDepartmentsById(int Id);

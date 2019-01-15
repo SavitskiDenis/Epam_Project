@@ -20,9 +20,9 @@ namespace Common.Reader
             try
             {
                 dataReader.Read();
-                number = dataReader.GetString(2);
+                number = (string)dataReader["Number"];
             }
-            catch { }
+            catch { throw; }
             
             return number;
         }

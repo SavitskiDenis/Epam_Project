@@ -19,18 +19,21 @@ namespace Special_Insulator.WEB.Controllers
             this.data = data;
         }
 
+        [Authorize(Roles ="Editor")]
         public ActionResult Index()
         {
             return View(data.GetAllDepartments());
         }
 
         [HttpGet]
+        [Authorize(Roles = "Editor")]
         public ActionResult AddDepartment()
         {
             return View();
         }
 
         [HttpPost]
+        [Authorize(Roles = "Editor")]
         public ActionResult AddDepartment(DepartmentMod department)
         {
             if(ModelState.IsValid)
@@ -44,6 +47,7 @@ namespace Special_Insulator.WEB.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Editor")]
         public ActionResult EditDepartment(int Id)
         {
             DepartmentMod department = Mapper.MapToItem<Department,DepartmentMod>(data.GetDepartmnetnById(Id));
@@ -51,6 +55,7 @@ namespace Special_Insulator.WEB.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Editor")]
         public ActionResult EditDepartment(DepartmentMod department)
         {
             if (ModelState.IsValid)
@@ -62,6 +67,7 @@ namespace Special_Insulator.WEB.Controllers
             return View(department);
         }
 
+        [Authorize(Roles = "Editor")]
         public ActionResult DeleteDepartment(int Id)
         {
             data.DeleteDepartmentsById(Id);

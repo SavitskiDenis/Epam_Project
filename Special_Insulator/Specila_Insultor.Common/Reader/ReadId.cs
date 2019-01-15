@@ -23,7 +23,7 @@ namespace Common.Reader
                 }
                 
             }
-            catch { }
+            catch { throw; }
             return idList;
         }
 
@@ -37,7 +37,7 @@ namespace Common.Reader
             }
             catch
             {
-                return 0;
+                throw;
             }
             return id;
         }

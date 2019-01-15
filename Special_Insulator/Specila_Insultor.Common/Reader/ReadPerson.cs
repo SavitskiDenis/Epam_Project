@@ -23,12 +23,13 @@ namespace Common.Reader
                 dataReader.Read();
                 person = new Person()
                 {
-                    FirstName = (string)dataReader.GetValue(1),
-                    Id = (int)dataReader.GetValue(0),
-                    LastName = (string)dataReader.GetValue(2)
+                    FirstName = (string)dataReader["FirstName"],
+                    Id = (int)dataReader["Id"],
+                    LastName = (string)dataReader["LastName"],
+                    Patronymic = (string)dataReader["Patronymic"]
                 };
             }
-            catch { }
+            catch { throw; }
             return person;
         }
     }

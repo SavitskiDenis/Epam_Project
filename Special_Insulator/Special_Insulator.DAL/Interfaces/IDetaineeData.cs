@@ -11,13 +11,13 @@ namespace Special_Insulator.DAL
     {
         List<DetaineeWithName> GetAllDeteinees();
 
-        void AddDetainee(Person person,Detainee detainee);
+        bool AddDetainee(Person person,Detainee detainee);
 
-        void DeletDetaineeById(int id);
+        bool DeletDetaineeById(int? id);
 
-        DetaineeWithName GetDeteineeById(int Id);
+        DetaineeWithName GetDeteineeById(int? Id);
 
-        void EditDetaineeInfo(DetaineeWithName detaineeWithName);
+        bool EditDetaineeInfo(DetaineeWithName detaineeWithName);
 
     }
 }

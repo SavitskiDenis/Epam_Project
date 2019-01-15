@@ -5,14 +5,11 @@ CREATE PROC UpdateUser
 	@Id int,
 	@Login varchar(50) ,
 	@Password varchar(50),
-	@Email varchar(50),
-	@PeopleId int 
-	
+	@Email varchar(50)
 AS
 	UPDATE Users Set [Login] = @Login,
 	[Password] = @Password,
-	[Email] =  @Email,
-	[PeopleId] = @PeopleId
+	[Email] =  @Email
 	Where Id = @Id
 
 	

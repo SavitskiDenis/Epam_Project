@@ -1,7 +1,8 @@
 ﻿USE SIDb
 GO
 
-CREATE PROC Delete_UserRole
-	@Id int 
+CREATE PROC DeleteUserRole
+	@Id int,
+	@RoleId int
 AS
-	Delete From UserAndRole Where [UserId] = @Id;
+	Delete From UserAndRole Where [UserId] = @Id And RoleId = @RoleId

@@ -22,14 +22,14 @@ namespace Common.Reader
                     {
                         detention = new Detention()
                         {
-                            Id = (int)dataReader.GetValue(0),
-                            DetaineeId = (int)dataReader.GetValue(1),
-                            DetentionDate = (DateTime)dataReader.GetValue(2),
-                            DeliveryDate = (DateTime)dataReader.GetValue(3),
-                            LiberationDate = (DateTime)dataReader.GetValue(4),
-                            DepartmentId = (int)dataReader.GetValue(5),
-                            AccruedAmount = (decimal)dataReader.GetValue(6),
-                            PaidAmount = (decimal)dataReader.GetValue(7),
+                            Id = (int)dataReader["Id"],
+                            DetaineeId = (int)dataReader["DetaineeId"],
+                            DetentionDate = (DateTime)dataReader["DetentionDate"],
+                            DeliveryDate = (DateTime)dataReader["DeliveryDate"],
+                            LiberationDate = (DateTime)dataReader["LiberationDate"],
+                            DepartmentId = (int)dataReader["DepartmentId"],
+                            AccruedAmount = (string)dataReader["AccruedAmount"],
+                            PaidAmount = (string)dataReader["PaidAmount"],
                         };
                         detentions.Add(detention);
                     }
@@ -37,7 +37,7 @@ namespace Common.Reader
             }
             catch
             {
-                return null;
+                throw;
             }
             
             return detentions;
@@ -53,20 +53,20 @@ namespace Common.Reader
                     dataReader.Read();
                     detention = new Detention()
                     {
-                        Id = (int)dataReader.GetValue(0),
-                        DetaineeId = (int)dataReader.GetValue(1),
-                        DetentionDate = (DateTime)dataReader.GetValue(2),
-                        DeliveryDate = (DateTime)dataReader.GetValue(3),
-                        LiberationDate = (DateTime)dataReader.GetValue(4),
-                        DepartmentId = (int)dataReader.GetValue(5),
-                        AccruedAmount = (decimal)dataReader.GetValue(6),
-                        PaidAmount = (decimal)dataReader.GetValue(7),
+                        Id = (int)dataReader["Id"],
+                        DetaineeId = (int)dataReader["DetaineeId"],
+                        DetentionDate = (DateTime)dataReader["DetentionDate"],
+                        DeliveryDate = (DateTime)dataReader["DeliveryDate"],
+                        LiberationDate = (DateTime)dataReader["LiberationDate"],
+                        DepartmentId = (int)dataReader["DepartmentId"],
+                        AccruedAmount = (string)dataReader["AccruedAmount"],
+                        PaidAmount = (string)dataReader["PaidAmount"],
                     };
                 }
             }
             catch
             {
-                return null;
+                throw;
             }
 
             return detention;

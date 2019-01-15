@@ -3,77 +3,86 @@
     ViewBag.Title = "Информация о задержанном";
 }
 
-<div class="container-fluid">
-    <div class="row" style="margin-bottom:35px;margin-top:25px">
-        <div class="col">
-            <a onclick="location.href = '@Url.Action("Index","Edit",new { Model.detainee.Id})'"><img src="https://img.icons8.com/windows/32/000000/back.png"></a>
-        </div>
-        <div class="col offset-lg-4">
-            <a onclick="location.href = '@Url.Action("EditDetaineeInfo","Detainees",new { Model.detainee.Id})'" title="Изменить"><img src="https://img.icons8.com/ios/32/000000/edit-column.png"></a>
-            <a onclick="location.href = '@Url.Action("AddDetention","Detentions",new { Model.detainee.Id})'" title="Добавить задержание"><img src="https://img.icons8.com/windows/32/000000/add.png"></a>
-        </div>
+<div class="row justify-content-between" style="margin-bottom:35px;margin-top:25px">
+    <div class="col-md">
+        <button onclick="location.href = '@Url.Action("Index","Edit",new { Model.detainee.Id})'" class="btn btn-outline-info"><img height="20" src="https://img.icons8.com/windows/32/000000/back.png"></button>
     </div>
-
-    <div>
-        <img class="rounded-circle mx-auto d-block" src="https://image.freepik.com/free-icon/male-user-close-up-shape-for-facebook_318-37635.jpg" width="200" style="border:2px solid #0094ff;border-radius:50px" />
+    <div class="col-md">
+        <button onclick="location.href = '@Url.Action("EditDetaineeInfo","Detainees",new { Model.detainee.Id})'" class="btn btn-outline-info">Изменить информацию</button>
+        <button onclick="location.href = '@Url.Action("AddDetention","Detentions",new { Model.detainee.Id})'" class="btn btn-outline-info">Добавить задержание</button>
     </div>
-    <div class="row">
-        <div class="col-lg-6">
-            <p>Имя: @Model.person.FirstName</p>
-            <p>Фамилия: @Model.person.LastName</p>
-            <p>Дата рождения: @Model.detainee.BornDate.ToShortDateString()</p>
-            <p>Семейное положение:@Model.detainee.Status</p>
-        </div>
-        <div class="col-lg-6">
-            <p>Адрес</p>
-            <textarea cols="50" rows="3" disabled="disabled" style="resize:none">@Model.detainee.Address</textarea>
-            <p>Место работы</p>
-            <textarea cols="50" rows="3" disabled="disabled" style="resize:none">@Model.detainee.Workplace</textarea>
-            <p>Дополнительная информация</p>
-            <textarea cols="50" rows="3" disabled="disabled" style="resize:none">@Model.detainee.AdditionalInformation</textarea>
-        </div>
-    </div>
-    <table class="table table-sm">
-        <tr>
-            <th>Даты</th>
-            <th>Сотрудники</th>
-            <th>Адресс</th>
-            <th>Суммы</th>
-            <th></th>
-        </tr>
-        @foreach (var item in Model.detainee.Detentions)
-        {
-            <tr class="vision">
-                <td>
-                    <p>Дата задержания: @item.DetentionDate.ToShortDateString()</p>
-                    <p>Дата доставки: @item.DeliveryDate.ToShortDateString()</p>
-                    <p>Дата освобождения: @item.LiberationDate.ToShortDateString()</p>
-                </td>
-                <td>
-                    <p>ФИ: @item.DetainWorker.Person.LastName . @item.DetainWorker.Person.FirstName[0]</p>
-                    <p>Должность: @item.DetainWorker.Worker.WorkerPost</p>
-                    <p>ФИ: @item.DeliveryWorker.Person.LastName . @item.DeliveryWorker.Person.FirstName[0]</p>
-                    <p>Должность: @item.DeliveryWorker.Worker.WorkerPost</p>
-                    <p>ФИ: @item.ReleaseWorker.Person.LastName . @item.ReleaseWorker.Person.FirstName[0]</p>
-                    <p>Должность: @item.ReleaseWorker.Worker.WorkerPost</p>
-                </td>
-                <td>
-                    @item.Address
-                </td>
-                <td>
-                    <p>Начисленная: @item.AccruedAmount</p>
-                    <p>Выплаченная: @item.PaidAmount</p>
-                </td>
-                <td>
-                    <button title="Изменить" class="btn btn-outline-info" style="margin-top:5px;" onclick="location.href = '@Url.Action("EditDetention", "Detentions", new {item.Id})'"><img height="20" src="https://img.icons8.com/ios/32/000000/edit-column.png"></button>
-                    <button title="Удалить" class="btn btn-outline-info" style="margin-top:5px;" onclick="location.href = '@Url.Action("DeleteDetention", "Detentions", new {item.Id})'"><img height="20" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAEOSURBVGhD7do/DgFRGATwPYzo3EAicQdXkChUClG5BG4g3EEponEPdyDBfN3LZvxJdt6zxUzy677d7w2ChMpxnOJZwOWLmGl1lvD8UcwWTTx6hx+cgB34k7iG3atO8gxugR2ipDhD47iIkKTIEMZ/FmdwnLanD+z1m1PslGcD7B0lp9gpj4s0ULTIFdLvRWdgc6mYSa+Je7C5okXqn7o9YHOpmEnz7tuDi3yKixAuooiLEC6iiIsQLqKIixAuooiLEC6iiIsQLqKIixB/LbIGtuwIo8QM2FwqZtJr4h5sbgXyxO94bFlOc5CnC3dgC3O4QQeyZAoPYIuVYscEsmYAe2B/BFDYQexwHEeWqnoBb8JjUY+wGHoAAAAASUVORK5CYII="></button>
-                </td>
-            </tr>
-        }
-
-    </table>
-
-
-
-
 </div>
+<div class="row justify-content-center" style="margin-bottom:30px;margin-top:25px">
+    <h4 class="col-4">Информация о задержанном</h4>
+</div>
+    
+<div>
+    @if (Model.detainee.Photo != null)
+    {
+        <img class="rounded mx-auto d-block" src="@String.Format("data:image/png;base64,{0}", Convert.ToBase64String(Model.detainee.Photo))" style="width:30%" />
+    }
+    else
+    {
+        <img class="rounded mx-auto d-block" src="@*https://image.freepik.com/free-icon/male-user-close-up-shape-for-facebook_318-37635.jpg*@" width="200" style="border:2px solid #0094ff;border-radius:50px" />
+    }
+</div>
+<div class="row justify-content-between content">
+    <div class="col-md">
+        <p>Фамилия: @Model.person.LastName</p>
+        <p>Имя: @Model.person.FirstName</p>
+        <p>Отчество: @Model.person.Patronymic</p>
+        <p>Дата рождения: @Model.detainee.BornDate.ToShortDateString()</p>
+        <p>Семейное положение: @Model.detainee.Status</p>
+    </div>
+    <div class="col-md">
+        <p>Адрес</p>
+        <textarea cols="50" rows="3" disabled="disabled" style="resize:none">@Model.detainee.Address</textarea>
+        <p>Место работы</p>
+        <textarea cols="50" rows="3" disabled="disabled" style="resize:none">@Model.detainee.Workplace</textarea>
+        <p>Дополнительная информация</p>
+        <textarea cols="50" rows="3" disabled="disabled" style="resize:none">@Model.detainee.AdditionalInformation</textarea>
+    </div>
+</div>
+<table class="table table-sm">
+    <tr>
+        <th>Даты</th>
+        <th>Сотрудники</th>
+        <th>Адрес</th>
+        <th>Суммы</th>
+        <th></th>
+    </tr>
+    @foreach (var item in Model.detainee.Detentions)
+    {
+        <tr>
+            <td>
+                <p>Дата задержания: @item.DetentionDate.ToShortDateString()</p>
+                <p>Дата доставки: @item.DeliveryDate.ToShortDateString()</p>
+                <p>Дата освобождения: @item.LiberationDate.ToShortDateString()</p>
+            </td>
+            <td>
+                <p>Кем задержен:</p>
+                <p>ФИО: @item.DetainWorker.Person.LastName . @item.DetainWorker.Person.FirstName[0] . @item.DetainWorker.Person.Patronymic[0]</p>
+                <p>Должность: @item.DetainWorker.Worker.WorkerPost.PostName</p>
+                <p>Кем доставлен:</p>
+                <p>ФИО: @item.DeliveryWorker.Person.LastName . @item.DeliveryWorker.Person.FirstName[0]</p>
+                <p>Должность: @item.DetainWorker.Worker.WorkerPost.PostName</p>
+                <p>Кем отпущен:</p>
+                <p>ФИО: @item.ReleaseWorker.Person.LastName . @item.ReleaseWorker.Person.FirstName[0]</p>
+                <p>Должность: @item.DetainWorker.Worker.WorkerPost.PostName</p>
+            </td>
+            <td>
+                @item.Address
+            </td>
+            <td>
+                <p>Начисленная: @item.AccruedAmount</p>
+                <p>Выплаченная: @item.PaidAmount</p>
+            </td>
+            <td>
+                <button title="Изменить" class="btn btn-outline-info" style="margin-top:5px;" onclick="location.href = '@Url.Action("EditDetention", "Detentions", new {item.Id})'"><img height="20" src="https://img.icons8.com/ios/32/000000/edit-column.png"></button>
+                <button title="Удалить" class="btn btn-outline-info" style="margin-top:5px;" onclick="location.href = '@Url.Action("DeleteDetention", "Detentions", new {item.Id})'"><img height="20" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAEOSURBVGhD7do/DgFRGATwPYzo3EAicQdXkChUClG5BG4g3EEponEPdyDBfN3LZvxJdt6zxUzy677d7w2ChMpxnOJZwOWLmGl1lvD8UcwWTTx6hx+cgB34k7iG3atO8gxugR2ipDhD47iIkKTIEMZ/FmdwnLanD+z1m1PslGcD7B0lp9gpj4s0ULTIFdLvRWdgc6mYSa+Je7C5okXqn7o9YHOpmEnz7tuDi3yKixAuooiLEC6iiIsQLqKIixAuooiLEC6iiIsQLqKIixB/LbIGtuwIo8QM2FwqZtJr4h5sbgXyxO94bFlOc5CnC3dgC3O4QQeyZAoPYIuVYscEsmYAe2B/BFDYQexwHEeWqnoBb8JjUY+wGHoAAAAASUVORK5CYII="></button>
+            </td>
+        </tr>
+    }
+
+</table>
+

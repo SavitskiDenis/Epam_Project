@@ -9,13 +9,13 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using System.Web.Configuration;
 
 namespace Special_Insulator.DAL
 {
     public class DepartmentData : IDepartmentData
     {
-        public string connectionString = @"Data Source=.\;Initial Catalog=SIDb;Integrated Security=True";
+        public string connectionString = WebConfigurationManager.ConnectionStrings["MyDb"].ConnectionString;
 
         public void AddDepartment(Department departmnet)
         {
@@ -24,15 +24,16 @@ namespace Special_Insulator.DAL
 
         public List<Department> GetAllDepartments()
         {
-            List<Department> departments = new List<Department>();
-            departments = Executer.ExecuteCollectionRead(connectionString, "SelectAllDepartments",new ReadDepartment(),null);
-
-            return departments;
+            return Executer.ExecuteCollectionRead(connectionString, "SelectAllDepartments", new ReadDepartment(), null);
         }
 
         public Department GetDepartmnetnById(int Id)
         {
-            Department department = Executer.ExecuteRead(connectionString, "SelectDepartmentById",new ReadDepartment(), new SqlParameter("@Id", Id));
+            Department department = Executer.ExecuteRead(
+                                        connectionString, 
+                                        "SelectDepartmentById",
+                                        new ReadDepartment(), 
+                                        new SqlParameter("@Id", Id));
 
             return department;
         }
@@ -44,7 +45,10 @@ namespace Special_Insulator.DAL
 
         public void EditDepartment(Department department)
         {
-            Executer.ExecuteNonQuery(connectionString, "UpdateDepartment", new SqlParameter("@Id", department.Id),new SqlParameter("@Address", department.Address));
+            Executer.ExecuteNonQuery(connectionString,
+                                    "UpdateDepartment",
+                                    new SqlParameter("@Id", department.Id),
+                                    new SqlParameter("@Address", department.Address));
         }
     }
 }

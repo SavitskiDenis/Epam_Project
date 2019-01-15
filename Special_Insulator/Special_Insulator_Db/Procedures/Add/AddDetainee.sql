@@ -6,7 +6,7 @@ CREATE PROC AddDetainee
 	@BornDate datetime,
 	@Status varchar(25),
 	@Workplace varchar(50),
-	@Photo varchar(50) ='',
+	@Photo varbinary(MAX),
 	@Address varchar(200),
 	@AdditionalInformation varchar(200)=''
 AS

@@ -6,10 +6,11 @@ using System.Threading.Tasks;
 
 namespace Common.Entity
 {
-    public class DetaineeWithName
+    public class DetaineeWithName:IComparable
     {
         public Detainee detainee  { get; set; }
         public Person person { get; set; }
+        public DateTime lastDetention { get; set; }
 
         public DetaineeWithName()
         {
@@ -21,6 +22,23 @@ namespace Common.Entity
         {
             this.detainee = detainee;
             this.person = person;
+        }
+
+        public int CompareTo(object obj)
+        {
+            DetaineeWithName detainee = (DetaineeWithName)obj;
+            if(person.LastName.CompareTo(detainee.person.LastName) == 1)
+            {
+                return 1;
+            }
+            else if(person.LastName.CompareTo(detainee.person.LastName) == -1)
+            {
+                return -1;
+            }
+            else
+            {
+                return person.FirstName.CompareTo(detainee.person.FirstName);
+            }
         }
     }
 }

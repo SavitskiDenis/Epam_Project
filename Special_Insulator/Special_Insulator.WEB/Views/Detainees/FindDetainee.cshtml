@@ -1,6 +1,7 @@
 ﻿@model IEnumerable<Common.Entity.DetaineeWithName>
 <script src="~/Scripts/bootstrap.js"></script>
 <script src="~/Scripts/bootstrap.min.js"></script>
+<script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
 
 <table class="table table-sm">
     <tr>
@@ -8,7 +9,7 @@
             ФИО
         </th>
         <th>
-            Дата рождения
+            Дата последнего задержания
         </th>
         <th>
             Адрес прописки
@@ -22,19 +23,26 @@
 
     @foreach (var item in Model)
     {
-        <tr class="vision">
+        <tr>
             <td>
-                <p>@item.person.FirstName</p>
                 <p>@item.person.LastName</p>
+                <p>@item.person.FirstName</p>
+                <p>@item.person.Patronymic</p>
             </td>
             <td>
                 @{
-                    string date = item.detainee.BornDate.ToShortDateString();
-                    <p>@date</p>
+                    if (item.lastDetention.Year > 1)
+                    {
+                        <p>@item.lastDetention.ToShortDateString()</p>
+                    }
+                    else
+                    {
+                        <p>XX.XX.XXXX</p>
+                    }
                 }
             </td>
             <td>
-                @Html.TextAreaFor(modelItem => item.detainee.Address, new { disabled = "disabled" })
+                @Html.TextAreaFor(modelItem => item.detainee.Address, new { disabled = "disabled", resize = "none" })
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.detainee.Phone)

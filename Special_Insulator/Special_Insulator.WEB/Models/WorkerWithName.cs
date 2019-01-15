@@ -20,10 +20,13 @@ namespace Special_Insulator.WEB.Models
         [StringLength(50, MinimumLength = 5, ErrorMessage = "Не верный размер текста")]
         public string LastName { get; set; }
 
-        public string LF { get { return LastName + " " + FirstName; } }
-
-        [Required(ErrorMessage = "Поле не должно быть пустым")]
         [StringLength(50, MinimumLength = 5, ErrorMessage = "Не верный размер текста")]
-        public string WorkerPost { get; set; }
+        public string Patronymic { get; set; }
+
+        public string LF { get { return LastName + " " + FirstName + " " + Patronymic; } }
+
+        public int WorkerPostId { get; set; }
+
+        //public string WorkerPostName { get; set; }
     }
 }

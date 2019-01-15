@@ -31,6 +31,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="log4net">
+      <HintPath>..\Special_Insulator.WEB\bin\log4net.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\CommonServiceLocator.1.3\lib\portable-net4+sl5+netcore45+wpa81+wp8\Microsoft.Practices.ServiceLocation.dll</HintPath>
     </Reference>
@@ -58,23 +61,30 @@
     <Compile Include="Entity\DetaineeWithName.cs" />
     <Compile Include="Entity\Detention.cs" />
     <Compile Include="Entity\Person.cs" />
+    <Compile Include="Entity\Post.cs" />
     <Compile Include="Entity\Role.cs" />
     <Compile Include="Entity\User.cs" />
     <Compile Include="Entity\Worker.cs" />
     <Compile Include="Entity\WorkerAndName.cs" />
+    <Compile Include="Loger\Loger.cs" />
     <Compile Include="Mapper\Mapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Reader\ReadPost.cs" />
     <Compile Include="Reader\ReadDepartment.cs" />
     <Compile Include="Reader\ReadDetainee.cs" />
     <Compile Include="Reader\IReader.cs" />
     <Compile Include="Reader\ReadDetention.cs" />
+    <Compile Include="Reader\ReadLastDate.cs" />
     <Compile Include="Reader\ReadPerson.cs" />
     <Compile Include="Reader\ReadId.cs" />
     <Compile Include="Reader\ReadPhoneNumber.cs" />
+    <Compile Include="Reader\ReadRoles.cs" />
+    <Compile Include="Reader\ReadUser.cs" />
     <Compile Include="Reader\ReadWorker.cs" />
     <Compile Include="SQLExecuter\Executer.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Loger\LoggerConfiguration.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup />

@@ -20,10 +20,12 @@ namespace Special_Insulator.DAL.ServiceReference1 {
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(Special_Insulator.DAL.ServiceReference1.DirectoryString))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(Special_Insulator.DAL.ServiceReference1.LocalSiteString))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(Special_Insulator.DAL.ServiceReference1.URLString))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.Dictionary<System.Security.Policy.Url[], string[]>))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(object[]))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(string[]))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Security.Policy.Url[]))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Security.Policy.Url))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Security.Policy.EvidenceBase))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(object[]))]
     public partial class SiteString : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
         [System.NonSerializedAttribute()]
@@ -290,10 +292,10 @@ namespace Special_Insulator.DAL.ServiceReference1 {
     public interface IService1 {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetImages", ReplyAction="http://tempuri.org/IService1/GetImagesResponse")]
-        System.Security.Policy.Url[] GetImages();
+        System.Collections.Generic.Dictionary<System.Security.Policy.Url[], string[]> GetImages();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetImages", ReplyAction="http://tempuri.org/IService1/GetImagesResponse")]
-        System.Threading.Tasks.Task<System.Security.Policy.Url[]> GetImagesAsync();
+        System.Threading.Tasks.Task<System.Collections.Generic.Dictionary<System.Security.Policy.Url[], string[]>> GetImagesAsync();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -323,11 +325,11 @@ namespace Special_Insulator.DAL.ServiceReference1 {
                 base(binding, remoteAddress) {
         }
         
-        public System.Security.Policy.Url[] GetImages() {
+        public System.Collections.Generic.Dictionary<System.Security.Policy.Url[], string[]> GetImages() {
             return base.Channel.GetImages();
         }
         
-        public System.Threading.Tasks.Task<System.Security.Policy.Url[]> GetImagesAsync() {
+        public System.Threading.Tasks.Task<System.Collections.Generic.Dictionary<System.Security.Policy.Url[], string[]>> GetImagesAsync() {
             return base.Channel.GetImagesAsync();
         }
     }

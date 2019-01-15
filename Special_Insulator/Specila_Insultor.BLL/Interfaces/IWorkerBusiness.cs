@@ -19,5 +19,8 @@ namespace Specila_Insultor.BLL.Interfaces
 
         void EditWorker(WorkerAndName workerAndName);
 
+        List<WorkerAndName> SwapItems(List<WorkerAndName> workers,int Id);
+
+
     }
 }

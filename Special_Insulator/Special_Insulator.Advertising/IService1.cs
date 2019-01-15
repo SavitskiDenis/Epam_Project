@@ -13,7 +13,7 @@ namespace Special_Insulator.Advertising
     public interface IService1
     {
         [OperationContract]
-        Url[] GetImages();
+        Dictionary<Url[], string[]> GetImages();
 
     }
 

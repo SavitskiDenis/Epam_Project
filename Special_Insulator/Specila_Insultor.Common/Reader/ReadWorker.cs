@@ -22,15 +22,15 @@ namespace Common.Reader
                     {
                         worker = new Worker()
                         {
-                            Id = (int)dataReader.GetValue(0),
-                            WorkerPost = (string)dataReader.GetValue(1),
-                            PeopleId = (int)dataReader.GetValue(2),
+                            Id = (int)dataReader["Id"],
+                            WorkerPost =  new Post {Id =(int)dataReader["WorkerPostId"] },
+                            PeopleId = (int)dataReader["PeopleId"],
                         };
                         workers.Add(worker);
                     }
                 }
             }
-            catch { }
+            catch { throw; }
 
             return workers;
         }
@@ -43,12 +43,12 @@ namespace Common.Reader
                 dataReader.Read();
                 worker = new Worker()
                 {
-                    Id = dataReader.GetInt32(0),
-                    WorkerPost = dataReader.GetString(1),
-                    PeopleId = dataReader.GetInt32(2),
+                    Id = (int)dataReader["Id"],
+                    WorkerPost = new Post { Id = (int)dataReader["WorkerPostId"] },
+                    PeopleId = (int)dataReader["PeopleId"],
                 };
             }
-            catch { }
+            catch { throw; }
 
             return worker;
         }

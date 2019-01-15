@@ -7,71 +7,77 @@
 
 <div class="container" style="margin-top:20px;margin-bottom:20px">
     <div class="row justify-content-center" }>
-        @using (@Html.BeginForm("EditDetention", "Detentions", FormMethod.Post, new { @style = "border:1px solid #000000;border-radius:20px", @class = "col-lg-6" }))
+        @using (@Html.BeginForm("EditDetention", "Detentions", FormMethod.Post, new { @style = "border:1px solid #000000;border-radius:20px", @class = "col-lg-4" }))
         {
             @Html.HiddenFor(model => model.DetaineeId);
-            <div style="margin:0 auto;margin-bottom:5px ; margin-top:10px">
-                <label>Дата задержания</label>
-                @Html.TextBoxFor(model => model.DetentionDate, new { @class = "form-control", @style = "margin:0 auto;" })
-                @Html.ValidationMessageFor(model => model.DetentionDate)
+            <div class="row  justify-content-center">
+                <div class="col-10" style="margin:0 auto;margin-bottom:5px ; margin-top:10px">
+                    <label>Дата задержания</label>
+                    @Html.TextBoxFor(model => model.DetentionDate, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.DetentionDate)
+                </div>
             </div>
-            <div style="margin:0 auto;margin-bottom:5px ; margin-top:10px">
-                <label>Дата доставления</label>
-                @Html.TextBoxFor(model => model.DeliveryDate, new { @class = "form-control", @style = "margin:0 auto;" })
-                @Html.ValidationMessageFor(model => model.DeliveryDate)
+            <div class="row  justify-content-center">
+                <div class="col-10" style="margin:0 auto;margin-bottom:5px ; margin-top:10px">
+                    <label>Дата доставления</label>
+                    @Html.TextBoxFor(model => model.DeliveryDate, new { @class = "form-control"})
+                    @Html.ValidationMessageFor(model => model.DeliveryDate)
+                </div>
             </div>
-            <div>
-                <label>Дата освобождения</label>
-                @Html.TextBoxFor(model => model.LiberationDate, new { @class = "form-control", @style = "margin:0 auto;" })
-                @Html.ValidationMessageFor(model => model.LiberationDate)
+            <div class="row  justify-content-center">
+                <div class="col-10">
+                    <label>Дата освобождения</label>
+                    @Html.TextBoxFor(model => model.LiberationDate, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.LiberationDate)
+                </div>
             </div>
-            <div>
-                <label>Кем задержан</label>
-                <div>
-                    @Html.DropDownListFor(model => model.DetainWorkerId, ViewBag.DetainWorkers as SelectList, new { @class = "form-control", @style = "margin:0 auto;" })
+            <div class="row  justify-content-center">
+                <div class="col-10">
+                    <label>Кем задержан</label>
+                    @Html.DropDownListFor(model => model.DetainWorkerId, ViewBag.DetainWorkers as SelectList, new { @class = "form-control"})
+                </div>
+            </div>
+            <div class="row  justify-content-center">
+                <div class="col-10">
+                    <label>Кем доставлен</label>
+                    @Html.DropDownListFor(model => model.DeliveryWorkerId, ViewBag.DeliveryWorkers as SelectList, new { @class = "form-control"})
+                </div>
+            </div>
+            <div class="row  justify-content-center">
+                <div class="col-10">
+                    <label>Кем освобожден</label>
+                    @Html.DropDownListFor(model => model.ReleaseWorkerId, ViewBag.ReleaseWorkers as SelectList, new { @class = "form-control"})
+                </div>
+            </div>
+            <div class="row  justify-content-center">
+                <div class="col-10">
+                    <label>Место содержания</label>
+                    @Html.DropDownListFor(model => model.DepartmentId, ViewBag.Departments as SelectList, new { @class = "form-control"})
+                </div>
+            </div>
+            <div class="row  justify-content-center">
+                <div class="col-10" style="margin:0 auto;margin-bottom:5px">
+                    <label>Cумма начисленная</label>
+                    @Html.TextBoxFor(model => model.AccruedAmount, new { @class = "form-control"})
+                    @Html.ValidationMessageFor(model => model.AccruedAmount)
+                </div>
+            </div>
+            <div class="row  justify-content-center">
+                <div class="col-10" style="margin:0 auto;margin-bottom:5px">
+                    <label>Cумма выплаченная</label>
+                    @Html.TextBoxFor(model => model.PaidAmount, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.PaidAmount)
+                </div>
+            </div>
+            <div class="row justify-content-center" style="margin-bottom:20px; margin-top:20px">
+                <div class="col-4">
+                    <input type="submit" class="btn btn-outline-info" value="Подтвердить" />
+                </div>
+                <div class="col-4">
+                    <input type="button" class="btn btn-outline-info" value="Назад" onclick="location.href = '@Url.Action("Index", "Edit")'" />
                 </div>
 
             </div>
-
-            <div>
-                <label>Кем доставлен</label>
-                <div>
-                    @Html.DropDownListFor(model => model.DeliveryWorkerId, ViewBag.DeliveryWorkers as SelectList, new { @class = "form-control", @style = "margin:0 auto;" })
-                </div>
-
-            </div>
-
-            <div>
-                <label>Кем освобожден</label>
-                <div>
-                    @Html.DropDownListFor(model => model.ReleaseWorkerId, ViewBag.ReleaseWorkers as SelectList, new { @class = "form-control", @style = "margin:0 auto;" })
-                </div>
-
-            </div>
-            <div>
-                <label>Место содержания</label>
-                <div>
-                    @Html.DropDownListFor(model => model.DepartmentId, ViewBag.Departments as SelectList, new { @class = "form-control", @style = "margin:0 auto;" })
-                </div>
-
-            </div>
-
-            <div style="margin:0 auto;margin-bottom:5px">
-                <label>Cумма начисленная</label>
-                @Html.TextAreaFor(model => model.AccruedAmount, new { @class = "form-control", @style = "margin:0 auto;" })
-                @Html.ValidationMessageFor(model => model.AccruedAmount)
-            </div>
-            <div style="margin:0 auto;margin-bottom:5px">
-                <label>Cумма выплеченная</label>
-                @Html.TextAreaFor(model => model.PaidAmount, new { @class = "form-control", @style = "margin:0 auto;" })
-                @Html.ValidationMessageFor(model => model.PaidAmount)
-            </div>
-
-            <div class="form-group" style="display:block; margin:0 auto; margin-bottom:20px; margin-top:20px">
-                <input type="submit" class="btn btn-dark" value="Подтвердить" />
-                <input type="button" class="btn btn-dark" value="Назад" onclick="location.href = '@Url.Action("Index", "Edit")'" />
-            </div>
-
         }
     </div>
 </div>

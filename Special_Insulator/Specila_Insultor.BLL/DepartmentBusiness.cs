@@ -42,5 +42,21 @@ namespace Specila_Insultor.BLL
         {
             data.EditDepartment(department);
         }
+
+        public List<Department> GetAllDepartmentsAndSwap(int Id)
+        {
+            List<Department> departments = data.GetAllDepartments();
+
+            int index = departments.IndexOf(departments.Where(item => item.Id == Id).FirstOrDefault());
+            if(index > 0)
+            {
+                Department myDepartment = departments[index];
+                departments[index] = departments[0];
+                departments[0] = myDepartment;
+
+            }
+
+            return departments;
+        }
     }
 }

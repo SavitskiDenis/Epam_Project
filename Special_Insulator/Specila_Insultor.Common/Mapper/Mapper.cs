@@ -28,13 +28,13 @@ namespace Common.Mapper
                         DateTime date = new DateTime(int.Parse(dates[2]),int.Parse(dates[1]),int.Parse(dates[0]));
                         findProperty.SetValue(toItem,date);
                     }
-                    else if(findProperty.PropertyType.Name == "Decimal" && property.PropertyType.Name == "String")
-                    {
-                        var value = property.GetValue(create, null);
-                        value = value.ToString().Replace('.', ',');
-                        decimal data = decimal.Parse(value.ToString());
-                        findProperty.SetValue(toItem, data);
-                    }
+                    //else if(findProperty.PropertyType.Name == "Decimal" && property.PropertyType.Name == "String")
+                    //{
+                    //    var value = property.GetValue(create, null);
+                    //    value = value.ToString().Replace('.', ',');
+                    //    decimal data = decimal.Parse(value.ToString());
+                    //    findProperty.SetValue(toItem, data);
+                    //}
                     else if(findProperty.PropertyType.Name == property.PropertyType.Name)
                     {
                         var value = property.GetValue(create, null);
@@ -62,13 +62,30 @@ namespace Common.Mapper
                     if(findProperty.PropertyType.Name == "DateTime" && property.PropertyType.Name == "String")
                     {
                         DateTime date = (DateTime)findProperty.GetValue(editor, null);
-                        property.SetValue(edit, date.Day+"/"+date.Month+"/"+date.Year);
+                        string myDate = "";
+                        if (date.Day < 10)
+                        {
+                            myDate += "0" + date.Day + ".";
+                        }
+                        else
+                        {
+                            myDate += date.Day + ".";
+                        }
+                        if (date.Month < 10)
+                        {
+                            myDate += "0" + date.Month + ".";
+                        }
+                        else
+                        {
+                            myDate += date.Month + ".";
+                        }
+                        property.SetValue(edit, myDate+date.Year);
                     }
-                    else if (findProperty.PropertyType.Name == "Decimal" && property.PropertyType.Name == "String")
-                    {
-                        decimal money = (decimal)findProperty.GetValue(editor, null);
-                        property.SetValue(edit, money.ToString());
-                    }
+                    //else if (findProperty.PropertyType.Name == "Decimal" && property.PropertyType.Name == "String")
+                    //{
+                    //    decimal money = (decimal)findProperty.GetValue(editor, null);
+                    //    property.SetValue(edit, money.ToString());
+                    //}
                     else if(findProperty.PropertyType.Name == property.PropertyType.Name)
                     {
                         var value = findProperty.GetValue(editor, null);

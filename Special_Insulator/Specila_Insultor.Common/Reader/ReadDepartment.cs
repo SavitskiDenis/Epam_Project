@@ -22,15 +22,15 @@ namespace Common.Reader
                     {
                         department = new Department()
                         {
-                            Id = (int)dataReader.GetValue(0),
-                            Address = (string)dataReader.GetValue(1),
+                            Id = (int)dataReader["Id"],
+                            Address = (string)dataReader["Address"],
                         };
                         departments.Add(department);
                     }
                 }
             }
             catch
-            { }
+            { throw; }
             
             return departments;
         }
@@ -39,12 +39,20 @@ namespace Common.Reader
         {
             dataReader.Read();
             Department department = new Department();
-
-            if (dataReader.HasRows)
+            try
             {
-                department.Id = (int)dataReader.GetValue(0);
-                department.Address = (string)dataReader.GetValue(1);
+                if (dataReader.HasRows)
+                {
+                    department.Id = (int)dataReader["Id"];
+                    department.Address = (string)dataReader["Address"];
+                }
             }
+            catch
+            {
+                throw;
+            }
+
+            
             return department;
         }
     }

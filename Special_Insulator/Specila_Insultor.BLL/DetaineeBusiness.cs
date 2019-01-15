@@ -17,29 +17,62 @@ namespace Specila_Insultor.BLL
             this.data = data;
         }
 
-        public void AddDetainee(Person addPerson, Detainee addDetainee)
+        public bool AddDetainee(Person addPerson, Detainee addDetainee)
         {
-            data.AddDetainee(addPerson,addDetainee);
+            if(data.AddDetainee(addPerson, addDetainee))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+            
+           
         }
 
         public List<DetaineeWithName> GetAllDetainees()
         {
-            return data.GetAllDeteinees();
+            var detainees = data.GetAllDeteinees();
+            if(detainees != null)
+            {
+                return detainees;
+            }
+            else
+            {
+                return new List<DetaineeWithName>();
+            }
+            
         }
 
-        public void DeleteDetaineeById(int id)
+        public bool DeleteDetaineeById(int? id)
         {
-            data.DeletDetaineeById(id);
+            if(id!=null && id>0 && data.DeletDetaineeById(id) == true)
+            {
+                return true;
+            }
+            return false;
+            
         }
 
-        public DetaineeWithName GetDeteineeById(int Id)
+        public DetaineeWithName GetDeteineeById(int? Id)
         {
-            return data.GetDeteineeById(Id);
+            var detainee = data.GetDeteineeById(Id);
+            if (detainee !=null)
+            {
+                return detainee;
+            }
+            return new DetaineeWithName(new Detainee() { Id=0},new Person());
         }
 
-        public void EditDetaineeInfo(DetaineeWithName detainee)
+        public bool EditDetaineeInfo(DetaineeWithName detainee)
         {
-            data.EditDetaineeInfo(detainee);
+            if (data.EditDetaineeInfo(detainee))
+            {
+                return true;
+            }
+            return false;
+           
         }
     }
 }

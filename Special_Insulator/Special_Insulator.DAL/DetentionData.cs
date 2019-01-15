@@ -14,21 +14,29 @@ namespace Special_Insulator.DAL
 {
     class DetentionData : IDetentionData
     {
-        public string connectionString = /*WebConfigurationManager.ConnectionStrings["MyDataBase"].ConnectionString*/@"Data Source=.\;Initial Catalog=SIDb;Integrated Security=True";
+        public string connectionString = WebConfigurationManager.ConnectionStrings["MyDb"].ConnectionString;
         public WorkerData worker = new WorkerData();
         public DepartmentData department = new DepartmentData();
 
         public List<Detention> GetDetentionsByDetaineeId(int id)
         {
 
-            List<Detention> detentions = Executer.ExecuteCollectionRead(connectionString, "SelectDetentionsByDetaineeId", new ReadDetention(), new SqlParameter("@DetaineeId", id));
+            List<Detention> detentions = Executer.ExecuteCollectionRead(connectionString,
+                                                                        "SelectDetentionsByDetaineeId",
+                                                                        new ReadDetention(),
+                                                                        new SqlParameter("@DetaineeId", id));
             foreach (var item in detentions)
             {
                 item.DetainWorker = worker.GetWorkerById(worker.GetWorkerIdByDetentionId(item.Id, "SelectDetainWorkerId"));
+
                 item.DeliveryWorker = worker.GetWorkerById(worker.GetWorkerIdByDetentionId(item.Id, "SelectDeliveryWorkerId"));
+
                 item.ReleaseWorker = worker.GetWorkerById(worker.GetWorkerIdByDetentionId(item.Id, "SelectReleaseWorkerId"));
+
                 Department mydepartment = department.GetDepartmnetnById(item.DepartmentId);
+
                 item.DepartmentId = mydepartment.Id;
+
                 item.Address = mydepartment.Address;
             }
 
@@ -49,29 +57,57 @@ namespace Special_Insulator.DAL
                 new SqlParameter("@PaidAmount",detention.PaidAmount),
             };
             var id = Executer.ExecuteScalar(connectionString, "AddDetention", parameters);
-            Executer.ExecuteNonQuery(connectionString, "AddInDetentionsAndDeliveryWorkers", new SqlParameter("@DetentionId", id), new SqlParameter("@WorkerId", detention.DeliveryWorker.Worker.Id));
-            Executer.ExecuteNonQuery(connectionString, "AddInDetentionsAndDetainWorkers", new SqlParameter("@DetentionId", id), new SqlParameter("@WorkerId", detention.DetainWorker.Worker.Id));
-            Executer.ExecuteNonQuery(connectionString, "AddInDetentionsAndReleaseWorkers", new SqlParameter("@DetentionId", id), new SqlParameter("@WorkerId", detention.ReleaseWorker.Worker.Id));
+
+            Executer.ExecuteNonQuery(connectionString,
+                                    "AddInDetentionsAndDeliveryWorkers",
+                                    new SqlParameter("@DetentionId", id),
+                                    new SqlParameter("@WorkerId", detention.DeliveryWorker.Worker.Id));
+
+            Executer.ExecuteNonQuery(connectionString,
+                                    "AddInDetentionsAndDetainWorkers",
+                                    new SqlParameter("@DetentionId", id),
+                                    new SqlParameter("@WorkerId", detention.DetainWorker.Worker.Id));
+
+            Executer.ExecuteNonQuery(connectionString,
+                                    "AddInDetentionsAndReleaseWorkers",
+                                    new SqlParameter("@DetentionId", id),
+                                    new SqlParameter("@WorkerId", detention.ReleaseWorker.Worker.Id));
         }
 
         public void DeleteDetention(int Id)
         {
             Executer.ExecuteNonQuery(connectionString, "Delete_DetDel", new SqlParameter("@Id", Id));
+
             Executer.ExecuteNonQuery(connectionString, "Delete_DD", new SqlParameter("@Id", Id));
+
             Executer.ExecuteNonQuery(connectionString, "Delete_DR", new SqlParameter("@Id", Id));
+
             Executer.ExecuteNonQuery(connectionString, "Delete_Detention", new SqlParameter("@Id", Id));
+
         }
 
         public Detention GetDetentionById(int Id)
         {
-            Detention detention = Executer.ExecuteRead(connectionString, "SelectDetentionById",new ReadDetention(), new SqlParameter("@Id", Id));
+            Detention detention = Executer.ExecuteRead(connectionString,
+                                                        "SelectDetentionById",
+                                                        new ReadDetention(),
+                                                        new SqlParameter("@Id", Id));
 
             detention.Id = Id;
-            detention.DetainWorker = worker.GetWorkerById(worker.GetWorkerIdByDetentionId(detention.Id, "SelectDetainWorkerId"));
-            detention.DeliveryWorker = worker.GetWorkerById(worker.GetWorkerIdByDetentionId(detention.Id, "SelectDeliveryWorkerId"));
-            detention.ReleaseWorker = worker.GetWorkerById(worker.GetWorkerIdByDetentionId(detention.Id, "SelectReleaseWorkerId"));
+
+            detention.DetainWorker = worker.GetWorkerById(worker.GetWorkerIdByDetentionId(detention.Id,
+                                                                                            "SelectDetainWorkerId"));
+
+            detention.DeliveryWorker = worker.GetWorkerById(worker.GetWorkerIdByDetentionId(detention.Id, 
+                                                                                            "SelectDeliveryWorkerId"));
+
+            detention.ReleaseWorker = worker.GetWorkerById(worker.GetWorkerIdByDetentionId(detention.Id,
+                                                                                            "SelectReleaseWorkerId"));
+
             Department mydepartment = department.GetDepartmnetnById(detention.DepartmentId);
+
             detention.DepartmentId = mydepartment.Id;
+
             detention.Address = mydepartment.Address;
 
             return detention;
@@ -91,9 +127,23 @@ namespace Special_Insulator.DAL
                 new SqlParameter("@PaidAmount",detention.PaidAmount),
             };
             Executer.ExecuteNonQuery(connectionString, "UpdateDetention", parameters);
-            Executer.ExecuteNonQuery(connectionString, "UpdateInDetensionsAndDetainWorkers", new SqlParameter("@DetentionId", detention.Id), new SqlParameter("@WorkerId", detention.DetainWorker.Worker.Id));
-            Executer.ExecuteNonQuery(connectionString, "AddInDetentionsAndDetainWorkers", new SqlParameter("@DetentionId", detention.Id), new SqlParameter("@WorkerId", detention.DeliveryWorker.Worker.Id));
-            Executer.ExecuteNonQuery(connectionString, "AddInDetentionsAndReleaseWorkers", new SqlParameter("@DetentionId", detention.Id), new SqlParameter("@WorkerId", detention.ReleaseWorker.Worker.Id));
+
+            Executer.ExecuteNonQuery(connectionString, 
+                                    "UpdateInDetensionsAndDetainWorkers",
+                                    new SqlParameter("@DetentionId", detention.Id),
+                                    new SqlParameter("@WorkerId",
+                                    detention.DetainWorker.Worker.Id));
+
+            Executer.ExecuteNonQuery(connectionString,
+                                    "UpdateInDetentionsAndDeliveryWorkers",
+                                    new SqlParameter("@DetentionId", detention.Id),
+                                    new SqlParameter("@WorkerId",
+                                    detention.DeliveryWorker.Worker.Id));
+
+            Executer.ExecuteNonQuery(connectionString,
+                                    "UpdateInDetentionsAndReleaseWorkers",
+                                    new SqlParameter("@DetentionId", detention.Id),
+                                    new SqlParameter("@WorkerId", detention.ReleaseWorker.Worker.Id));
 
         }
 
@@ -109,7 +159,18 @@ namespace Special_Insulator.DAL
 
         public List<int> GetDetentionsIdByDetaineeId(int Id)
         {
-            return Executer.ExecuteCollectionRead(connectionString, "SelectDetentionsIdByDetaineeId",new ReadId(),new SqlParameter("@Id",Id));
+            return Executer.ExecuteCollectionRead(connectionString,
+                                                "SelectDetentionsIdByDetaineeId",
+                                                new ReadId(),
+                                                new SqlParameter("@Id",Id));
+        }
+
+        public DateTime GetLastDetentionDateByDetaineeId (int Id)
+        {
+            return Executer.ExecuteRead(connectionString,
+                                        "SelectLastDetentionDateByDetaineeId",
+                                        new ReadLastDate(),
+                                        new SqlParameter("@Id",Id));
         }
     }
 }

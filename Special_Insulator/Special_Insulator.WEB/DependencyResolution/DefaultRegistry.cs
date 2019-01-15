@@ -30,7 +30,7 @@ namespace Special_Insulator.WEB.DependencyResolution {
                     scan.WithDefaultConventions();
 					scan.With(new ControllerConvention());
                 });
-            //For<IExample>().Use<Example>();
+            //For<ILog>().Use<>();
         }
 
         #endregion
