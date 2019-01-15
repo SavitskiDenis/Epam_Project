@@ -1,0 +1,72 @@
+﻿.left-sidebar {
+    margin-top: 20px;
+}
+
+.left-sidebar_menu {
+    background-color: white;
+    list-style: none;
+    padding: 0;
+}
+
+.left-sidebar_menu li{
+    transition:all 0.1s;
+}
+
+.left-sidebar_menu li a {
+    display: block;
+    padding: 15px 15px;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 400;
+    cursor: pointer;
+}
+
+.left-sidebar_menu li:hover {
+    background-color: #17a2b8;
+}
+
+.left-sidebar_menu li:hover a{
+    color:white;
+}
+
+.left-sidebar_advertising {
+    background-color: white;
+    margin-top: 25px;
+    margin-bottom:25px;
+    border: 1px solid #17a2b8;
+}
+
+.left-sidebar_advertising-description{
+    padding:25px;
+}
+
+.left-sidebar_advertising-description h3{
+    text-transform:uppercase;
+    font-weight:400;
+}
+
+.content {
+    margin-top: 20px;
+}
+
+.content input{
+    margin-right:10px;
+}
+
+.content select {
+    margin-right: 10px;
+}
+
+.content button {
+    margin-right: 10px;
+}
+
+.error {
+    text-transform: uppercase;
+    color:red;
+    font-weight:400;
+}
+
+
+
+

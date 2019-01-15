@@ -1,0 +1,51 @@
+﻿@model IEnumerable<Common.Entity.User>
+
+@{
+    ViewBag.Title = "Список отделов";
+}
+<div style="margin-top:20px">
+    @*<a onclick="location.href = '@Url.Action("Index","Edit")'"><img src="https://img.icons8.com/windows/32/000000/back.png"></a>*@
+    <button onclick="location.href = '@Url.Action("Index","Edit")'" class="btn btn-outline-info"><img height="20" src="https://img.icons8.com/windows/32/000000/back.png"></button>
+</div>
+<div class="container">
+
+    <table class="table table-sm">
+        <tr>
+            <th>
+                Логин
+            </th>
+            <th>
+                E-mail
+            </th>
+            <th>
+                Роли
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Login)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+                    @foreach(var role in item.Roles)
+                    {
+                        <p>@role</p>
+                    }
+                </td>
+                <td>
+                    <button class="btn-outline-info" title="Установить права на 'Пользователь'" onclick="location.href = '@Url.Action("EditRoles", "User", new { Id = item.Id, type = "User"})'"><img height="20" src="https://img.icons8.com/material/50/000000/admin-settings-male.png"></button>
+                    <button class="btn-outline-info" title="Установить права на 'Редактор'" onclick="location.href = '@Url.Action("EditRoles", "User", new { Id = item.Id, type = "Editor"})'"><img height="20" src="https://img.icons8.com/material/50/000000/admin-settings-male.png"></button>
+                    <button class="btn-outline-info" title="Установить права на 'Администратор'" onclick="location.href = '@Url.Action("EditRoles", "User", new { Id = item.Id, type = "Admin"})'"><img height="20" src="https://img.icons8.com/material/50/000000/admin-settings-male.png"></button>
+                </td>
+            </tr>
+        }
+
+    </table>
+
+</div>
