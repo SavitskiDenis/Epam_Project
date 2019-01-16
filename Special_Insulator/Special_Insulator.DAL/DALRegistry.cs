@@ -1,26 +1,22 @@
-﻿using Special_Insulator.DAL.Interfaces;
+﻿using SpecialInsulator.DAL.Implementations;
+using SpecialInsulator.DAL.Interfaces;
 using StructureMap;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Special_Insulator.DAL
+namespace SpecialInsulator.DAL
 {
     public class DALRegistry : Registry
     {
         public DALRegistry()
         {
-            For<IDetaineeData>().Singleton().Use<DetaineeData>();
-            For<IPersonData>().Singleton().Use<PersonData>();
-            For<IDetentionData>().Singleton().Use<DetentionData>();
-            For<IWorkerData>().Singleton().Use<WorkerData>();
-            For<IDepartmentData>().Singleton().Use<DepartmentData>();
-            For<IRoleData>().Singleton().Use<RoleData>();
-            For<IUserData>().Singleton().Use<UserData>();
-            For<IAdvertisingData>().Singleton().Use<AdvertisingData>();
-            For<IPostData>().Singleton().Use<PostData>();
+            For<IDetaineeRepository>().Singleton().Use<DetaineeRepository>();
+            For<IPersonRepository>().Singleton().Use<PersonRepository>();
+            For<IDetentionRepository>().Singleton().Use<DetentionRepository>();
+            For<IWorkerRepository>().Singleton().Use<WorkerRepository>();
+            For<IDepartmentRepository>().Singleton().Use<DepartmentRepository>();
+            For<IRoleRepository>().Singleton().Use<RoleRepository>();
+            For<IUserRepository>().Singleton().Use<UserRepository>();
+            For<IAdvertisingRepository>().Singleton().Use<AdvertisingRepository>();
+            For<IPostRepository>().Singleton().Use<PostRepository>();
         }
     }
 }

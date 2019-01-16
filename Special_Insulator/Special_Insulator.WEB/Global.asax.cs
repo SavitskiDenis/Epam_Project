@@ -1,4 +1,4 @@
-﻿using Common.Entity;
+﻿using SpecialInsulator.Common.Entity;
 using log4net;
 using Special_Insulator.WEB.DependencyResolution;
 using Specila_Insultor.BLL;

@@ -1,20 +1,16 @@
 ﻿using Special_Insulator.WEB.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
-using Common.Entity;
-using Common.Mapper;
-using Specila_Insultor.BLL.Interfaces;
+using SpecialInsulator.Common.Entity;
+using SpecialInsulator.Common.Mapper;
+using SpecialInsulator.BLL.Interfaces;
 
 namespace Special_Insulator.WEB.Controllers
 {
     public class AuthenticationController : Controller
     {
-        private IUserBusiness userData;
+        private IUserService userData;
 
-        public AuthenticationController(IUserBusiness userData)
+        public AuthenticationController(IUserService userData)
         {
             this.userData = userData;
         }

@@ -5,22 +5,22 @@ VisualStudioVersion = 15.0.28010.2050
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Special_Insulator.Web", "Special_Insulator.WEB\Special_Insulator.Web.csproj", "{A0D7631C-CC69-4F27-B8FE-6B46C7E2B1A7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Special_Insulator.Common", "Specila_Insultor.Common\Special_Insulator.Common.csproj", "{41B30189-41FB-45C1-9C2C-0F01B796635A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpecialInsulator.Common", "Specila_Insultor.Common\SpecialInsulator.Common.csproj", "{41B30189-41FB-45C1-9C2C-0F01B796635A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Special_Insulator.DAL", "Special_Insulator.DAL\Special_Insulator.DAL.csproj", "{E36D8042-6E03-4D48-82D0-508A56DC3A9D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpecialInsulator.DAL", "Special_Insulator.DAL\SpecialInsulator.DAL.csproj", "{E36D8042-6E03-4D48-82D0-508A56DC3A9D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpecialInsulator.BLL", "Specila_Insultor.BLL\SpecialInsulator.BLL.csproj", "{26BE92A7-A5EA-4EB0-9E23-5158394407C9}"
 	ProjectSection(ProjectDependencies) = postProject
-		{F71FE9B0-567F-45AF-83AA-7DD10235F49B} = {F71FE9B0-567F-45AF-83AA-7DD10235F49B}
+		{83354F6E-14F2-4874-BB1B-FD977389C60F} = {83354F6E-14F2-4874-BB1B-FD977389C60F}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Specila_Insultor.BLL", "Specila_Insultor.BLL\Specila_Insultor.BLL.csproj", "{26BE92A7-A5EA-4EB0-9E23-5158394407C9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpecialInsulator.Dependency", "Special_Insulator.Dependency\SpecialInsulator.Dependency.csproj", "{55FB3B48-F153-4577-814A-A9FBF26E043B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Special_Insulator.Dependency", "Special_Insulator.Dependency\Special_Insulator.Dependency.csproj", "{55FB3B48-F153-4577-814A-A9FBF26E043B}"
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "SpecialInsulator.Db", "Special_Insulator_Db\SpecialInsulator.Db.sqlproj", "{0A1F41CE-4AD1-47E6-ADD8-3694C542D357}"
 EndProject
-Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "Special_Insulator_Db", "Special_Insulator_Db\Special_Insulator_Db.sqlproj", "{0A1F41CE-4AD1-47E6-ADD8-3694C542D357}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpecialInsulator.BLL.Tests", "Special_Insulator.BLL.Tests\SpecialInsulator.BLL.Tests.csproj", "{9681C7AD-CD6F-4078-8123-D3627AC22722}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Special_Insulator.Advertising", "Special_Insulator.Advertising\Special_Insulator.Advertising.csproj", "{F71FE9B0-567F-45AF-83AA-7DD10235F49B}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Special_Insulator.BLL.Tests", "Special_Insulator.BLL.Tests\Special_Insulator.BLL.Tests.csproj", "{9681C7AD-CD6F-4078-8123-D3627AC22722}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpecialInsulator.WCF", "Special_Insulator.WCF\SpecialInsulator.WCF.csproj", "{83354F6E-14F2-4874-BB1B-FD977389C60F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -54,14 +54,14 @@ Global
 		{0A1F41CE-4AD1-47E6-ADD8-3694C542D357}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0A1F41CE-4AD1-47E6-ADD8-3694C542D357}.Release|Any CPU.Build.0 = Release|Any CPU
 		{0A1F41CE-4AD1-47E6-ADD8-3694C542D357}.Release|Any CPU.Deploy.0 = Release|Any CPU
-		{F71FE9B0-567F-45AF-83AA-7DD10235F49B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F71FE9B0-567F-45AF-83AA-7DD10235F49B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F71FE9B0-567F-45AF-83AA-7DD10235F49B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F71FE9B0-567F-45AF-83AA-7DD10235F49B}.Release|Any CPU.Build.0 = Release|Any CPU
 		{9681C7AD-CD6F-4078-8123-D3627AC22722}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{9681C7AD-CD6F-4078-8123-D3627AC22722}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9681C7AD-CD6F-4078-8123-D3627AC22722}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9681C7AD-CD6F-4078-8123-D3627AC22722}.Release|Any CPU.Build.0 = Release|Any CPU
+		{83354F6E-14F2-4874-BB1B-FD977389C60F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{83354F6E-14F2-4874-BB1B-FD977389C60F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{83354F6E-14F2-4874-BB1B-FD977389C60F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{83354F6E-14F2-4874-BB1B-FD977389C60F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

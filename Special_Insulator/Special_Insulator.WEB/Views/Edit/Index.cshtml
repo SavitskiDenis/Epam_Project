@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Common.Entity.DetaineeWithName>
+﻿@model IEnumerable<SpecialInsulator.Common.Entity.DetaineeWithName>
 
 @{
     ViewBag.Title = "Режим редактирования";
@@ -14,22 +14,22 @@
                 <li><a style="cursor:pointer" onclick="location.href = '@Url.Action("AddDepartment", "Departments")'">Добавить место содеражания</a></li>
                 <li><a style="cursor:pointer" onclick="location.href = '@Url.Action("Index", "Departments")'">Список мест содержания</a></li>
                 <li><a style="cursor:pointer" onclick="location.href = '@Url.Action("AddPost", "Post")'">Добавить должность</a></li>
-                <li><a style="cursor:pointer"  onclick="location.href = '@Url.Action("Index", "Post")'">Список должностей</a></li>
+                <li><a style="cursor:pointer" onclick="location.href = '@Url.Action("Index", "Post")'">Список должностей</a></li>
                 @if (User.IsInRole("Admin"))
-                 {
+                {
                     <li><a style="cursor:pointer" onclick="location.href = '@Url.Action("Index", "User")'">Список пользователей</a></li>
-                 }
+                }
 
             </ul>
         </div>
-        @foreach(var item in ViewBag.Advertising)
+        @foreach (var item in ViewBag.Advertising)
         {
             <div class="left-sidebar_advertising">
-                <img style="width:100%" src="@item.Key[0].Value" />
+                <img style="width:100%" src="@item.Image.Value" />
                 <div class="left-sidebar_advertising-description">
-                    <h3>@item.Value[0]</h3>
-                    <p>@item.Value[1]</p>
-                    <a href="@item.Key[1].Value">Подробнее</a>
+                    <h3>@item.Title</h3>
+                    <p>@item.Context</p>
+                    <a href="@item.Address.Value">Подробнее</a>
                 </div>
             </div>
         }

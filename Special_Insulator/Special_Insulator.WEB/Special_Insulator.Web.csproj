@@ -244,21 +244,21 @@
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Special_Insulator.DAL\Special_Insulator.DAL.csproj">
+    <ProjectReference Include="..\Special_Insulator.DAL\SpecialInsulator.DAL.csproj">
       <Project>{e36d8042-6e03-4d48-82d0-508a56dc3a9d}</Project>
-      <Name>Special_Insulator.DAL</Name>
+      <Name>SpecialInsulator.DAL</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Special_Insulator.Dependency\Special_Insulator.Dependency.csproj">
+    <ProjectReference Include="..\Special_Insulator.Dependency\SpecialInsulator.Dependency.csproj">
       <Project>{55fb3b48-f153-4577-814a-a9fbf26e043b}</Project>
-      <Name>Special_Insulator.Dependency</Name>
+      <Name>SpecialInsulator.Dependency</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Specila_Insultor.BLL\Specila_Insultor.BLL.csproj">
+    <ProjectReference Include="..\Specila_Insultor.BLL\SpecialInsulator.BLL.csproj">
       <Project>{26be92a7-a5ea-4eb0-9e23-5158394407c9}</Project>
-      <Name>Specila_Insultor.BLL</Name>
+      <Name>SpecialInsulator.BLL</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Specila_Insultor.Common\Special_Insulator.Common.csproj">
+    <ProjectReference Include="..\Specila_Insultor.Common\SpecialInsulator.Common.csproj">
       <Project>{41b30189-41fb-45c1-9c2c-0f01b796635a}</Project>
-      <Name>Special_Insulator.Common</Name>
+      <Name>SpecialInsulator.Common</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

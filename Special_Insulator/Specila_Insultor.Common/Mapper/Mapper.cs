@@ -1,11 +1,9 @@
-﻿using Common.Entity;
+﻿using SpecialInsulator.Common.Entity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Common.Mapper
+namespace SpecialInsulator.Common.Mapper
 {
     public class Mapper
     {
@@ -28,13 +26,6 @@ namespace Common.Mapper
                         DateTime date = new DateTime(int.Parse(dates[2]),int.Parse(dates[1]),int.Parse(dates[0]));
                         findProperty.SetValue(toItem,date);
                     }
-                    //else if(findProperty.PropertyType.Name == "Decimal" && property.PropertyType.Name == "String")
-                    //{
-                    //    var value = property.GetValue(create, null);
-                    //    value = value.ToString().Replace('.', ',');
-                    //    decimal data = decimal.Parse(value.ToString());
-                    //    findProperty.SetValue(toItem, data);
-                    //}
                     else if(findProperty.PropertyType.Name == property.PropertyType.Name)
                     {
                         var value = property.GetValue(create, null);
@@ -81,11 +72,6 @@ namespace Common.Mapper
                         }
                         property.SetValue(edit, myDate+date.Year);
                     }
-                    //else if (findProperty.PropertyType.Name == "Decimal" && property.PropertyType.Name == "String")
-                    //{
-                    //    decimal money = (decimal)findProperty.GetValue(editor, null);
-                    //    property.SetValue(edit, money.ToString());
-                    //}
                     else if(findProperty.PropertyType.Name == property.PropertyType.Name)
                     {
                         var value = findProperty.GetValue(editor, null);

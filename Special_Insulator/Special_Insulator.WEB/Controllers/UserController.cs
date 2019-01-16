@@ -1,17 +1,13 @@
-﻿using Specila_Insultor.BLL.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using SpecialInsulator.BLL.Interfaces;
 using System.Web.Mvc;
 
 namespace Special_Insulator.WEB.Controllers
 {
     public class UserController : Controller
     {
-        private IUserBusiness userData;
+        private IUserService userData;
 
-        public UserController(IUserBusiness userData)
+        public UserController(IUserService userData)
         {
             this.userData = userData;
         }

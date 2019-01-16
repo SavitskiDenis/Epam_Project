@@ -1,10 +1,5 @@
-﻿using Common.Entity;
-using Specila_Insultor.BLL;
-using Specila_Insultor.BLL.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using SpecialInsulator.Common.Entity;
+using SpecialInsulator.BLL.Interfaces;
 using System.Web.Mvc;
 
 namespace Special_Insulator.WEB.Controllers
@@ -12,11 +7,11 @@ namespace Special_Insulator.WEB.Controllers
     public class EditController : Controller
     {
 
-        private IDetaineeBusiness data;
-        private IDetentionBusiness detentionData;
-        private IAdvertisingBusiness advertising;
+        private IDetaineeService data;
+        private IDetentionService detentionData;
+        private IAdvertisingService advertising;
 
-        public EditController(IDetaineeBusiness data, IDetentionBusiness detentionData, IAdvertisingBusiness advertising)
+        public EditController(IDetaineeService data, IDetentionService detentionData, IAdvertisingService advertising)
         {
             this.data = data;
             this.detentionData = detentionData;

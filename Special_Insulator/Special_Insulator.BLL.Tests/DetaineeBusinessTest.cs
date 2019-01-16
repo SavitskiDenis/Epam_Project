@@ -1,24 +1,24 @@
-﻿using System;
-using System.Collections.Generic;
-using Common.Entity;
+﻿using System.Collections.Generic;
+using SpecialInsulator.Common.Entity;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
-using Special_Insulator.DAL;
-using Specila_Insultor.BLL;
+using SpecialInsulator.BLL.Implementations;
+using SpecialInsulator.BLL.Interfaces;
+using SpecialInsulator.DAL.Interfaces;
 
 namespace Special_Insulator.BLL.Tests
 {
     [TestClass]
     public class DetaineeBusinessTest
     {
-        IDetaineeBusiness business;
-        Mock<IDetaineeData> data;
+        IDetaineeService business;
+        Mock<IDetaineeRepository> data;
 
         [TestInitialize]
         public void Initialize()
         {
-            data = new Mock<IDetaineeData>();
-            business = new DetaineeBusiness(data.Object);
+            data = new Mock<IDetaineeRepository>();
+            business = new DetaineeService(data.Object);
         }
 
         [TestMethod]

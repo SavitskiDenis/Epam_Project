@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Common.Entity.DetaineeWithName>
+﻿@model IEnumerable<SpecialInsulator.Common.Entity.DetaineeWithName>
 
 @{
     ViewBag.Title = "Список задержанных";
@@ -10,11 +10,11 @@
             @foreach (var item in ViewBag.Advertising)
             {
                 <div class="left-sidebar_advertising">
-                    <img style="width:100%" src="@item.Key[0].Value" />
+                    <img style="width:100%" src="@item.Image.Value" />
                     <div class="left-sidebar_advertising-description">
-                        <h3>@item.Value[0]</h3>
-                        <p>@item.Value[1]</p>
-                        <a href="@item.Key[1].Value">Подробнее</a>
+                        <h3>@item.Title</h3>
+                        <p>@item.Context</p>
+                        <a href="@item.Address.Value">Подробнее</a>
                     </div>
                 </div>
             }

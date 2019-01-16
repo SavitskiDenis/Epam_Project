@@ -1,25 +1,22 @@
-﻿using Common.Entity;
-using Common.Mapper;
+﻿using SpecialInsulator.Common.Entity;
+using SpecialInsulator.Common.Mapper;
 using Special_Insulator.WEB.Models;
-using Specila_Insultor.BLL;
-using Specila_Insultor.BLL.Interfaces;
-using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-
+using SpecialInsulator.BLL.Interfaces;
 
 namespace Special_Insulator.WEB.Controllers
 {
     public class DetaineesController : Controller
     {
-        private IDetaineeBusiness data;
-        private IDetentionBusiness detention;
-        private IAdvertisingBusiness advertising;
+        private IDetaineeService data;
+        private IDetentionService detention;
+        private IAdvertisingService advertising;
 
-        public DetaineesController(IDetaineeBusiness data, IDetentionBusiness detention, IAdvertisingBusiness advertising)
+        public DetaineesController(IDetaineeService data, IDetentionService detention, IAdvertisingService advertising)
         {
             this.data = data;
             this.detention = detention;
@@ -60,16 +57,6 @@ namespace Special_Insulator.WEB.Controllers
             {
                 collection = data.GetAllDetainees().FindAll(item => item.lastDetention.ToShortDateString() == search);
             }
-
-            //if (sort == "По возрастанию")
-            //{
-            //    collection?.ToList().Sort();
-            //}
-            //else
-            //{
-            //    collection?.ToList().Sort();
-            //    collection?.Reverse();
-            //}
 
             return PartialView(collection);
         }

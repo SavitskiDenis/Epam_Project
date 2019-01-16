@@ -1,17 +1,17 @@
-﻿@model Common.Entity.DetaineeWithName
+﻿@model SpecialInsulator.Common.Entity.DetaineeWithName
 @{
     ViewBag.Title = "Информация о задержанном";
 }
-<div  style="margin-bottom:35px;margin-top:25px">
+<div style="margin-bottom:35px;margin-top:25px">
     <button onclick="location.href = '@Url.Action("Index","Detainees",new { Model.detainee.Id})'" class="btn btn-outline-info"><img height="20" src="https://img.icons8.com/windows/32/000000/back.png"></button>
 </div>
 <div class="row justify-content-center" style="margin-bottom:30px;margin-top:25px">
     <h4 class="col-4">Информация о задержанном</h4>
 </div>
 <div>
-    @if (Model.detainee.Photo!=null)
+    @if (Model.detainee.Photo != null)
     {
-        <img class="rounded mx-auto d-block" src="@String.Format("data:image/png;base64,{0}", Convert.ToBase64String(Model.detainee.Photo))"  style="width:30%" />
+        <img class="rounded mx-auto d-block" src="@String.Format("data:image/png;base64,{0}", Convert.ToBase64String(Model.detainee.Photo))" style="width:30%" />
     }
     else
     {
@@ -35,17 +35,17 @@
         <p>Дополнительная информация</p>
         <textarea cols="50" rows="3" disabled="disabled" style="resize:none">@Model.detainee.AdditionalInformation</textarea>
     </div>
-        
+
 </div>
 
-<table class="table table-sm" >
+<table class="table table-sm">
     <tr>
         <th>Даты</th>
         <th>Сотрудники</th>
         <th>Адресс</th>
         <th>Суммы</th>
     </tr>
-    @foreach(var item in Model.detainee.Detentions)
+    @foreach (var item in Model.detainee.Detentions)
     {
         <tr>
             <td>

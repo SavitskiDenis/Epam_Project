@@ -1,20 +1,16 @@
-﻿using Common.Entity;
-using Common.Mapper;
+﻿using SpecialInsulator.Common.Entity;
+using SpecialInsulator.Common.Mapper;
 using Special_Insulator.WEB.Models;
-using Specila_Insultor.BLL.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+using SpecialInsulator.BLL.Interfaces;
 using System.Web.Mvc;
 
 namespace Special_Insulator.WEB.Controllers
 {
     public class PostController : Controller
     {
-        IPostBusiness postData;
+        IPostService postData;
 
-        public PostController(IPostBusiness postData)
+        public PostController(IPostService postData)
         {
             this.postData = postData;
         }

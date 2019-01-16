@@ -1,4 +1,4 @@
-﻿using Common.Entity;
+﻿using SpecialInsulator.Common.Entity;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;

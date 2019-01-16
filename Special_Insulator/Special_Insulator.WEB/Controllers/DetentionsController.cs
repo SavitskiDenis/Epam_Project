@@ -1,23 +1,20 @@
 ﻿
-using Common.Entity;
-using Common.Mapper;
+using SpecialInsulator.Common.Entity;
+using SpecialInsulator.Common.Mapper;
 using Special_Insulator.WEB.Models;
-using Specila_Insultor.BLL.Interfaces;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
+using SpecialInsulator.BLL.Interfaces;
 
 namespace Special_Insulator.WEB.Controllers
 {
     public class DetentionsController : Controller
     {
-        IWorkerBusiness data;
-        IDepartmentBusiness department;
-        IDetentionBusiness detentionData;
+        IWorkerService data;
+        IDepartmentService department;
+        IDetentionService detentionData;
 
-        public DetentionsController(IWorkerBusiness data, IDepartmentBusiness department, IDetentionBusiness detentionData)
+        public DetentionsController(IWorkerService data, IDepartmentService department, IDetentionService detentionData)
         {
             this.data = data;
             this.department = department;

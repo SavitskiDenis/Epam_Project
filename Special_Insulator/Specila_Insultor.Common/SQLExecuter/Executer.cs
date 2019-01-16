@@ -1,13 +1,9 @@
-﻿using Common.Reader;
-using System;
+﻿using SpecialInsulator.Common.Reader;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Common.SQLExecuter
+namespace SpecialInsulator.Common.SQLExecuter
 {
     public class Executer
     {
