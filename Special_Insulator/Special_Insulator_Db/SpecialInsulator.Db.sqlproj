@@ -1,0 +1,164 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <Name>SpecialInsulator.Db</Name>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectVersion>4.1</ProjectVersion>
+    <ProjectGuid>{0a1f41ce-4ad1-47e6-add8-3694c542d357}</ProjectGuid>
+    <DSP>Microsoft.Data.Tools.Schema.Sql.Sql130DatabaseSchemaProvider</DSP>
+    <OutputType>Database</OutputType>
+    <RootPath>
+    </RootPath>
+    <RootNamespace>Special_Insulator_Db</RootNamespace>
+    <AssemblyName>Special_Insulator_Db</AssemblyName>
+    <ModelCollation>1033, CI</ModelCollation>
+    <DefaultFileStructure>BySchemaAndSchemaType</DefaultFileStructure>
+    <DeployToDatabase>True</DeployToDatabase>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <TargetLanguage>CS</TargetLanguage>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <SqlServerVerification>False</SqlServerVerification>
+    <IncludeCompositeObjects>True</IncludeCompositeObjects>
+    <TargetDatabaseSet>True</TargetDatabaseSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">11.0</VisualStudioVersion>
+    <!-- Default to the v11.0 targets path if the targets file for the current VS version is not found -->
+    <SSDTExists Condition="Exists('$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets')">True</SSDTExists>
+    <VisualStudioVersion Condition="'$(SSDTExists)' == ''">11.0</VisualStudioVersion>
+  </PropertyGroup>
+  <Import Condition="'$(SQLDBExtensionsRefPath)' != ''" Project="$(SQLDBExtensionsRefPath)\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
+  <Import Condition="'$(SQLDBExtensionsRefPath)' == ''" Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
+  <ItemGroup>
+    <Folder Include="Properties" />
+    <Folder Include="Tables" />
+    <Folder Include="Procedures" />
+    <Folder Include="Procedures\Add" />
+    <Folder Include="Procedures\Delete" />
+    <Folder Include="Procedures\Update" />
+    <Folder Include="Procedures\Select" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Tables\CreateRoleTable.sql" />
+    <None Include="Tables\CreateUserTable.sql" />
+    <None Include="Tables\UserAndRole.sql" />
+    <None Include="DBCreate.sql" />
+    <None Include="RelationShip.sql" />
+    <None Include="Tables\CreateDetaineeTable.sql" />
+    <None Include="Tables\CreateWorkerTable.sql" />
+    <None Include="Tables\CreatePhoneTable.sql" />
+    <None Include="Tables\CreatePeopleTable.sql" />
+    <None Include="Tables\CreateDetentionTable.sql" />
+    <None Include="Tables\CreateDepartmentTable.sql" />
+    <None Include="Tables\DetensionsAndDetainWorkers.sql" />
+    <None Include="Tables\DetentionsAndDeliveryWorkers.sql" />
+    <None Include="Tables\DetentionsAndReleaseWorkers.sql" />
+    <None Include="Procedures\Add\AddInUserAndRole.sql" />
+    <None Include="Procedures\Add\AddInDetentionsAndDetainWorkers.sql" />
+    <None Include="Procedures\Add\AddInDetentionsAndDeliveryWorkers.sql" />
+    <None Include="Procedures\Add\AddInDetentionsAndReleaseWorkers.sql" />
+    <None Include="Procedures\Delete\DeleteRole.sql" />
+    <None Include="Procedures\Delete\DeleteUser.sql" />
+    <None Include="Procedures\Delete\DeleteDepartment.sql" />
+    <None Include="Procedures\Delete\DeleteDetainee.sql" />
+    <None Include="Procedures\Delete\DeleteDetention.sql" />
+    <None Include="Procedures\Delete\DeletePeople.sql" />
+    <None Include="Procedures\Delete\DeletePhone.sql" />
+    <None Include="Procedures\Delete\DeleteWorker.sql" />
+    <None Include="Procedures\Delete\DeleteInDetentionsAndDeliveryWorkers.sql" />
+    <None Include="Procedures\Delete\DeleteInDetentionsAndDetainWorkers.sql" />
+    <None Include="Procedures\Delete\DeleteInDetentionsAndReleaseWorkers.sql" />
+    <None Include="Procedures\Delete\DeleteInUserAndRole.sql" />
+    <None Include="Procedures\Update\UpdatePhone.sql" />
+    <None Include="Procedures\Update\UpdateDepartment.sql" />
+    <None Include="Procedures\Update\UpdateDetainee.sql" />
+    <None Include="Procedures\Update\UpdateDetention.sql" />
+    <None Include="Procedures\Update\UpdatePeople.sql" />
+    <None Include="Procedures\Update\UpdateRole.sql" />
+    <None Include="Procedures\Update\UpdateUser.sql" />
+    <None Include="Procedures\Update\UpdateWorker.sql" />
+    <None Include="Procedures\Select\SelectAllDetainees.sql" />
+    <None Include="Procedures\Select\SelectPersonById.sql" />
+    <None Include="Procedures\Select\SelectPhoneByDetaineeId.sql" />
+    <None Include="Procedures\Select\SelectDetaineeById.sql" />
+    <None Include="Procedures\Select\SelectAllPeople.sql" />
+    <None Include="Procedures\Select\SelectDetentionsByDetaineeId.sql" />
+    <None Include="Procedures\Select\SelectAllDepartments.sql" />
+    <None Include="Procedures\Select\SelectAllWorkers.sql" />
+    <None Include="Procedures\Select\SelectWorkerById.sql" />
+    <None Include="Procedures\Select\SelectDepartmentById.sql" />
+    <None Include="Procedures\Select\SelectDetainWorkerId.sql" />
+    <None Include="Procedures\Select\SelectDeliveryWorkerId.sql" />
+    <None Include="Procedures\Select\SelectReleaseWorkerId.sql" />
+    <None Include="Procedures\Select\SelectDetentionById.sql" />
+    <None Include="Procedures\Update\UpdateInDetensionsAndDetainWorkers.sql" />
+    <None Include="Procedures\Update\UpdateInDetentionsAndDeliveryWorkers.sql" />
+    <None Include="Procedures\Update\UpdateInDetentionsAndReleaseWorkers.sql" />
+    <None Include="Procedures\Delete\DeleteDetentionByDetaineeId.sql" />
+    <None Include="Procedures\Select\SelectDetentionsIdByDetaineeId.sql" />
+    <None Include="Procedures\Select\SelectLastDetentionDateByDetaineeId.sql" />
+    <None Include="Procedures\Select\SelectAllUsers.sql" />
+    <None Include="Procedures\Select\SelectRolesIdByUserId.sql" />
+    <None Include="AddDefaulValues.sql" />
+    <None Include="Tables\CreatePostsTable.sql" />
+    <None Include="Procedures\Add\AddPost.sql" />
+    <None Include="Procedures\Delete\DeletePost.sql" />
+    <None Include="Procedures\Update\UpdatePost.sql" />
+    <None Include="Procedures\Select\SelectAllPosts.sql" />
+    <None Include="Procedures\Select\SelectPostById.sql" />
+    <None Include="Procedures\Select\SelectRolesId.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Procedures\Add\AddDepartment.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Procedures\Add\AddDetainee.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Procedures\Add\AddDetention.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Procedures\Add\AddPeople.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Procedures\Add\AddPhone.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Procedures\Add\AddRole.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Procedures\Add\AddUser.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Procedures\Add\AddWorker.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Procedures\Select\SelectRoleById.sql" />
+  </ItemGroup>
+</Project>

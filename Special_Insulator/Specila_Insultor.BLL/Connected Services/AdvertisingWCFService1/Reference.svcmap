@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="4c728d62-c76c-45bd-8e8c-5e5359b7cb1d" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:47310/AdvertisingWCFService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="Service1.wsdl" MetadataType="Wsdl" ID="e9857543-f96e-42cb-bf88-dbc86fdaaa35" SourceId="1" SourceUrl="http://localhost:47310/AdvertisingWCFService.svc?wsdl" />
+    <MetadataFile FileName="AdvertisingWCFService.xsd" MetadataType="Schema" ID="90ae5446-7e49-403c-a6cf-3f4e2c24a917" SourceId="1" SourceUrl="http://localhost:47310/AdvertisingWCFService.svc?xsd=xsd2" />
+    <MetadataFile FileName="AdvertisingWCFService.disco" MetadataType="Disco" ID="ea71182c-91d1-4512-918e-e4efa5eaebb4" SourceId="1" SourceUrl="http://localhost:47310/AdvertisingWCFService.svc?disco" />
+    <MetadataFile FileName="AdvertisingWCFService1.xsd" MetadataType="Schema" ID="899b46a6-6867-42c4-ab5a-a8aec0091de3" SourceId="1" SourceUrl="http://localhost:47310/AdvertisingWCFService.svc?xsd=xsd1" />
+    <MetadataFile FileName="AdvertisingWCFService2.xsd" MetadataType="Schema" ID="efc94228-a78b-4c0c-a2ed-0b3c32516a4d" SourceId="1" SourceUrl="http://localhost:47310/AdvertisingWCFService.svc?xsd=xsd0" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

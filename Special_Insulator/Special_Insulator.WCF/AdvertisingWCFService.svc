@@ -1,0 +1,1 @@
+﻿<%@ ServiceHost Language="C#" Debug="true" Service="Special_Insulator.WCF.AdvertisingService" CodeBehind="AdvertisingWCFService.svc.cs" %>
