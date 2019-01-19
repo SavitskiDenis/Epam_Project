@@ -1,0 +1,22 @@
+﻿@model SpecialInsulator.Common.Entity.User
+
+@{
+    ViewBag.Title = "Профиль";
+}
+<div class="container">
+    <div class="row justify-content-center">
+        <h4 class="col-md-6">Пользовательская информация</h4>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <p>Логин: @Model.Login</p>
+            <p>Email: @Model.Email</p>
+        </div>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-md-4">
+            <button class="btn btn-outline-info" onclick="location.href = '@Url.Action("EditUserInfo", "User")'">Изменить информацию</button>
+        </div>
+        
+    </div>
+</div>
