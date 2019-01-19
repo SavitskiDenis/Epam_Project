@@ -5,9 +5,9 @@ namespace SpecialInsulator.DAL.Interfaces
 {
     public interface IRoleRepository
     {
-        void AddRoleToUser(int userId,int roleId);
+        bool AddRoleToUser(int userId,int roleId);
 
-        void EditUserRole(int userId,int roleId);
+        bool EditUserRole(int userId,int roleId);
 
         List<string> GetUserRolesByUserId(int Id);
 
@@ -15,6 +15,6 @@ namespace SpecialInsulator.DAL.Interfaces
 
         List<Role> GetRolesByUserId(int Id);
 
-        void DeleteRoleFromUser(int userId, int roleId);
+        bool DeleteRoleFromUser(int userId, int roleId);
     }
 }

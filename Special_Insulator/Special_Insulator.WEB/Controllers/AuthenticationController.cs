@@ -22,11 +22,11 @@ namespace Special_Insulator.WEB.Controllers
         }
 
         [HttpPost]
-        public ActionResult Login(UserLogin model)
+        public ActionResult Login(UserLoginModel model)
         {
             if (ModelState.IsValid)
             {
-                User user = Mapper.MapToItem<UserLogin, User>(model);
+                User user = Mapper.MapToItem<UserLoginModel, User>(model);
                 user = userData.checkUserAndGet(user);
                 if (user != null)
                 {
@@ -49,11 +49,11 @@ namespace Special_Insulator.WEB.Controllers
         }
 
         [HttpPost]
-        public ActionResult Registration(UserRegistration model)
+        public ActionResult Registration(UserRegistrationModel model)
         {
             if(ModelState.IsValid)
             {
-                User user = Mapper.MapToItem<UserRegistration, User>(model);
+                User user = Mapper.MapToItem<UserRegistrationModel, User>(model);
                 if(userData.AddUser(user))
                 {
                     return RedirectToAction("Login", "Authentication");

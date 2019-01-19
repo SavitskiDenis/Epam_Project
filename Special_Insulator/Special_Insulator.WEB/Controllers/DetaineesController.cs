@@ -12,108 +12,166 @@ namespace Special_Insulator.WEB.Controllers
 {
     public class DetaineesController : Controller
     {
-        private IDetaineeService data;
-        private IDetentionService detention;
-        private IAdvertisingService advertising;
+        private readonly IDetaineeService data;
+        private readonly IDetentionService detention;
+        private readonly IAdvertisingService advertising;
+        private readonly IStatusService status;
 
-        public DetaineesController(IDetaineeService data, IDetentionService detention, IAdvertisingService advertising)
+        public DetaineesController(IDetaineeService data, IDetentionService detention, IAdvertisingService advertising, IStatusService status)
         {
             this.data = data;
             this.detention = detention;
             this.advertising = advertising;
+            this.status = status;
         }
 
         public ActionResult Index()
         {
             var collection = advertising.GetLinks();
-            ViewBag.Advertising = collection;
-            return View(data.GetAllDetainees());
+            if(collection != null)
+            {
+                ViewBag.Advertising = collection;
+                return View(data.GetAllDetainees());
+            }
+            return RedirectToAction("InformationError", "Error", new { message = "Произошла ошибка при получении данных!" });
         }
 
         [Authorize(Roles = "Editor")]
-        public ActionResult DeleteDetainee(int Id)
+        public ActionResult DeleteDetainee(int? Id)
         {
-            data.DeleteDetaineeById(Id);
-            return RedirectToAction("Index", "Edit");
+            if(data.DeleteDetaineeById(Id))
+            {
+                return RedirectToAction("Index", "Edit");
+            }
+            return RedirectToAction("InformationError", "Error",new { message ="Ошибка удаления. Проверьте вводимые данные!"});
         }
 
         [HttpPost]
-        public ActionResult FindDetainee(string search,string type = "Все",string sort="По возрастанию")
+        public ActionResult FindDetainee(string search,string type = "Все")
         {
-            IEnumerable<DetaineeWithName> collection;
-            if (type == "Все")
+            var collection = data.SortCollectionByType(search, type);
+            if (collection != null)
             {
-                collection = data.GetAllDetainees();
+                return PartialView(collection);
             }
-            else if(type == "По ФИО")
-            {
-                collection = data.GetAllDetainees().FindAll(item => (item.person.LastName +" "+ item.person.FirstName+" "+item.person.Patronymic).Contains(search));
-            }
-            else if(type == "По адресу")
-            {
-                collection = data.GetAllDetainees().FindAll(item => item.detainee.Address == search);
-            }
-            else
-            {
-                collection = data.GetAllDetainees().FindAll(item => item.lastDetention.ToShortDateString() == search);
-            }
+            return RedirectToAction("InformationError", "Error",new { message ="Ошибка получения списка!"});
 
-            return PartialView(collection);
+
         }
 
-        public ActionResult FullInformation(int Id)
+        public ActionResult FullInformation(int? Id)
         {
             DetaineeWithName mydetainee =  data.GetDeteineeById(Id);
-            mydetainee.detainee.Detentions = detention.GetDetentionsByDetaineeId(Id);
-            return View(mydetainee);
+            if(mydetainee != null)
+            {
+                mydetainee.detainee.Detentions = detention.GetDetentionsByDetaineeId(int.Parse(Id.ToString()));
+                return View(mydetainee);
+            }
+            return RedirectToAction("InformationError", "Error", new { message = "Произолша ошибка при получении информации задержанного. Возможно введены не верные данные" });
+
         }
 
         [HttpGet]
         [Authorize(Roles = "Editor")]
         public ActionResult AddDetainee()
         {
-            return View(new DetaineeWithNameMod());
+            var statuses = status.GetAllStatuses();
+            if(statuses != null && statuses.Count > 0)
+            {
+                ViewBag.Statuses = new SelectList(statuses, "Id", "StatusName");
+                return View(new DetaineeWithNameModel());
+            }
+            else if(statuses != null && statuses.Count == 0)
+            {
+                return RedirectToAction("Index", "Edit", new { error = "Невозможно добавить задержанного. Необходимо добавить список семейного положения" });
+            }
+            return RedirectToAction("InformationError", "Error", new { message = "Ошибка получения данных!" });
+
         }
 
         [HttpPost]
         [Authorize(Roles = "Editor")]
-        public ActionResult AddDetainee(DetaineeWithNameMod detainee, HttpPostedFileBase uploadImage)
+        public ActionResult AddDetainee(DetaineeWithNameModel detainee, HttpPostedFileBase uploadImage)
         {
             if (ModelState.IsValid && uploadImage!=null)
             {
-                var addDetainee = Mapper.MapToItem<DetaineeWithNameMod, Detainee>(detainee);
-                var addPerson = Mapper.MapToItem<DetaineeWithNameMod, Person>(detainee);
+                var addDetainee = Mapper.MapToItem<DetaineeWithNameModel, Detainee>(detainee);
+                var addPerson = Mapper.MapToItem<DetaineeWithNameModel, Person>(detainee);
+
                 using (var binaryReader = new BinaryReader(uploadImage.InputStream))
                 {
                     addDetainee.Photo = binaryReader.ReadBytes(uploadImage.ContentLength);
                 }
-                
-                data.AddDetainee(addPerson, addDetainee);
 
-                return RedirectToAction("Index", "Edit");
+                addDetainee.Status = new Status { Id = detainee.StatusId};
+
+                if(data.AddDetainee(addPerson, addDetainee))
+                {
+                    return RedirectToAction("Index", "Edit");
+                }
+                else
+                {
+                    return RedirectToAction("InformationError", "Error", new { message = "Произошла ошибка при добавлении задержанного" });
+                }
+            }
+            else if(uploadImage == null)
+            {
+                ViewBag.Error = "Не выбрано фото";
             }
 
-            return View(detainee);
+            var statuses = status.GetAllStatuses();
+            if (statuses != null && statuses.Count > 0)
+            {
+                ViewBag.Statuses = new SelectList(statuses, "Id", "StatusName");
+                return View(detainee);
+            }
+            else if (statuses != null && statuses.Count == 0)
+            {
+                return RedirectToAction("Index", "Edit", new { error = "Невозможно добавить задержанного. Необходимо добавить список семейного положения" });
+            }
+            return RedirectToAction("InformationError", "Error", new { message = "Ошибка получения данных!" });
+
         }
 
         [HttpGet]
         [Authorize(Roles = "Editor")]
-        public ActionResult EditDetaineeInfo(int Id)
+        public ActionResult EditDetaineeInfo(int? Id)
         {
             DetaineeWithName myDetainee = data.GetDeteineeById(Id);
-            DetaineeWithNameMod editDetainee = Mapper.MapToItem<Person, DetaineeWithNameMod>(myDetainee.person);
-            editDetainee = Mapper.UpdateInfo(editDetainee, myDetainee.detainee);
-            return View(editDetainee);
+            if(myDetainee != null)
+            {
+                DetaineeWithNameModel editDetainee = Mapper.MapToItem<Person, DetaineeWithNameModel>(myDetainee.person);
+                editDetainee = Mapper.UpdateInfo(editDetainee, myDetainee.detainee);
+                editDetainee.StatusId = myDetainee.detainee.Status.Id;
+
+                var statuses = status.GetAllStatusesAndSwap(editDetainee.StatusId);
+
+                if (statuses != null && statuses.Count > 0)
+                {
+                    ViewBag.Statuses = new SelectList(statuses, "Id", "StatusName");
+                    return View(editDetainee);
+                }
+                else if(statuses != null && statuses.Count == 0)
+                {
+                    return RedirectToAction("Index", "Edit", new { error = "Невозможно добавить задержанного. Необходимо добавить список семейного положения" });
+                }
+                return RedirectToAction("InformationError", "Error", new { message = "Ошибка получения данных!" });
+            }
+            else
+            {
+                return RedirectToAction("InformationError", "Error", new { message = "Произошла ошибка при получении инфорации о  задержанном" });
+            }
+            
         }
 
         [HttpPost]
         [Authorize(Roles = "Editor")]
-        public ActionResult EditDetaineeInfo(DetaineeWithNameMod editDitanee, HttpPostedFileBase uploadImage)
+        public ActionResult EditDetaineeInfo(DetaineeWithNameModel editDitainee, HttpPostedFileBase uploadImage)
         {
             if (ModelState.IsValid)
             { 
-                var person = Mapper.MapToItem<DetaineeWithNameMod, Person>(editDitanee);
-                var detainee = Mapper.MapToItem<DetaineeWithNameMod, Detainee>(editDitanee);
+                var person = Mapper.MapToItem<DetaineeWithNameModel, Person>(editDitainee);
+                var detainee = Mapper.MapToItem<DetaineeWithNameModel, Detainee>(editDitainee);
                 if (uploadImage != null)
                 {
                     using (var binaryReader = new BinaryReader(uploadImage.InputStream))
@@ -121,11 +179,30 @@ namespace Special_Insulator.WEB.Controllers
                         detainee.Photo = binaryReader.ReadBytes(uploadImage.ContentLength);
                     }
                 }
-                data.EditDetaineeInfo(new DetaineeWithName(detainee,person));
-                
-                return RedirectToAction("FullInformation", "Edit", new { editDitanee.Id});
+                detainee.Status = new Status { Id = editDitainee.StatusId };
+
+                if(data.EditDetaineeInfo(new DetaineeWithName(detainee, person)))
+                {
+                    return RedirectToAction("FullInformation", "Edit", new { editDitainee.Id });
+                }
+                return RedirectToAction("InformationError", "Error", new { message = "Произошла ошибка при изменении инфорации о  задержанном" });
+
+
             }
-            return View(editDitanee);
+
+            var statuses = status.GetAllStatusesAndSwap(editDitainee.StatusId);
+
+            if (statuses != null && statuses.Count > 0)
+            {
+                ViewBag.Statuses = new SelectList(statuses, "Id", "StatusName");
+                return View(editDitainee);
+            }
+            else if (statuses != null && statuses.Count == 0)
+            {
+                return RedirectToAction("Index", "Edit", new { error = "Невозможно добавить задержанного. Необходимо добавить список семейного положения" });
+            }
+            return RedirectToAction("InformationError", "Error", new { message = "Ошибка получения данных!" });
+
         }
 
     }

@@ -22,9 +22,13 @@ namespace SpecialInsulator.Common.Reader
                             Id = (int)dataReader["Id"],
                             PeopleId = (int)dataReader["PeopleId"],
                             BornDate = (DateTime)dataReader["BornDate"],
-                            Status = (string)dataReader["Status"],
+                            Status = new Status
+                            {
+                                Id = (int)dataReader["StatusId"],
+                                StatusName = (string)dataReader["StatusName"]
+                            },
                             Workplace = (string)dataReader["Workplace"],
-                            Phone = " +(nnn)-nn-nnn-nn-nn",
+                            Phone = (string)dataReader["PhoneNumber"],
                             Photo = (byte[])dataReader["Photo"],
                             Address = (string)dataReader["Address"],
                             AdditionalInformation = (string)dataReader["AdditionalInformation"]
@@ -53,9 +57,13 @@ namespace SpecialInsulator.Common.Reader
                     Id = (int)dataReader["Id"],
                     PeopleId = (int)dataReader["PeopleId"],
                     BornDate = (DateTime)dataReader["BornDate"],
-                    Status = (string)dataReader["Status"],
+                    Status = new Status
+                    {
+                        Id = (int)dataReader["StatusId"],
+                        StatusName = (string)dataReader["StatusName"]
+                    },
                     Workplace = (string)dataReader["Workplace"],
-                    Phone = " +(nnn)-nn-nnn-nn-nn",
+                    Phone = (string)dataReader["PhoneNumber"],
                     Photo = (byte[])dataReader["Photo"],
                     Address = (string)dataReader["Address"],
                     AdditionalInformation = (string)dataReader["AdditionalInformation"]

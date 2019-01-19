@@ -21,7 +21,12 @@ namespace Special_Insulator.WEB.Controllers
         [Authorize(Roles = "Editor")]
         public ActionResult Index()
         {
-            return View(data.GetAllWorkers());
+            var workers = data.GetAllWorkers();
+            if (workers != null)
+            {
+                return View(workers);
+            }
+            return RedirectToAction("InformationError", "Error", new { message = "Произошла ошибка при получении данных!" });
         }
 
         [HttpGet]
@@ -29,67 +34,88 @@ namespace Special_Insulator.WEB.Controllers
         public ActionResult AddWorker()
         {
             var posts = post.GetAllPosts();
-            if(posts.Count>0)
+            if(posts != null && posts.Count>0)
             {
                 ViewBag.Posts = new SelectList(posts, "Id", "PostName");
                 return View();
             }
-            else
+            else if(posts.Count == 0)
             {
                 return RedirectToAction("Index","Edit", new { error = "Необходимо добавить должности!" });
             }
-            
+            return RedirectToAction("InformationError", "Error", new { message = "Произошла ошибка при получении данных!" });
         }
 
         [HttpPost]
         [Authorize(Roles = "Editor")]
-        public ActionResult AddWorker(WorkerWithName worker)
+        public ActionResult AddWorker(WorkerWithNameModel worker)
         {
             if (ModelState.IsValid)
             {
-                var addWorker = Mapper.MapToItem<WorkerWithName, Worker>(worker);
-                var addPerson = Mapper.MapToItem<WorkerWithName, Person>(worker);
+                var addWorker = Mapper.MapToItem<WorkerWithNameModel, Worker>(worker);
+                var addPerson = Mapper.MapToItem<WorkerWithNameModel, Person>(worker);
                 addWorker.WorkerPost =new Post {Id =  worker.WorkerPostId };
 
-                data.AddWorker(addWorker,addPerson);
-
-                return RedirectToAction("Index", "Edit");
+                if(data.AddWorker(addWorker, addPerson))
+                {
+                    return RedirectToAction("Index", "Edit");
+                }
+                return RedirectToAction("InformationError", "Error", new { message = "Произошла ошибка при добавлении данных!" });
             }
             var posts = post.GetAllPosts();
-            ViewBag.Posts = new SelectList(posts, "Id", "PostName");
-            return View(worker);
+            if(posts != null)
+            {
+                ViewBag.Posts = new SelectList(posts, "Id", "PostName");
+                return View(worker);
+            }
+            return RedirectToAction("InformationError", "Error", new { message = "Произошла ошибка при получении данных!" });
         }
 
-        public ActionResult DeleteWorker(int Id)
+        public ActionResult DeleteWorker(int? Id)
         {
-            data.DeleteWorkerById(Id);
-            return RedirectToAction("Index","Workers");
+            if(data.DeleteWorkerById(Id))
+            {
+                return RedirectToAction("Index", "Workers");
+            }
+            return RedirectToAction("InformationError", "Error", new { message = "Ошибка удаления. Проверьте вводимые данные!" });
         }
 
         [HttpGet]
         [Authorize(Roles = "Editor")]
-        public ActionResult EditWorker(int Id)
+        public ActionResult EditWorker(int? Id)
         {
             WorkerAndName myWorker = data.GetWorkerById(Id);
-            var posts = post.SwapPost(myWorker.Worker.WorkerPost.Id);
-            ViewBag.Posts = new SelectList(posts, "Id", "PostName");
-            WorkerWithName editWorker = Mapper.MapToItem<Person, WorkerWithName>(myWorker.Person);
-            editWorker = Mapper.UpdateInfo(editWorker, myWorker.Worker);
-            editWorker.WorkerPostId = myWorker.Worker.WorkerPost.Id;
-            return View(editWorker);
+            if(myWorker != null)
+            {
+                var posts = post.SwapPost(myWorker.Worker.WorkerPost.Id);
+                if(posts != null)
+                {
+                    ViewBag.Posts = new SelectList(posts, "Id", "PostName");
+                    WorkerWithNameModel editWorker = Mapper.MapToItem<Person, WorkerWithNameModel>(myWorker.Person);
+                    editWorker = Mapper.UpdateInfo(editWorker, myWorker.Worker);
+                    editWorker.WorkerPostId = myWorker.Worker.WorkerPost.Id;
+                    return View(editWorker);
+                }
+                
+            }
+            return RedirectToAction("InformationError", "Error", new { message = "Произошла ошибка при получении данных. Проверьте вводимые параметры!" });
         }
 
         [HttpPost]
         [Authorize(Roles = "Editor")]
-        public ActionResult EditWorker(WorkerWithName editWorker)
+        public ActionResult EditWorker(WorkerWithNameModel editWorker)
         {
             if (ModelState.IsValid)
             {
-                var person = Mapper.MapToItem<WorkerWithName, Person>(editWorker);
-                var worker = Mapper.MapToItem<WorkerWithName, Worker>(editWorker);
+                var person = Mapper.MapToItem<WorkerWithNameModel, Person>(editWorker);
+                var worker = Mapper.MapToItem<WorkerWithNameModel, Worker>(editWorker);
                 worker.WorkerPost = new Post { Id = editWorker.WorkerPostId};
-                data.EditWorker(new WorkerAndName(worker, person));
-                return RedirectToAction("Index", "Workers");
+                if(data.EditWorker(new WorkerAndName(worker, person)))
+                {
+                    return RedirectToAction("Index", "Workers");
+                }
+                return RedirectToAction("InformationError", "Error", new { message = "Произошла ошибка при изменении данных!" });
+
             }
             var posts = post.SwapPost(editWorker.WorkerPostId);
             ViewBag.Posts = new SelectList(posts, "Id", "PostName");

@@ -12,32 +12,77 @@ namespace SpecialInsulator.DAL.Implementations
     {
         public string connectionString = WebConfigurationManager.ConnectionStrings["MyDb"].ConnectionString;
 
-        public void AddPost(Post post)
+        public bool AddPost(Post post)
         {
-            Executer.ExecuteNonQuery(connectionString, "AddPost",new SqlParameter("@Post",post.PostName));
+            try
+            {
+                Executer.ExecuteNonQuery(connectionString, "AddPost", new SqlParameter("@Post", post.PostName));
+            }
+            catch
+            {
+                return false;
+            }
+            return true;
+            
         }
 
-        public void DeletePostById(int Id)
+        public bool DeletePostById(int Id)
         {
-            Executer.ExecuteNonQuery(connectionString, "DeletePost", new SqlParameter("@Id", Id));
+            try
+            {
+                Executer.ExecuteNonQuery(connectionString, "DeletePost", new SqlParameter("@Id", Id));
+            }
+            catch
+            {
+                return false;
+            }
+            return true;
+            
         }
 
-        public void EditPost(Post post)
+        public bool EditPost(Post post)
         {
-            Executer.ExecuteNonQuery(connectionString,
+            try
+            {
+                Executer.ExecuteNonQuery(connectionString,
                                     "UpdatePost",
-                                    new SqlParameter("@Id",post.Id),
-                                    new SqlParameter("@Post",post.PostName));
+                                    new SqlParameter("@Id", post.Id),
+                                    new SqlParameter("@Post", post.PostName));
+            }
+            catch
+            {
+                return false;
+            }
+            return true;
+            
         }
 
         public List<Post> GetAllPosts()
         {
-            return Executer.ExecuteCollectionRead(connectionString, "SelectAllPosts",new ReadPost());
+            List<Post> posts;
+            try
+            {
+                posts = Executer.ExecuteCollectionRead(connectionString, "SelectAllPosts", new ReadPost());
+            }
+            catch
+            {
+                return null;
+            }
+            return posts;
         }
 
         public Post GetPostById(int Id)
         {
-            return Executer.ExecuteRead(connectionString, "SelectPostById", new ReadPost(),new SqlParameter("@Id",Id));
+            Post post;
+            try
+            {
+                post = Executer.ExecuteRead(connectionString, "SelectPostById", new ReadPost(), new SqlParameter("@Id", Id));
+            }
+            catch
+            {
+                return null;
+            }
+            return post;
         }
     }
 }

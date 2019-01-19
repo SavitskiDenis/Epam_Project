@@ -7,7 +7,7 @@ create table Detentions (
 	[DetentionDate] datetime NOT NULL,
 	[DeliveryDate] datetime NOT NULL,
 	[LiberationDate] datetime NOT NULL,
-	[DepartmentId]  int NOT NULL,
+	[DetentionPlaceId]  int NOT NULL,
 	[AccruedAmount] varchar(50) NOT NULL,
 	[PaidAmount] varchar(50) NOT NULL,
 )

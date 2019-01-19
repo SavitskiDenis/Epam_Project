@@ -5,14 +5,14 @@ namespace SpecialInsulator.DAL.Interfaces
 {
     public interface IPostRepository
     {
-        void AddPost(Post post);
+        bool AddPost(Post post);
 
         List<Post> GetAllPosts();
 
         Post GetPostById(int Id);
 
-        void DeletePostById(int Id);
+        bool DeletePostById(int Id);
 
-        void EditPost(Post post);
+        bool EditPost(Post post);
     }
 }

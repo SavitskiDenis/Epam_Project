@@ -49,7 +49,7 @@ namespace Special_Insulator.BLL.Tests
 
             DetaineeWithName result = business.GetDeteineeById(id);
 
-            Assert.AreEqual(result.detainee.Id,0);
+            Assert.IsNull(result);
         }
 
         [TestMethod]
@@ -81,7 +81,7 @@ namespace Special_Insulator.BLL.Tests
 
             var result = business.GetAllDetainees();
 
-            Assert.IsNotNull(result);
+            Assert.IsNull(result);
         }
 
     }

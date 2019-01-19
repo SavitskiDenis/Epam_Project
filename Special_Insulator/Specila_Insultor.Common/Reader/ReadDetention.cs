@@ -24,7 +24,11 @@ namespace SpecialInsulator.Common.Reader
                             DetentionDate = (DateTime)dataReader["DetentionDate"],
                             DeliveryDate = (DateTime)dataReader["DeliveryDate"],
                             LiberationDate = (DateTime)dataReader["LiberationDate"],
-                            DepartmentId = (int)dataReader["DepartmentId"],
+                            DetentionPlace = new DetentionPlace
+                            {
+                                Id = (int)dataReader["DetentionPlaceId"],
+                                Address = (string)dataReader["Address"]
+                            },
                             AccruedAmount = (string)dataReader["AccruedAmount"],
                             PaidAmount = (string)dataReader["PaidAmount"],
                         };
@@ -55,7 +59,11 @@ namespace SpecialInsulator.Common.Reader
                         DetentionDate = (DateTime)dataReader["DetentionDate"],
                         DeliveryDate = (DateTime)dataReader["DeliveryDate"],
                         LiberationDate = (DateTime)dataReader["LiberationDate"],
-                        DepartmentId = (int)dataReader["DepartmentId"],
+                        DetentionPlace = new DetentionPlace
+                        {
+                            Id = (int)dataReader["DetentionPlaceId"],
+                            Address = (string)dataReader["Address"]
+                        },
                         AccruedAmount = (string)dataReader["AccruedAmount"],
                         PaidAmount = (string)dataReader["PaidAmount"],
                     };

@@ -1,4 +1,4 @@
-﻿@model Special_Insulator.WEB.Models.UserLogin
+﻿@model Special_Insulator.WEB.Models.UserLoginModel
 
 @{
     ViewBag.Title = "Вход";
@@ -11,11 +11,11 @@
             {
                 <p style="color:red;align-content:center;">@ViewBag.Error</p>
                 @Html.TextBoxFor(model => model.Login, new { @class = "form-control", @style = "margin-top:20px", placeholder = "Логин" })
-                @Html.ValidationMessageFor(model => model.Login)
+                @Html.ValidationMessageFor(model => model.Login,"", new { @style = "color:red;font-weight: bold;" })
                 <hr />
                 
                 @Html.PasswordFor(model => model.Password, new { @class = "form-control", placeholder = "Пароль" })
-                @Html.ValidationMessageFor(model => model.Password)
+                @Html.ValidationMessageFor(model => model.Password,"", new { @style = "color:red;font-weight: bold;" })
                 <hr />
                 <button class="btn btn-outline-info" style="margin:0 auto;display:block;margin-bottom:20px" type="submit">ВОЙТИ</button>
             }

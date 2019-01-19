@@ -12,11 +12,12 @@ namespace SpecialInsulator.DAL
             For<IPersonRepository>().Singleton().Use<PersonRepository>();
             For<IDetentionRepository>().Singleton().Use<DetentionRepository>();
             For<IWorkerRepository>().Singleton().Use<WorkerRepository>();
-            For<IDepartmentRepository>().Singleton().Use<DepartmentRepository>();
+            For<IDetentionPlaceRepository>().Singleton().Use<DetentionPlaceRepository>();
             For<IRoleRepository>().Singleton().Use<RoleRepository>();
             For<IUserRepository>().Singleton().Use<UserRepository>();
             For<IAdvertisingRepository>().Singleton().Use<AdvertisingRepository>();
             For<IPostRepository>().Singleton().Use<PostRepository>();
+            For<IStatusRepository>().Singleton().Use<StatusRepository>();
         }
     }
 }

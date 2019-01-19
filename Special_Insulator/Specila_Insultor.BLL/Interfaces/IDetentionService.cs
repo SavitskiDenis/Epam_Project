@@ -5,14 +5,14 @@ namespace SpecialInsulator.BLL.Interfaces
 {
     public interface IDetentionService
     {
-        List<Detention> GetDetentionsByDetaineeId(int id);
+        List<Detention> GetDetentionsByDetaineeId(int? id);
 
-        void AddDetention(Detention detention);
+        bool AddDetention(Detention detention);
 
-        void DeleteDetention(int Id);
+        bool DeleteDetention(int? Id);
 
-        Detention GetDetentionById(int Id);
+        Detention GetDetentionById(int? Id);
 
-        void EditDetention(Detention detention);
+        bool EditDetention(Detention detention);
     }
 }

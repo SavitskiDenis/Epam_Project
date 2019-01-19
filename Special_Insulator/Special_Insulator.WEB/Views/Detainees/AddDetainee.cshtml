@@ -1,81 +1,82 @@
-﻿@model Special_Insulator.WEB.Models.DetaineeWithNameMod
+﻿@model Special_Insulator.WEB.Models.DetaineeWithNameModel
 @{
     ViewBag.Title = "Добавление задержанного";
 }
 
 <div class="container" style="margin-top:20px;margin-bottom:20px">
-    <div class="row justify-content-center" @*style="background-color:#585ab6"*@ }>
+    <div class="row justify-content-center">
         @using (@Html.BeginForm("AddDetainee", "Detainees", FormMethod.Post, new { enctype = "multipart/form-data", @style = "border:1px solid #000000;border-radius:20px", @class = "col-lg-4" }))
         {
             <div class="row  justify-content-center">
                 <div class="col-10" style="margin:0 auto;margin-bottom:5px ; margin-top:10px">
                     <label>Фото</label>
                     <input class="form-control-file" type="file" name="uploadImage" />
+                    <p style="color:red;font-weight:bold">@ViewBag.Error</p>
                 </div>
             </div>
             <div class="row  justify-content-center">
                 <div class="col-10" style="margin:0 auto;margin-bottom:5px ; margin-top:10px">
                     <label>Фамилия</label>
                     @Html.TextBoxFor(model => model.LastName, new { @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.LastName)
+                    @Html.ValidationMessageFor(model => model.LastName, "", new { @style = "color:red;font-weight: bold;" })
                 </div>
             </div>
             <div class="row  justify-content-center">
                 <div class="col-10" style="margin:0 auto;margin-bottom:5px ; margin-top:10px">
                     <label>Имя</label>
                     @Html.TextBoxFor(model => model.FirstName, new { @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.FirstName)
+                    @Html.ValidationMessageFor(model => model.FirstName, "", new { @style = "color:red;font-weight: bold;" })
                 </div>
             </div>
             <div class="row  justify-content-center">
                 <div class="col-10" style="margin:0 auto;margin-bottom:5px ; margin-top:10px">
                     <label>Отчество</label>
                     @Html.TextBoxFor(model => model.Patronymic, new { @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.Patronymic)
+                    @Html.ValidationMessageFor(model => model.Patronymic, "", new { @style = "color:red;font-weight: bold;" })
                 </div>
             </div>
             <div class="row  justify-content-center">
                 <div class="col-10">
                     <label>Дата рождения</label>
                     @Html.TextBoxFor(model => model.BornDate, new { @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.BornDate)
+                    @Html.ValidationMessageFor(model => model.BornDate, "", new { @style = "color:red;font-weight: bold;" })
                 </div>
             </div>
             <div class="row  justify-content-center">
                 <div class="col-10" style="margin:0 auto;margin-bottom:5px">
                     <label>Место проживания</label>
                     @Html.TextAreaFor(model => model.Address, new { @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.Address)
+                    @Html.ValidationMessageFor(model => model.Address, "", new { @style = "color:red;font-weight: bold;" })
                 </div>
             </div>
             <div class="row  justify-content-center">
                 <div class="col-10" style="margin:0 auto;margin-bottom:5px">
                     <label>Место работы</label>
                     @Html.TextAreaFor(model => model.Workplace, new { @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.Workplace)
+                    @Html.ValidationMessageFor(model => model.Workplace, "", new { @style = "color:red;font-weight: bold;" })
                 </div>
             </div>
             <div class="row  justify-content-center">
                 <div class="col-10" style="margin:0 auto;margin-bottom:5px">
                     <label>Семейное положение</label>
-                    @Html.TextBoxFor(model => model.Status, new { @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.Status)
+                    @Html.DropDownListFor(model => model.StatusId, ViewBag.Statuses as SelectList, new { @class = "form-control" })
                 </div>
             </div>
             <div class="row  justify-content-center">
                 <div class="col-10" style="margin:0 auto;margin-bottom:5px">
                     <label>Номер телефона</label>
                     @Html.TextBoxFor(model => model.Phone, new { @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.Phone)
+                    @Html.ValidationMessageFor(model => model.Phone, "", new { @style = "color:red;font-weight: bold;" })
                 </div>
             </div>
             <div class="row  justify-content-center">
                 <div class="col-10" style="margin:0 auto;margin-bottom:5px">
                     <label>Дополнительная информация</label>
                     @Html.TextAreaFor(model => model.AdditionalInformation, new { @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.AdditionalInformation)
+                    @Html.ValidationMessageFor(model => model.AdditionalInformation, "", new { @style = "color:red;font-weight: bold;" })
                 </div>
             </div>
+
             <div class="row justify-content-center" style="margin-bottom:20px; margin-top:20px">
                 <div class="col-4">
                     <input type="submit" class="btn btn-outline-info" value="Подтвердить" />

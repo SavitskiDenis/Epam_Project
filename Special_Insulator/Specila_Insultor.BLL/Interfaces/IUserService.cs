@@ -18,5 +18,11 @@ namespace SpecialInsulator.BLL.Interfaces
         void DeleteCookies();
 
         void EditRoles(int Id, string type);
+
+        User GetUserByLoginAndEmail(string login,string email);
+
+        bool EditUserInfo(User user);
+
+        bool DeleteUser(int? Id);
     }
 }

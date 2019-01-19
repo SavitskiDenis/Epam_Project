@@ -2,6 +2,7 @@
 using SpecialInsulator.Common.Entity;
 using SpecialInsulator.BLL.Interfaces;
 using SpecialInsulator.DAL.Interfaces;
+using SpecialInsulator.Common.Checker;
 
 namespace SpecialInsulator.BLL.Implementations
 {
@@ -16,7 +17,7 @@ namespace SpecialInsulator.BLL.Implementations
 
         public bool AddDetainee(Person addPerson, Detainee addDetainee)
         {
-            if(data.AddDetainee(addPerson, addDetainee))
+            if(Checker.CheckedForNull(addPerson, addDetainee) && data.AddDetainee(addPerson, addDetainee))
             {
                 return true;
             }
@@ -30,21 +31,12 @@ namespace SpecialInsulator.BLL.Implementations
 
         public List<DetaineeWithName> GetAllDetainees()
         {
-            var detainees = data.GetAllDeteinees();
-            if(detainees != null)
-            {
-                return detainees;
-            }
-            else
-            {
-                return new List<DetaineeWithName>();
-            }
-            
+            return data.GetAllDeteinees();
         }
 
         public bool DeleteDetaineeById(int? id)
         {
-            if(id!=null && id>0 && data.DeletDetaineeById(id) == true)
+            if(Checker.CheckedForNull(id) && id>0 && data.DeletDetaineeById(id))
             {
                 return true;
             }
@@ -54,22 +46,72 @@ namespace SpecialInsulator.BLL.Implementations
 
         public DetaineeWithName GetDeteineeById(int? Id)
         {
-            var detainee = data.GetDeteineeById(Id);
-            if (detainee !=null)
+            if(Checker.CheckedForNull(Id))
             {
-                return detainee;
+                var detainee = data.GetDeteineeById(Id);
+                if (detainee != null)
+                {
+                    return detainee;
+                }
             }
-            return new DetaineeWithName(new Detainee() { Id=0},new Person());
+            return null;
+            
         }
 
         public bool EditDetaineeInfo(DetaineeWithName detainee)
         {
-            if (data.EditDetaineeInfo(detainee))
+            if (Checker.CheckedForNull(detainee) && data.EditDetaineeInfo(detainee))
             {
                 return true;
             }
             return false;
            
+        }
+
+        public List<DetaineeWithName> SortCollectionByType(string text, string type)
+        {
+            List<DetaineeWithName> collection = null;
+            if (Checker.CheckedForNull(type))
+            {
+                if (type == "Все")
+                {
+                    collection = GetAllDetainees();
+                }
+                else if (type == "По ФИО" && Checker.CheckedForNull(type))
+                {
+                    collection = GetAllDetainees().FindAll(item => (item.person.LastName + " " + item.person.FirstName + " " + item.person.Patronymic).Contains(text));
+                }
+                else if (type == "По адресу" && Checker.CheckedForNull(type))
+                {
+                    collection = GetAllDetainees().FindAll(item => item.detainee.Address == text);
+                }
+                else if(type == "По дате задержания" && Checker.CheckedForNull(type))
+                {
+                    collection = GetAllDetainees().FindAll(item => item.lastDetention.ToShortDateString() == text);
+                }
+            }
+            
+            
+            return collection;
+        }
+
+        public bool ExistId(int? Id)
+        {
+            if(Id != null)
+            {
+                var detainees = GetAllDetainees();
+                if (detainees != null && detainees.Count > 0)
+                {
+                    foreach(var item in detainees)
+                    {
+                        if(item.detainee.Id == Id)
+                        {
+                            return true;
+                        }
+                    }
+                }
+            }
+            return false;
         }
     }
 }

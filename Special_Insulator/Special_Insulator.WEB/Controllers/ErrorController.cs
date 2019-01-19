@@ -8,5 +8,11 @@ namespace Special_Insulator.WEB.Controllers
         {
             return View();
         }
+
+        public ActionResult InformationError(string message)
+        {
+            ViewBag.Message = message;
+            return View();
+        }
     }
 }

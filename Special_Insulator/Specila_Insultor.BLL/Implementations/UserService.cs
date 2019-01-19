@@ -162,5 +162,36 @@ namespace SpecialInsulator.BLL.Implementations
             }
             return false;
         }
+
+        public User GetUserByLoginAndEmail(string login, string email)
+        {
+            if(login != null && email != null)
+            {
+                var users = GetAllUsers();
+                if(users != null)
+                {
+                    return users.FirstOrDefault(item => item.Login == login && item.Email == email);
+                }
+            }
+            return null;
+        }
+
+        public bool EditUserInfo(User user)
+        {
+            if(user != null)
+            {
+                return userData.EditUserInfo(user);
+            }
+            return false;
+        }
+
+        public bool DeleteUser(int? Id)
+        {
+            if(Id != null)
+            {
+                return userData.DeleteUser(int.Parse(Id.ToString()));
+            }
+            return false;
+        }
     }
 }

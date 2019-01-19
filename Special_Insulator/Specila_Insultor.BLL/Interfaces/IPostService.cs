@@ -5,18 +5,18 @@ namespace SpecialInsulator.BLL.Interfaces
 {
     public interface IPostService
     {
-        void AddPost(Post post);
+        bool AddPost(Post post);
 
         List<Post> GetAllPosts();
 
-        Post GetPostById(int Id);
+        Post GetPostById(int? Id);
 
-        void DeletePostById(int Id);
+        bool DeletePostById(int? Id);
 
-        void EditPost(Post post);
+        bool EditPost(Post post);
 
-        List<Post> SwapPost(int Id);
+        List<Post> SwapPost(int? Id);
 
-        //List<WorkerAndName> SetPostsToWorkers(List<WorkerAndName> workers);
+        bool IsNewPost(string postName);
     }
 }

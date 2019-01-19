@@ -7,36 +7,56 @@ namespace SpecialInsulator.BLL.Implementations
 {
     class DetentionService : IDetentionService
     {
-        IDetentionRepository detentionData;
+        private IDetentionRepository detentionData;
 
         public DetentionService(IDetentionRepository detention)
         {
             detentionData = detention;
         }
 
-        public void AddDetention(Detention detention)
+        public bool AddDetention(Detention detention)
         {
-            detentionData.AddDetention(detention);
+            if(detention != null)
+            {
+                return detentionData.AddDetention(detention);
+            }
+            return false;
         }
 
-        public void DeleteDetention(int Id)
+        public bool DeleteDetention(int? Id)
         {
-            detentionData.DeleteDetention(Id);
+            if(Id != null)
+            {
+                return detentionData.DeleteDetention(int.Parse(Id.ToString()));
+            }
+            return false;
         }
 
-        public List<Detention> GetDetentionsByDetaineeId(int id)
+        public List<Detention> GetDetentionsByDetaineeId(int? id)
         {
-            return detentionData.GetDetentionsByDetaineeId(id);
+            if(id != null)
+            {
+                return detentionData.GetDetentionsByDetaineeId(int.Parse(id.ToString()));
+            }
+            return null;
         }
 
-        public Detention GetDetentionById(int Id)
+        public Detention GetDetentionById(int? Id)
         {
-            return detentionData.GetDetentionById(Id);
+            if(Id != null)
+            {
+                return detentionData.GetDetentionById(int.Parse(Id.ToString()));
+            }
+            return null;
         }
 
-        public void EditDetention(Detention detention)
+        public bool EditDetention(Detention detention)
         {
-            detentionData.EditDetention(detention);
+            if(detention != null)
+            {
+                return detentionData.EditDetention(detention);
+            }
+            return false;
         }
     }
 }

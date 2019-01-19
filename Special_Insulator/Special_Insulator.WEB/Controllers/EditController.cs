@@ -22,9 +22,14 @@ namespace Special_Insulator.WEB.Controllers
         public ActionResult Index(string error = "")
         {
             var collection = advertising.GetLinks();
-            ViewBag.Advertising = collection;
-            ViewBag.Error = error;
-            return View(data.GetAllDetainees());
+            var detainees = data.GetAllDetainees();
+            if(detainees != null && collection!= null)
+            {
+                ViewBag.Advertising = collection;
+                ViewBag.Error = error;
+                return View(detainees);
+            }
+            return RedirectToAction("InformationError", "Error", new { message = "Произошла ошибка при получении данных!" });
         }
 
         [Authorize(Roles = "Editor")]
@@ -32,8 +37,12 @@ namespace Special_Insulator.WEB.Controllers
         {
             DetaineeWithName mydetainee = data.GetDeteineeById(Id);
             mydetainee.detainee.Detentions = detentionData.GetDetentionsByDetaineeId(Id);
-            ViewBag.DetaineeId = Id;
-            return View(mydetainee);
+            if(mydetainee!= null)
+            {
+                ViewBag.DetaineeId = Id;
+                return View(mydetainee);
+            }
+            return RedirectToAction("InformationError", "Error", new { message = "Произошла ошибка при получении данных!" });
         }
 
         

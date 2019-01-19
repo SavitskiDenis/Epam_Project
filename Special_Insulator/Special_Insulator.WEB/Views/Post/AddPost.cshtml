@@ -1,4 +1,4 @@
-﻿@model Special_Insulator.WEB.Models.PostMod
+﻿@model Special_Insulator.WEB.Models.PostModel
 @{
     ViewBag.Title = "Добавление должности";
 }
@@ -11,7 +11,8 @@
                 <div class="col-10" style="margin:0 auto;margin-bottom:5px ; margin-top:10px">
                     <label>Должность</label>
                     @Html.TextBoxFor(model => model.PostName, new { @class = "form-control"})
-                    @Html.ValidationMessageFor(model => model.PostName)
+                    @Html.ValidationMessageFor(model => model.PostName, "", new { @style = "color:red;font-weight: bold;" })
+                    <p style="color:red;font-weight:bold">@ViewBag.Error</p>
                 </div>
             </div>
             <div class="row justify-content-center" style="margin-bottom:20px; margin-top:20px">

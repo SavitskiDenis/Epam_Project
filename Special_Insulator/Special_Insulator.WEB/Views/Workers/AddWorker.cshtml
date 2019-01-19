@@ -1,4 +1,4 @@
-﻿@model Special_Insulator.WEB.Models.WorkerWithName
+﻿@model Special_Insulator.WEB.Models.WorkerWithNameModel
 @{
     ViewBag.Title = "Добавление сотрудника";
 }
@@ -11,21 +11,21 @@
                 <div class="col-10" style="margin:0 auto;margin-bottom:5px ; margin-top:10px">
                     <label>Фамилия</label>
                     @Html.TextBoxFor(model => model.LastName, new { @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.LastName)
+                    @Html.ValidationMessageFor(model => model.LastName, "", new { @style = "color:red;font-weight: bold;" })
                 </div>
             </div>
             <div class="row  justify-content-center">
                 <div class="col-10" style="margin:0 auto;margin-bottom:5px ; margin-top:10px">
                     <label>Имя</label>
                     @Html.TextBoxFor(model => model.FirstName, new { @class = "form-control"})
-                    @Html.ValidationMessageFor(model => model.FirstName)
+                    @Html.ValidationMessageFor(model => model.FirstName, "", new { @style = "color:red;font-weight: bold;" })
                 </div>
             </div>
             <div class="row  justify-content-center">
                 <div class="col-10" style="margin:0 auto;margin-bottom:5px ; margin-top:10px">
                     <label>Отчество</label>
                     @Html.TextBoxFor(model => model.Patronymic, new { @class = "form-control"})
-                    @Html.ValidationMessageFor(model => model.Patronymic)
+                    @Html.ValidationMessageFor(model => model.Patronymic, "", new { @style = "color:red;font-weight: bold;" })
                 </div>
             </div>
             <div class="row  justify-content-center">

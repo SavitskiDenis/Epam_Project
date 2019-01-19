@@ -14,19 +14,31 @@ namespace SpecialInsulator.BLL.Implementations
             this.postData = postData;
         }
 
-        public void AddPost(Post post)
+        public bool AddPost(Post post)
         {
-            postData.AddPost(post);
+            if(post != null)
+            {
+                return postData.AddPost(post);
+            }
+            return false;
         }
 
-        public void DeletePostById(int Id)
+        public bool DeletePostById(int? Id)
         {
-            postData.DeletePostById(Id);
+            if(Id != null)
+            {
+                return postData.DeletePostById(int.Parse(Id.ToString()));
+            }
+            return false;
         }
 
-        public void EditPost(Post post)
+        public bool EditPost(Post post)
         {
-            postData.EditPost(post);
+            if(post != null)
+            {
+                return postData.EditPost(post);
+            }
+            return false;
         }
 
         public List<Post> GetAllPosts()
@@ -34,20 +46,42 @@ namespace SpecialInsulator.BLL.Implementations
             return postData.GetAllPosts();
         }
 
-        public Post GetPostById(int Id)
+        public Post GetPostById(int? Id)
         {
-            return postData.GetPostById(Id);
+            if(Id != null)
+            {
+                return postData.GetPostById(int.Parse(Id.ToString()));
+            }
+            return null;
         }
 
-        public List<Post> SwapPost(int Id)
+        public bool IsNewPost(string postName)
+        {
+            List<Post> posts = GetAllPosts();
+            if(posts != null)
+            {
+                foreach (var item in posts)
+                {
+                    if (item.PostName.ToLower() == postName.ToLower())
+                    {
+                        return false;
+                    }
+                }
+            }
+            return true;
+
+        }
+
+        public List<Post> SwapPost(int? Id)
         {
             List<Post> posts = GetAllPosts();
             Post post = null;
-            if (posts.Count>1 && Id>0 && Id < posts.Count)
+            if (Id != null && posts!= null && posts.Count>0 && Id>0 && Id <= posts.Count)
             {
+                int id = int.Parse(Id.ToString());
                 post = posts[0];
-                posts[0] = posts[Id];
-                posts[Id] = post;
+                posts[0] = posts[id - 1];
+                posts[id - 1] = post;
             }
             return posts;
         }

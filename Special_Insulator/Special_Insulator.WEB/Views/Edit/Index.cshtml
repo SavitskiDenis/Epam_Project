@@ -11,8 +11,8 @@
                 <li><a style="cursor:pointer" onclick="location.href = '@Url.Action("AddDetainee", "Detainees")'">Добавить задержанного</a></li>
                 <li><a style="cursor:pointer" onclick="location.href = '@Url.Action("AddWorker", "Workers")'">Добавить сотрудника</a></li>
                 <li><a style="cursor:pointer" onclick="location.href = '@Url.Action("Index", "Workers")'">Список сотрудников</a></li>
-                <li><a style="cursor:pointer" onclick="location.href = '@Url.Action("AddDepartment", "Departments")'">Добавить место содеражания</a></li>
-                <li><a style="cursor:pointer" onclick="location.href = '@Url.Action("Index", "Departments")'">Список мест содержания</a></li>
+                <li><a style="cursor:pointer" onclick="location.href = '@Url.Action("AddDetentionPlace", "DetentionPlace")'">Добавить место содеражания</a></li>
+                <li><a style="cursor:pointer" onclick="location.href = '@Url.Action("Index", "DetentionPlace")'">Список мест содержания</a></li>
                 <li><a style="cursor:pointer" onclick="location.href = '@Url.Action("AddPost", "Post")'">Добавить должность</a></li>
                 <li><a style="cursor:pointer" onclick="location.href = '@Url.Action("Index", "Post")'">Список должностей</a></li>
                 @if (User.IsInRole("Admin"))

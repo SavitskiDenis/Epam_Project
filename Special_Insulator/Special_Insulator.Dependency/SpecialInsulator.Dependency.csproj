@@ -68,6 +68,10 @@
       <Project>{26be92a7-a5ea-4eb0-9e23-5158394407c9}</Project>
       <Name>SpecialInsulator.BLL</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Specila_Insultor.Common\SpecialInsulator.Common.csproj">
+      <Project>{41B30189-41FB-45C1-9C2C-0F01B796635A}</Project>
+      <Name>SpecialInsulator.Common</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

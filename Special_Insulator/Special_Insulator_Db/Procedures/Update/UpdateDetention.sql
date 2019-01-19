@@ -6,7 +6,7 @@ CREATE PROC UpdateDetention
 	@DetentionDate datetime ,
 	@DeliveryDate datetime ,
 	@LiberationDate datetime ,
-	@DepartmentId  int ,
+	@DetentionPlaceId  int ,
 	@AccruedAmount varchar(50) ,
 	@PaidAmount varchar(50) 
 	
@@ -15,7 +15,7 @@ AS
 	[DetentionDate] = @DetentionDate,
 	[DeliveryDate] = @DeliveryDate,
 	[LiberationDate] = @LiberationDate,
-	[DepartmentId] = @DepartmentId,
+	[DetentionPlaceId] = @DetentionPlaceId,
 	[AccruedAmount] = @AccruedAmount,
 	[PaidAmount] = @PaidAmount
 	Where Id = @Id

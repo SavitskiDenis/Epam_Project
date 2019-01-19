@@ -35,6 +35,8 @@
                         }
                         else
                         {
+                            <li><a style="cursor:pointer" onclick="location.href = '@Url.Action("UserProfile", "User")'">Профиль</a></li>
+
                             if (User.IsInRole("Admin"))
                             {
                                 <li><a style="cursor:pointer" onclick="location.href = '@Url.Action("Index", "Edit")'">Режим администрирования</a></li>
@@ -59,9 +61,10 @@
     <div class="container-fluid">
         @RenderBody()
     </div>
-   
+
     <script src="~/Scripts/jquery-3.3.1.js"></script>
     <script src="~/Scripts/bootstrap.min.js"></script>
     <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+    
 </body>
 </html>

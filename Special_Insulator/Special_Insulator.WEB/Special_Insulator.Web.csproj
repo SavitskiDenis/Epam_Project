@@ -162,7 +162,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\StructuremapMvc.cs" />
     <Compile Include="Controllers\AuthenticationController.cs" />
-    <Compile Include="Controllers\DepartmentsController.cs" />
+    <Compile Include="Controllers\DetentionPlaceController.cs" />
     <Compile Include="Controllers\DetaineesController.cs" />
     <Compile Include="Controllers\DetentionsController.cs" />
     <Compile Include="Controllers\EditController.cs" />
@@ -171,6 +171,7 @@
     <Compile Include="Controllers\PostController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\WorkersController.cs" />
+    <Compile Include="CostumeVaidationAttribute\CompareDateTime.cs" />
     <Compile Include="DependencyResolution\ControllerConvention.cs" />
     <Compile Include="DependencyResolution\DefaultRegistry.cs" />
     <Compile Include="DependencyResolution\IoC.cs" />
@@ -179,13 +180,14 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\DepartmentMod.cs" />
-    <Compile Include="Models\DetaineeWithNameMod.cs" />
-    <Compile Include="Models\DetentionMod.cs" />
-    <Compile Include="Models\PostMod.cs" />
-    <Compile Include="Models\WorkerWithName.cs" />
-    <Compile Include="Models\UserLogin.cs" />
-    <Compile Include="Models\UserRegistration.cs" />
+    <Compile Include="Models\DetentionPlaceModel.cs" />
+    <Compile Include="Models\DetaineeWithNameModel.cs" />
+    <Compile Include="Models\DetentionModel.cs" />
+    <Compile Include="Models\PostModel.cs" />
+    <Compile Include="Models\UserEditModel.cs" />
+    <Compile Include="Models\WorkerWithNameModel.cs" />
+    <Compile Include="Models\UserLoginModel.cs" />
+    <Compile Include="Models\UserRegistrationModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -214,10 +216,10 @@
     <Content Include="Views\Detainees\AddDetainee.cshtml" />
     <Content Include="Views\Detainees\EditDetaineeInfo.cshtml" />
     <Content Include="Views\Workers\AddWorker.cshtml" />
-    <Content Include="Views\Departments\AddDepartment.cshtml" />
+    <Content Include="Views\DetentionPlace\AddDetentionPlace.cshtml" />
     <Content Include="Views\Workers\Index.cshtml" />
-    <Content Include="Views\Departments\Index.cshtml" />
-    <Content Include="Views\Departments\EditDepartment.cshtml" />
+    <Content Include="Views\DetentionPlace\Index.cshtml" />
+    <Content Include="Views\DetentionPlace\EditDetentionPlace.cshtml" />
     <Content Include="Views\Workers\EditWorker.cshtml" />
     <Content Include="Views\Detentions\AddDetention.cshtml" />
     <Content Include="Views\Detentions\EditDetention.cshtml" />
@@ -227,6 +229,9 @@
     <Content Include="Views\Post\EditPost.cshtml" />
     <Content Include="Views\User\Index.cshtml" />
     <Content Include="Views\Error\AuthorizeError.cshtml" />
+    <Content Include="Views\Error\InformationError.cshtml" />
+    <Content Include="Views\User\UserProfile.cshtml" />
+    <Content Include="Views\User\EditUserInfo.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -236,6 +241,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Logs\" />
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="Scripts\index.d.ts" />

@@ -1,4 +1,4 @@
-﻿@model Special_Insulator.WEB.Models.DetentionMod
+﻿@model Special_Insulator.WEB.Models.DetentionModel
 
 @{
     ViewBag.Title = "Добавление задержания";
@@ -14,21 +14,21 @@
                 <div class="col-10" style="margin:0 auto;margin-bottom:5px ; margin-top:10px">
                     <label>Дата задержания</label>
                     @Html.TextBoxFor(model => model.DetentionDate, new { @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.DetentionDate)
+                    @Html.ValidationMessageFor(model => model.DetentionDate, "", new { @style = "color:red;font-weight: bold;" })
                 </div>
             </div>
             <div class="row  justify-content-center">
                 <div class="col-10" style="margin:0 auto;margin-bottom:5px ; margin-top:10px">
                     <label>Дата доставления</label>
                     @Html.TextBoxFor(model => model.DeliveryDate, new { @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.DeliveryDate)
+                    @Html.ValidationMessageFor(model => model.DeliveryDate, "", new { @style = "color:red;font-weight: bold;" })
                 </div>
             </div>
             <div class="row  justify-content-center">
                 <div class="col-10">
                     <label>Дата освобождения</label>
                     @Html.TextBoxFor(model => model.LiberationDate, new { @class = "form-control"})
-                    @Html.ValidationMessageFor(model => model.LiberationDate)
+                    @Html.ValidationMessageFor(model => model.LiberationDate, "", new { @style = "color:red;font-weight: bold;" })
                 </div>
             </div>
             <div class="row  justify-content-center">
@@ -52,21 +52,21 @@
             <div class="row  justify-content-center">
                 <div class="col-10">
                     <label>Место содержания</label>
-                        @Html.DropDownListFor(model => model.DepartmentId, ViewBag.Departments as SelectList, new { @class = "form-control" })
+                        @Html.DropDownListFor(model => model.DetentionPlaceId, ViewBag.Departments as SelectList, new { @class = "form-control" })
                 </div>
             </div>
             <div class="row  justify-content-center">
                 <div class="col-10" style="margin:0 auto;margin-bottom:5px">
                     <label>Cумма начисленная</label>
                     @Html.TextBoxFor(model => model.AccruedAmount, new { @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.AccruedAmount)
+                    @Html.ValidationMessageFor(model => model.AccruedAmount, "", new { @style = "color:red;font-weight: bold;" })
                 </div>
             </div>
             <div class="row  justify-content-center">
                 <div class="col-10" style="margin:0 auto;margin-bottom:5px">
                     <label>Cумма выплеченная</label>
                     @Html.TextBoxFor(model => model.PaidAmount, new { @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.PaidAmount)
+                    @Html.ValidationMessageFor(model => model.PaidAmount, "", new { @style = "color:red;font-weight: bold;" })
                 </div>
             </div>
             <div class="row justify-content-center" style="margin-bottom:20px; margin-top:20px">

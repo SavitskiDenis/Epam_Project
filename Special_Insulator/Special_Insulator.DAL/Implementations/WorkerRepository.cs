@@ -14,78 +14,128 @@ namespace SpecialInsulator.DAL.Implementations
         private PersonRepository personData = new PersonRepository();
         private PostRepository postData = new PostRepository();
 
-        public void AddWorker(Worker worker,Person person)
+        public bool AddWorker(Worker worker,Person person)
         {
-            SqlParameter[] parameters = new SqlParameter[]
+            try
             {
-                new SqlParameter("@FirstName", person.FirstName),
-                new SqlParameter("@LastName", person.LastName),
-                new SqlParameter("@Patronymic", person.Patronymic)
-            };
-            var id = Executer.ExecuteScalar(connectionString, "AddPeople",parameters);
-            Executer.ExecuteNonQuery(connectionString,
-                                    "AddWorker",
-                                    new SqlParameter("@PeopleId", id),
-                                    new SqlParameter("@WorkerPostId", worker.WorkerPost.Id));
+                SqlParameter[] parameters = new SqlParameter[]
+                {
+                    new SqlParameter("@FirstName", person.FirstName),
+                    new SqlParameter("@LastName", person.LastName),
+                    new SqlParameter("@Patronymic", person.Patronymic)
+                };
+                var id = Executer.ExecuteScalar(connectionString, "AddPeople", parameters);
+                Executer.ExecuteNonQuery(connectionString,
+                                        "AddWorker",
+                                        new SqlParameter("@PeopleId", id),
+                                        new SqlParameter("@WorkerPostId", worker.WorkerPost.Id));
+            }
+            catch
+            {
+                return false;
+            }
+            return true;
+            
         }
 
         public List<WorkerAndName> GetAllWorkers()
         {
             List<WorkerAndName> fullList = new List<WorkerAndName>();
-            List<Worker> workers = Executer.ExecuteCollectionRead(connectionString, "SelectAllWorkers",new ReadWorker());
-
-            foreach (var item in workers)
+            try
             {
-                item.WorkerPost = postData.GetPostById(item.WorkerPost.Id);
-            }
+                List<Worker> workers = Executer.ExecuteCollectionRead(connectionString, "SelectAllWorkers", new ReadWorker());
 
-            foreach (var item in workers)
+                foreach (var item in workers)
+                {
+                    item.WorkerPost = postData.GetPostById(item.WorkerPost.Id);
+                }
+
+                foreach (var item in workers)
+                {
+                    fullList.Add(new WorkerAndName(item, personData.GetPersonById(item.PeopleId)));
+                }
+            }
+            catch
             {
-                fullList.Add(new WorkerAndName(item, personData.GetPersonById(item.PeopleId)));
+                return null;
             }
-
-
+            
             return fullList;
         }
 
         public WorkerAndName GetWorkerById(int Id)
         {
             WorkerAndName workerWithName;
-            Worker worker = Executer.ExecuteRead(connectionString,
+            try
+            {
+                Worker worker = Executer.ExecuteRead(connectionString,
                                                 "SelectWorkerById",
                                                 new ReadWorker(),
                                                 new SqlParameter("@Id", Id));
-            worker.WorkerPost = postData.GetPostById(worker.WorkerPost.Id);
-            workerWithName = new WorkerAndName(worker, personData.GetPersonById(worker.PeopleId));
+                worker.WorkerPost = postData.GetPostById(worker.WorkerPost.Id);
+                workerWithName = new WorkerAndName(worker, personData.GetPersonById(worker.PeopleId));
+            }
+            catch
+            {
+                return null;
+            }
+            
             return workerWithName;
 
         }
 
-        public void DeleteWorkerById(int Id)
+        public bool DeleteWorkerById(int Id)
         {
-            int person_id = Executer.ExecuteRead(connectionString,
-                                                "Delete_Worker",
-                                                new ReadId(),
-                                                new SqlParameter("@Id", Id));
-            personData.DeletePersonById(person_id);
+            int personId;
+            try
+            {
+                personId = Executer.ExecuteRead(connectionString,
+                                           "Delete_Worker",
+                                           new ReadId(),
+                                           new SqlParameter("@Id", Id));
+                personData.DeletePersonById(personId);
+            }
+            catch
+            {
+                return false;
+            }
+            return true;
+           
         }
 
-        public void EditWorker(WorkerAndName workerAndName)
+        public bool EditWorker(WorkerAndName workerAndName)
         {
-            SqlParameter[] parameters = new SqlParameter[]
+            try
             {
-                new SqlParameter("@Id",workerAndName.Worker.Id),
-                new SqlParameter("@WorkerPostId",workerAndName.Worker.WorkerPost.Id),
-                new SqlParameter("@PeopleId",workerAndName.Worker.PeopleId),
-            };
-            workerAndName.Person.Id = workerAndName.Worker.PeopleId;
-            personData.EditPerson(workerAndName.Person);
-            Executer.ExecuteNonQuery(connectionString, "UpdateWorker", parameters);
+                SqlParameter[] parameters = new SqlParameter[]
+                {
+                    new SqlParameter("@Id",workerAndName.Worker.Id),
+                    new SqlParameter("@WorkerPostId",workerAndName.Worker.WorkerPost.Id),
+                    new SqlParameter("@PeopleId",workerAndName.Worker.PeopleId),
+                };
+                workerAndName.Person.Id = workerAndName.Worker.PeopleId;
+                personData.EditPerson(workerAndName.Person);
+                Executer.ExecuteNonQuery(connectionString, "UpdateWorker", parameters);
+            }
+            catch
+            {
+                return false;
+            }
+            return true;
         }
 
         public int GetWorkerIdByDetentionId(int Id, string procedure)
         {
-            return Executer.ExecuteRead(connectionString, procedure,new ReadId(), new SqlParameter("@DetentionId", Id));
+            int id;
+            try
+            {
+                id =  Executer.ExecuteRead(connectionString, procedure, new ReadId(), new SqlParameter("@DetentionId", Id));
+            }
+            catch
+            {
+                return 0;
+            }
+            return id;
         }
 
     }

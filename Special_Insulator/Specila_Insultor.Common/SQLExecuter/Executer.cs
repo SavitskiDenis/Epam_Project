@@ -25,7 +25,7 @@ namespace SpecialInsulator.Common.SQLExecuter
             }
             catch
             {
-                return false;
+                throw;
             }
             return true;
         }
@@ -79,7 +79,7 @@ namespace SpecialInsulator.Common.SQLExecuter
             }
             catch
             {
-                return default(T);
+                throw;
             }
             return model;
         }
@@ -103,9 +103,9 @@ namespace SpecialInsulator.Common.SQLExecuter
                     collection = reader.GetCollection(dataReader);
                 }
             }
-            finally
+            catch
             {
-                dataReader.Close();
+                throw;
             }
             return collection;
         }

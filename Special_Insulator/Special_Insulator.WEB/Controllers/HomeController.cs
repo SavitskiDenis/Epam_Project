@@ -5,19 +5,22 @@ namespace Special_Insulator.WEB.Controllers
 {
     public class HomeController : Controller
     {
-        IAdvertisingService advertising;
+        private IAdvertisingService advertising;
 
         public HomeController(IAdvertisingService advertising)
         {
             this.advertising = advertising;
-
         }
 
         public ActionResult Index()
         {
             var collection = advertising.GetLinks();
-            ViewBag.Advertising = collection;
-            return View();
+            if(collection != null)
+            {
+                ViewBag.Advertising = collection;
+                return View();
+            }
+            return RedirectToAction("InformationError", "Error", new { message = "Произошла ошибка при получении данных!" });
         }
 
     }

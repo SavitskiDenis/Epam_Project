@@ -3,6 +3,7 @@ using SpecialInsulator.BLL.Interfaces;
 using SpecialInsulator.DAL.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using SpecialInsulator.Common.Mapper;
 
 namespace SpecialInsulator.BLL.Implementations
 {
@@ -15,9 +16,13 @@ namespace SpecialInsulator.BLL.Implementations
             this.workerData = workerData;
         }
 
-        public void AddWorker(Worker worker,Person person)
+        public bool AddWorker(Worker worker,Person person)
         {
-            workerData.AddWorker(worker,person);
+            if(worker != null && person != null)
+            {
+                return workerData.AddWorker(worker, person);
+            }
+            return false;
         }
 
         public List<WorkerAndName> GetAllWorkers()
@@ -25,22 +30,34 @@ namespace SpecialInsulator.BLL.Implementations
             return workerData.GetAllWorkers();
         }
 
-        public WorkerAndName GetWorkerById(int Id)
+        public WorkerAndName GetWorkerById(int? Id)
         {
-            return workerData.GetWorkerById(Id);
+            if(Id != null)
+            {
+                return workerData.GetWorkerById(int.Parse(Id.ToString()));
+            }
+            return null;
         }
 
-        public void DeleteWorkerById(int Id)
+        public bool DeleteWorkerById(int? Id)
         {
-            workerData.DeleteWorkerById(Id);
+            if(Id != null)
+            {
+                return workerData.DeleteWorkerById(int.Parse(Id.ToString()));
+            }
+            return false;
         }
 
-        public void EditWorker(WorkerAndName workerAndName)
+        public bool EditWorker(WorkerAndName workerAndName)
         {
-            workerData.EditWorker(workerAndName);
+            if(workerAndName != null)
+            {
+                return workerData.EditWorker(workerAndName);
+            }
+            return false;
         }
 
-        public List<WorkerAndName> SwapItems(List<WorkerAndName> workers, int Id)
+        public List<T> SwapItems<T>(List<WorkerAndName> workers, int Id) where T:class,new ()
         {
             int index = workers.IndexOf(workers.Where(item => item.Worker.Id == Id).FirstOrDefault());
             if(index > 0)
@@ -49,8 +66,7 @@ namespace SpecialInsulator.BLL.Implementations
                 workers[index] = workers[0];
                 workers[0] = worker;
             }
-            
-            return workers;
+            return Mapper.MapCollection<T>(workers);
         }
     }
 }

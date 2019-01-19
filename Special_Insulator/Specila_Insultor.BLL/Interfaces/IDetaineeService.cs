@@ -14,5 +14,9 @@ namespace SpecialInsulator.BLL.Interfaces
         DetaineeWithName GetDeteineeById(int? Id);
 
         bool EditDetaineeInfo(DetaineeWithName detainee);
+
+        List<DetaineeWithName> SortCollectionByType(string text,string type);
+
+        bool ExistId(int? Id);
     }
 }

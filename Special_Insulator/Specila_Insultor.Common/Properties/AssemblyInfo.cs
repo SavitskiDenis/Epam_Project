@@ -34,3 +34,4 @@ using System.Runtime.InteropServices;
 // [assembly: AssemblyVersion("1.0.*")]
 [assembly: AssemblyVersion("1.0.0.0")]
 [assembly: AssemblyFileVersion("1.0.0.0")]
+[assembly: log4net.Config.XmlConfigurator(ConfigFile = @"D:\Project\Epam_Project\Special_Insulator\Specila_Insultor.Common\Loger\LoggerConfiguration.config", Watch = true)]

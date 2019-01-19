@@ -1,4 +1,5 @@
-﻿using SpecialInsulator.DAL;
+﻿using Common;
+using SpecialInsulator.DAL;
 using Specila_Insultor.BLL;
 using StructureMap;
 
@@ -12,6 +13,7 @@ namespace Special_Insulator.Dependency
             {
                 scan.AssemblyContainingType<DALRegistry>();
                 scan.AssemblyContainingType<BLLRegistry>();
+                scan.AssemblyContainingType<CommonRegistry>();
 
                 scan.LookForRegistries();
             });

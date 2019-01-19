@@ -5,17 +5,17 @@ namespace SpecialInsulator.BLL.Interfaces
 {
     public interface IWorkerService
     {
-        void AddWorker(Worker worker,Person person);
+        bool AddWorker(Worker worker,Person person);
 
         List<WorkerAndName> GetAllWorkers();
 
-        WorkerAndName GetWorkerById(int Id);
+        WorkerAndName GetWorkerById(int? Id);
 
-        void DeleteWorkerById(int Id);
+        bool DeleteWorkerById(int? Id);
 
-        void EditWorker(WorkerAndName workerAndName);
+        bool EditWorker(WorkerAndName workerAndName);
 
-        List<WorkerAndName> SwapItems(List<WorkerAndName> workers,int Id);
+        List<T> SwapItems<T>(List<WorkerAndName> workers, int Id) where T : class, new();
 
 
     }

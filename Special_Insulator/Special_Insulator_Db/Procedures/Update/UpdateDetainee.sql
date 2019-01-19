@@ -5,7 +5,7 @@ CREATE PROC UpdateDetainee
 	@Id int,
 	@PeopleId int,
 	@BornDate datetime,
-	@Status varchar(25),
+	@StatusId int,
 	@Workplace varchar(50) ,
 	@Photo varbinary(MAX) ,
 	@Address varchar(200),
@@ -14,7 +14,7 @@ CREATE PROC UpdateDetainee
 AS
 	UPDATE Detainees Set [PeopleId] = @PeopleId ,
 	[BornDate] = @BornDate ,
-	[Status] = @Status ,
+	[StatusId] = @StatusId ,
 	[Workplace] = @Workplace ,
 	[Photo] = @Photo ,
 	[Address] = @Address ,

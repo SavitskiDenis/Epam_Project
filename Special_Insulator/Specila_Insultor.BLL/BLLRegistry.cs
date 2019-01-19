@@ -19,6 +19,7 @@ namespace Specila_Insultor.BLL
             For<IUserService>().Use<UserService>();
             For<IAdvertisingService>().Use<AdvertisingService>();
             For<IPostService>().Use<PostService>();
+            For<IStatusService>().Use<StatusService>();
         }
 
     }

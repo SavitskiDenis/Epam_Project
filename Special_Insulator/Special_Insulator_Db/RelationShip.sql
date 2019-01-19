@@ -34,21 +34,25 @@ CONSTRAINT FK_DetentionRWorkerToWorkers FOREIGN KEY([WorkerId])
 --- One TO Many
 
 ALTER TABLE Phones
-ADD CONSTRAINT FK_Phone_Detainees FOREIGN KEY([DetaineeId]) 
+ADD CONSTRAINT FK_PhoneDetainees FOREIGN KEY([DetaineeId]) 
     REFERENCES Detainees(Id);
 
 ALTER TABLE Detentions
-ADD CONSTRAINT FK_Detantion_Detainees FOREIGN KEY([DetaineeId]) 
+ADD CONSTRAINT FK_DetantionDetainees FOREIGN KEY([DetaineeId]) 
     REFERENCES Detainees(Id),
-CONSTRAINT FK_DetantionDepartments FOREIGN KEY([DepartmentId])
-	REFERENCES Departments(Id);
+CONSTRAINT FK_DetantionDetentionPlaces FOREIGN KEY([DetentionPlaceId])
+	REFERENCES DetentionPlaces(Id);
 
 ALTER TABLE Detainees
-ADD CONSTRAINT FK_Detainees_People FOREIGN KEY([PeopleId]) 
-    REFERENCES People(Id);
+ADD CONSTRAINT FK_DetaineesPeople FOREIGN KEY([PeopleId]) 
+    REFERENCES People(Id),
+CONSTRAINT FK_DetaineesStatuses FOREIGN KEY([PeopleId]) 
+	REFERENCES People(Id);
 
 ALTER TABLE Workers
-ADD CONSTRAINT FK_Workers_People FOREIGN KEY([PeopleId]) 
+ADD CONSTRAINT FK_WorkersPeople FOREIGN KEY([PeopleId]) 
     REFERENCES People(Id);
+
+
 
 

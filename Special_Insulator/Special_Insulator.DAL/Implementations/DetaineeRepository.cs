@@ -12,7 +12,7 @@ namespace SpecialInsulator.DAL.Implementations
     {
         private PersonRepository personData = new PersonRepository();
         private DetentionRepository detentionData = new DetentionRepository();
-        public string connectionString = WebConfigurationManager.ConnectionStrings["MyDb"].ConnectionString;
+        private readonly string connectionString = WebConfigurationManager.ConnectionStrings["MyDb"].ConnectionString;
 
         public bool AddDetainee(Person person, Detainee detainee)
         {
@@ -30,7 +30,7 @@ namespace SpecialInsulator.DAL.Implementations
                 {
                     new SqlParameter("@PeopleId",id),
                     new SqlParameter("@BornDate",detainee.BornDate),
-                    new SqlParameter("@Status",detainee.Status),
+                    new SqlParameter("@StatusId",detainee.Status.Id),
                     new SqlParameter("@Workplace",detainee.Workplace),
                     new SqlParameter( "@Photo",detainee.Photo),
                     new SqlParameter("@Address",detainee.Address),
@@ -58,7 +58,7 @@ namespace SpecialInsulator.DAL.Implementations
                 int myId = int.Parse(id.ToString());
                 detentionData.DeleteDetentionByDetaineeId(myId);
                 int personId = Executer.ExecuteRead(connectionString,
-                                                    "Delete_Detainee",
+                                                    "DeleteDetainee",
                                                     new ReadId(),
                                                     new SqlParameter("@Id", id));
                 personData.DeletePersonById(personId);
@@ -83,14 +83,16 @@ namespace SpecialInsulator.DAL.Implementations
 
                 foreach (var item in detainees)
                 {
-                    item.Phone = personData.GetPhoneByDetaineeId(item.Id);
-                    fullList.Add(new DetaineeWithName(item, 
-                                                        personData.GetPersonById(item.PeopleId)) {
-                                                        lastDetention = detentionData.GetLastDetentionDateByDetaineeId(item.Id) });
+                    //item.Phone = personData.GetPhoneByDetaineeId(item.Id);
+                    fullList.Add(new DetaineeWithName(item, personData.GetPersonById(item.PeopleId))
+                                { lastDetention = detentionData.GetLastDetentionDateByDetaineeId(item.Id) });
+
                 }
             }
             catch
-            { }
+            {
+                return null;
+            }
            
             return fullList;
         }
@@ -104,7 +106,7 @@ namespace SpecialInsulator.DAL.Implementations
                 detainee = Executer.ExecuteRead(connectionString, "SelectDetaineeById", new ReadDetainee(), new SqlParameter("@Id", Id));
 
                 detainee.Detentions = detentionData.GetDetentionsByDetaineeId(detainee.Id);
-                detainee.Phone = personData.GetPhoneByDetaineeId(detainee.Id);
+                //detainee.Phone = personData.GetPhoneByDetaineeId(detainee.Id);
                 withName = new DetaineeWithName(detainee, personData.GetPersonById(detainee.PeopleId));
             }
             catch
@@ -122,18 +124,21 @@ namespace SpecialInsulator.DAL.Implementations
             {
                 SqlParameter[] parameters = new SqlParameter[]
                 {
-                new SqlParameter("@Id",detaineeWithName.detainee.Id),
+                    new SqlParameter("@Id",detaineeWithName.detainee.Id),
                     new SqlParameter("@PeopleId",detaineeWithName.detainee.PeopleId),
                     new SqlParameter("@BornDate",detaineeWithName.detainee.BornDate),
-                    new SqlParameter("@Status",detaineeWithName.detainee.Status),
+                    new SqlParameter("@StatusId",detaineeWithName.detainee.Status.Id),
                     new SqlParameter("@Workplace",detaineeWithName.detainee.Workplace),
                     new SqlParameter("@Photo",detaineeWithName.detainee.Photo),
                     new SqlParameter("@Address",detaineeWithName.detainee.Address),
                     new SqlParameter("@AdditionalInformation",detaineeWithName.detainee.AdditionalInformation)
                 };
+
                 detaineeWithName.person.Id = detaineeWithName.detainee.PeopleId;
                 personData.EditPerson(detaineeWithName.person);
+
                 Executer.ExecuteNonQuery(connectionString, "UpdateDetainee", parameters);
+                Executer.ExecuteNonQuery(connectionString, "UpdatePhone", new SqlParameter("@DetaineeId", detaineeWithName.detainee.Id),new SqlParameter("@Number", detaineeWithName.detainee.Phone));
             }
             catch
             {

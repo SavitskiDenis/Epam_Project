@@ -23,7 +23,7 @@
     }
     else
     {
-        <img class="rounded mx-auto d-block" src="@*https://image.freepik.com/free-icon/male-user-close-up-shape-for-facebook_318-37635.jpg*@" width="200" style="border:2px solid #0094ff;border-radius:50px" />
+        <img class="rounded mx-auto d-block" src="https://image.freepik.com/free-icon/male-user-close-up-shape-for-facebook_318-37635.jpg" width="200" style="border:2px solid #0094ff;border-radius:50px" />
     }
 </div>
 <div class="row justify-content-between content">
@@ -32,7 +32,8 @@
         <p>Имя: @Model.person.FirstName</p>
         <p>Отчество: @Model.person.Patronymic</p>
         <p>Дата рождения: @Model.detainee.BornDate.ToShortDateString()</p>
-        <p>Семейное положение: @Model.detainee.Status</p>
+        <p>Семейное положение: @Model.detainee.Status.StatusName</p>
+        <p>Номер телефона: @Model.detainee.Phone</p>
     </div>
     <div class="col-md">
         <p>Адрес</p>
@@ -47,7 +48,7 @@
     <tr>
         <th>Даты</th>
         <th>Сотрудники</th>
-        <th>Адрес</th>
+        <th>Место содержания</th>
         <th>Суммы</th>
         <th></th>
     </tr>
@@ -71,7 +72,7 @@
                 <p>Должность: @item.DetainWorker.Worker.WorkerPost.PostName</p>
             </td>
             <td>
-                @item.Address
+                @item.DetentionPlace.Address
             </td>
             <td>
                 <p>Начисленная: @item.AccruedAmount</p>

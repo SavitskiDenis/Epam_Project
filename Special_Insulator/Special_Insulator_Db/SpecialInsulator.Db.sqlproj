@@ -75,7 +75,7 @@
     <None Include="Tables\CreatePhoneTable.sql" />
     <None Include="Tables\CreatePeopleTable.sql" />
     <None Include="Tables\CreateDetentionTable.sql" />
-    <None Include="Tables\CreateDepartmentTable.sql" />
+    <None Include="Tables\CreateDetentionPlaceTable.sql" />
     <None Include="Tables\DetensionsAndDetainWorkers.sql" />
     <None Include="Tables\DetentionsAndDeliveryWorkers.sql" />
     <None Include="Tables\DetentionsAndReleaseWorkers.sql" />
@@ -85,7 +85,7 @@
     <None Include="Procedures\Add\AddInDetentionsAndReleaseWorkers.sql" />
     <None Include="Procedures\Delete\DeleteRole.sql" />
     <None Include="Procedures\Delete\DeleteUser.sql" />
-    <None Include="Procedures\Delete\DeleteDepartment.sql" />
+    <None Include="Procedures\Delete\DeleteDetentionPlace.sql" />
     <None Include="Procedures\Delete\DeleteDetainee.sql" />
     <None Include="Procedures\Delete\DeleteDetention.sql" />
     <None Include="Procedures\Delete\DeletePeople.sql" />
@@ -96,7 +96,7 @@
     <None Include="Procedures\Delete\DeleteInDetentionsAndReleaseWorkers.sql" />
     <None Include="Procedures\Delete\DeleteInUserAndRole.sql" />
     <None Include="Procedures\Update\UpdatePhone.sql" />
-    <None Include="Procedures\Update\UpdateDepartment.sql" />
+    <None Include="Procedures\Update\UpdateDetentionPlace.sql" />
     <None Include="Procedures\Update\UpdateDetainee.sql" />
     <None Include="Procedures\Update\UpdateDetention.sql" />
     <None Include="Procedures\Update\UpdatePeople.sql" />
@@ -109,10 +109,10 @@
     <None Include="Procedures\Select\SelectDetaineeById.sql" />
     <None Include="Procedures\Select\SelectAllPeople.sql" />
     <None Include="Procedures\Select\SelectDetentionsByDetaineeId.sql" />
-    <None Include="Procedures\Select\SelectAllDepartments.sql" />
+    <None Include="Procedures\Select\SelectAllDetentionPlaces.sql" />
     <None Include="Procedures\Select\SelectAllWorkers.sql" />
     <None Include="Procedures\Select\SelectWorkerById.sql" />
-    <None Include="Procedures\Select\SelectDepartmentById.sql" />
+    <None Include="Procedures\Select\SelectDetentionPlaceById.sql" />
     <None Include="Procedures\Select\SelectDetainWorkerId.sql" />
     <None Include="Procedures\Select\SelectDeliveryWorkerId.sql" />
     <None Include="Procedures\Select\SelectReleaseWorkerId.sql" />
@@ -133,9 +133,11 @@
     <None Include="Procedures\Select\SelectAllPosts.sql" />
     <None Include="Procedures\Select\SelectPostById.sql" />
     <None Include="Procedures\Select\SelectRolesId.sql" />
+    <None Include="Tables\CreateStatusTable.sql" />
+    <None Include="Procedures\Select\SelectAllStatuses.sql" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Procedures\Add\AddDepartment.sql" />
+    <None Include="Procedures\Add\AddDetentionPlace.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Procedures\Add\AddDetainee.sql" />

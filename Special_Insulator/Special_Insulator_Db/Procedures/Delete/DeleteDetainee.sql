@@ -1,7 +1,7 @@
 ﻿USE SIDb
 GO
 
-CREATE PROC Delete_Detainee
+CREATE PROC DeleteDetainee
 	@Id int
 AS
 	Delete From Phones Where DetaineeId = @Id

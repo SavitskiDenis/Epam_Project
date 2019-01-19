@@ -1,11 +1,26 @@
 ﻿using log4net;
+using log4net.Config;
 using System;
 
 namespace SpecialInsulator.Common.Loger
 {
-    class Loger
+    class Logger : ILogger
     {
-        public static ILog For(object LoggerObject)
+
+        private readonly ILog myLogger;
+
+        public static void InitLogger()
+        {
+            XmlConfigurator.Configure();
+        }
+
+        public Logger()
+        {
+            InitLogger();
+            myLogger = LogManager.GetLogger("MyLogger");
+        }
+
+        public  ILog For(object LoggerObject)
         {
             if(LoggerObject != null)
             {
@@ -17,7 +32,7 @@ namespace SpecialInsulator.Common.Loger
             }
         }
 
-        public static ILog For(Type ObjectType)
+        public  ILog For(Type ObjectType)
         {
             if (ObjectType != null)
             {
@@ -28,5 +43,11 @@ namespace SpecialInsulator.Common.Loger
                 return LogManager.GetLogger(string.Empty);
             }
         }
+
+        public void Error(string message)
+        {
+            myLogger.Error(message);
+        }
+
     }
 }

@@ -11,6 +11,7 @@ using System.Web.Mvc;
 using System.Web.Routing;
 using System.Web.Script.Serialization;
 using System.Web.Security;
+using SpecialInsulator.Common.Loger;
 
 namespace Special_Insulator.WEB
 {
@@ -39,24 +40,15 @@ namespace Special_Insulator.WEB
             }
         }
 
-        //protected void Application_Error(object sender, EventArgs e)
-        //{
-        //    Exception exception = Server.GetLastError();
+        protected void Application_Error(object sender, EventArgs e)
+        {
+            Exception exception = Server.GetLastError();
 
-        //    IContainer container = IoC.Initialize();
-        //    ILog logger = container.GetInstance<ILog>();
-        //    logger.Error(exception.Message);
+            IContainer container = IoC.Initialize();
+            ILogger myLogger = container.GetInstance<ILogger>();
 
-        //    HttpException httpException = exception as HttpException;
-
-        //    if (httpException != null)
-        //    {
-        //        int code = httpException.GetHttpCode();
-        //        if (code == 404)
-        //        {
-                   
-        //        }
-        //    }
-        //}
+            myLogger.Error(exception.Message);
+           
+        }
     }
 }

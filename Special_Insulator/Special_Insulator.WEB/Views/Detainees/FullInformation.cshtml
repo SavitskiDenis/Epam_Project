@@ -25,7 +25,8 @@
         <p>Имя: @Model.person.FirstName</p>
         <p>Отчество: @Model.person.Patronymic</p>
         <p>Дата рождения: @Model.detainee.BornDate.ToShortDateString()</p>
-        <p>Семейное положение: @Model.detainee.Status</p>
+        <p>Семейное положение: @Model.detainee.Status.StatusName</p>
+        <p>Номер телефона: @Model.detainee.Phone</p>
     </div>
     <div class="col-md">
         <p>Адрес</p>
@@ -42,7 +43,7 @@
     <tr>
         <th>Даты</th>
         <th>Сотрудники</th>
-        <th>Адресс</th>
+        <th>Место содержания</th>
         <th>Суммы</th>
     </tr>
     @foreach (var item in Model.detainee.Detentions)
@@ -65,7 +66,7 @@
                 <p>Должность: @item.DetainWorker.Worker.WorkerPost.PostName</p>
             </td>
             <td>
-                @item.Address
+                @item.DetentionPlace.Address
             </td>
             <td>
                 <p>Начисленная: @item.AccruedAmount</p>

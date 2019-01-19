@@ -5,10 +5,14 @@ namespace SpecialInsulator.DAL.Interfaces
 {
     public interface IUserRepository
     {
-        void AddUser(User user );
+        bool AddUser(User user );
 
         List<User> GetAllUsers();
 
-        void DeleteUserById(int Id);
+        bool DeleteUserById(int Id);
+
+        bool EditUserInfo(User user);
+
+        bool DeleteUser(int Id);
     }
 }

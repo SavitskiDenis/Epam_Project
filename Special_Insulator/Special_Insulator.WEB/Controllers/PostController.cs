@@ -18,7 +18,12 @@ namespace Special_Insulator.WEB.Controllers
         [Authorize(Roles = "Editor")]
         public ActionResult Index()
         {
-            return View(postData.GetAllPosts());
+            var posts = postData.GetAllPosts();
+            if (posts != null)
+            {
+                return View(posts);
+            }
+            return RedirectToAction("InformationError", "Error", new { message = "Произошла ошибка при получении данных!" });
         }
 
         [HttpGet]
@@ -30,44 +35,60 @@ namespace Special_Insulator.WEB.Controllers
 
         [HttpPost]
         [Authorize(Roles = "Editor")]
-        public ActionResult AddPost(PostMod model)
+        public ActionResult AddPost(PostModel model)
         {
             if (ModelState.IsValid)
             {
-                Post post = Mapper.MapToItem<PostMod,Post>(model);
-                postData.AddPost(post);
-                return RedirectToAction("Index", "Edit");
+                if(postData.IsNewPost(model.PostName))
+                {
+                    Post post = Mapper.MapToItem<PostModel, Post>(model);
+                    postData.AddPost(post);
+                    return RedirectToAction("Index", "Edit");
+                }
+                ViewBag.Error = "Такая должность уже существует";
             }
-
+            
             return View(model);
         }
 
         [HttpGet]
         [Authorize(Roles = "Editor")]
-        public ActionResult EditPost(int Id)
+        public ActionResult EditPost(int? Id)
         {
-            PostMod post = Mapper.MapToItem<Post,PostMod>(postData.GetPostById(Id));
-            return View(post);
+            var post = postData.GetPostById(Id);
+            if(post != null)
+            {
+                PostModel model = Mapper.MapToItem<Post, PostModel>(post);
+                return View(model);
+            }
+            return RedirectToAction("InformationError", "Error", new { message = "Произошла ошибка при получении данных. Проверьте вводимые параметры!" });
         }
 
         [HttpPost]
         [Authorize(Roles = "Editor")]
-        public ActionResult EditPost(PostMod model)
+        public ActionResult EditPost(PostModel model)
         {
-            if (ModelState.IsValid)
+            if (ModelState.IsValid )
             {
-                Post post = Mapper.MapToItem<PostMod, Post>(model);
-                postData.EditPost(post);
-                return RedirectToAction("Index", "Post");
+                if(postData.IsNewPost(model.PostName))
+                {
+                    Post post = Mapper.MapToItem<PostModel, Post>(model);
+                    postData.EditPost(post);
+                    return RedirectToAction("Index", "Post");
+                }
+                ViewBag.Error = "Такая должность уже существует";
             }
             return View(model);
         }
 
         [Authorize(Roles = "Editor")]
-        public ActionResult DeletePost(int Id)
+        public ActionResult DeletePost(int? Id)
         {
-            postData.DeletePostById(Id);
-            return RedirectToAction("Index", "Post");
+            if(postData.DeletePostById(Id))
+            {
+                return RedirectToAction("Index", "Post");
+            }
+            return RedirectToAction("InformationError", "Error", new { message = "Произошла ошибка при удалении данных. Проверьте вводимые данные!" });
         }
     }
 }

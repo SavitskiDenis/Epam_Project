@@ -14,7 +14,7 @@ namespace SpecialInsulator.Common.Entity
         public string AccruedAmount { get; set; }
         public string PaidAmount { get; set; }
         public int DetaineeId { get; set; }
-        public int DepartmentId { get; set; }
+        public DetentionPlace DetentionPlace { get; set; }
         public string Address { get; set; }
 
     }

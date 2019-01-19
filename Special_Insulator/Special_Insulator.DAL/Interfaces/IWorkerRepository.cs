@@ -5,14 +5,16 @@ namespace SpecialInsulator.DAL.Interfaces
 {
     public interface IWorkerRepository
     {
-        void AddWorker(Worker worker,Person person);
+        bool AddWorker(Worker worker,Person person);
 
         List<WorkerAndName> GetAllWorkers();
 
         WorkerAndName GetWorkerById(int Id);
 
-        void DeleteWorkerById(int Id);
+        bool DeleteWorkerById(int Id);
 
-        void EditWorker(WorkerAndName workerAndName);
+        bool EditWorker(WorkerAndName workerAndName);
+
+        int GetWorkerIdByDetentionId(int Id, string procedure);
     }
 }

@@ -7,15 +7,15 @@ namespace SpecialInsulator.DAL.Interfaces
     {
         List<Detention> GetDetentionsByDetaineeId(int id);
 
-        void AddDetention(Detention detention);
+        bool AddDetention(Detention detention);
 
-        void DeleteDetention(int Id);
+        bool DeleteDetention(int Id);
 
         Detention GetDetentionById(int Id);
 
-        void EditDetention(Detention detention);
+        bool EditDetention(Detention detention);
 
-        void DeleteDetentionByDetaineeId(int Id);
+        bool DeleteDetentionByDetaineeId(int Id);
 
         List<int> GetDetentionsIdByDetaineeId(int Id);
     }

@@ -9,7 +9,7 @@ namespace SpecialInsulator.Common.Entity
         public int Id { get; set; }
         public int PeopleId { get; set; }
         public DateTime BornDate { get; set; }
-        public string Status { get; set; }
+        public Status Status { get; set; }
         public string Workplace { get; set; }
         public string Phone { get; set; }
         public byte[] Photo { get; set; }
