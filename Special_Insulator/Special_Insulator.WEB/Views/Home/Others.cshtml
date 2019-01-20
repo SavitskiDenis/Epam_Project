@@ -1,0 +1,34 @@
+﻿
+@{
+    ViewBag.Title = "Другое";
+}
+<div class="row">
+    <div class="col-md-3">
+        <div class="left-sidebar">
+            @foreach (var item in ViewBag.Advertising)
+            {
+                <div class="left-sidebar_advertising">
+                    <img style="width:100%" src="@item.Image.Value" />
+                    <div class="left-sidebar_advertising-description">
+                        <h3>@item.Title</h3>
+                        <p>@item.Context</p>
+                        <a href="@item.Address.Value">Подробнее</a>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+    <div class="col-md-8">
+        <div class="content" style="margin-top:20px">
+            <p>Начальник специализированного изолятора УВД Могилевского облисполкома - подполковник милиции Зайцев Александр Викторович. </p>
+            <strong>Юридические адреса специализированных изоляторов (далее – СИЗ) ОВД Могилевской области: </strong><br />
+            <strong>
+                СИЗ УВД Могилевского облисполкома 212030, г. Могилев, ул. Менжинского, 38.
+            </strong><br />
+            <strong>
+                СИЗ УВД Бобруйского горисполкома 213800, г. Бобруйск, ул. Минская, 104а.
+            </strong>
+        </div>
+    </div>
+</div>
+
