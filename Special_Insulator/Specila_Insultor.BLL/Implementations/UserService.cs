@@ -12,13 +12,13 @@ namespace SpecialInsulator.BLL.Implementations
 {
     class UserService : IUserService
     {
-        IUserRepository userData;
-        IRoleRepository roleData;
+        private IUserRepository userRepository;
+        private IRoleRepository roleRepository;
 
         public UserService(IUserRepository userData, IRoleRepository roleData)
         {
-            this.userData = userData;
-            this.roleData = roleData;
+            this.userRepository = userData;
+            this.roleRepository = roleData;
         }
 
         public bool AddUser(User user)
@@ -29,7 +29,7 @@ namespace SpecialInsulator.BLL.Implementations
             }
             else
             {
-                userData.AddUser(user);
+                userRepository.AddUser(user);
 
                 return true;
             }
@@ -56,7 +56,7 @@ namespace SpecialInsulator.BLL.Implementations
 
         public List<User> GetAllUsers()
         {
-            return userData.GetAllUsers();
+            return userRepository.GetAllUsers();
         }
 
         public void EditRoles(int Id,string type)
@@ -65,12 +65,12 @@ namespace SpecialInsulator.BLL.Implementations
             List<Role> updateRoles = new List<Role>();
             if (type == "User")
             {
-                roles = roleData.GetRolesByUserId(Id);
+                roles = roleRepository.GetRolesByUserId(Id);
                 foreach(var item in roles)
                 {
                     if(item.Type == "Editor" || item.Type == "Admin")
                     {
-                        roleData.DeleteRoleFromUser(Id,item.Id);
+                        roleRepository.DeleteRoleFromUser(Id,item.Id);
                     }
                     else
                     {
@@ -80,17 +80,17 @@ namespace SpecialInsulator.BLL.Implementations
 
                 if(findRole("User", updateRoles) == false)
                 {
-                    roleData.AddRoleToUser(Id,1);
+                    roleRepository.AddRoleToUser(Id,1);
                 }
             }
             else if(type == "Editor")
             {
-                roles = roleData.GetRolesByUserId(Id);
+                roles = roleRepository.GetRolesByUserId(Id);
                 foreach (var item in roles)
                 {
                     if (item.Type == "Admin")
                     {
-                        roleData.DeleteRoleFromUser(Id, item.Id);
+                        roleRepository.DeleteRoleFromUser(Id, item.Id);
                     }
                     else
                     {
@@ -100,27 +100,27 @@ namespace SpecialInsulator.BLL.Implementations
 
                 if (findRole("User",updateRoles) == false)
                 {
-                    roleData.AddRoleToUser(Id, 1);
+                    roleRepository.AddRoleToUser(Id, 1);
                 }
                 if(findRole("Editor", updateRoles) == false)
                 {
-                    roleData.AddRoleToUser(Id, 2);
+                    roleRepository.AddRoleToUser(Id, 2);
                 }
             }
             else if(type == "Admin")
             {
-                roles = roleData.GetRolesByUserId(Id);
+                roles = roleRepository.GetRolesByUserId(Id);
                 if (findRole("User", roles) == false)
                 {
-                    roleData.AddRoleToUser(Id, 1);
+                    roleRepository.AddRoleToUser(Id, 1);
                 }
                 if (findRole("Editor", roles) == false)
                 {
-                    roleData.AddRoleToUser(Id, 2);
+                    roleRepository.AddRoleToUser(Id, 2);
                 }
                 if(findRole("Admin", roles) == false)
                 {
-                    roleData.AddRoleToUser(Id, 3);
+                    roleRepository.AddRoleToUser(Id, 3);
                 }
             }
         }
@@ -180,7 +180,7 @@ namespace SpecialInsulator.BLL.Implementations
         {
             if(user != null)
             {
-                return userData.EditUserInfo(user);
+                return userRepository.EditUserInfo(user);
             }
             return false;
         }
@@ -189,7 +189,7 @@ namespace SpecialInsulator.BLL.Implementations
         {
             if(Id != null)
             {
-                return userData.DeleteUser(int.Parse(Id.ToString()));
+                return userRepository.DeleteUser(int.Parse(Id.ToString()));
             }
             return false;
         }

@@ -31,14 +31,6 @@ namespace SpecialInsulator.DAL.Implementations
             
         }
 
-        //public string GetPhoneByDetaineeId(int id)
-        //{
-        //    return Executer.ExecuteRead(connectionString,
-        //                                "SelectPhoneByDetaineeId",
-        //                                new ReadPhoneNumber(),
-        //                                new SqlParameter("@DetaineeId", id));
-        //}
-
         public bool DeletePersonById(int personId)
         {
             try

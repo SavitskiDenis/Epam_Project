@@ -11,8 +11,8 @@ namespace SpecialInsulator.DAL.Implementations
     public class WorkerRepository : IWorkerRepository
     {
         private string connectionString = WebConfigurationManager.ConnectionStrings["MyDb"].ConnectionString;
-        private PersonRepository personData = new PersonRepository();
-        private PostRepository postData = new PostRepository();
+        private IPersonRepository personRepository = new PersonRepository();
+        private IPostRepository postRepository = new PostRepository();
 
         public bool AddWorker(Worker worker,Person person)
         {
@@ -47,12 +47,12 @@ namespace SpecialInsulator.DAL.Implementations
 
                 foreach (var item in workers)
                 {
-                    item.WorkerPost = postData.GetPostById(item.WorkerPost.Id);
+                    item.WorkerPost = postRepository.GetPostById(item.WorkerPost.Id);
                 }
 
                 foreach (var item in workers)
                 {
-                    fullList.Add(new WorkerAndName(item, personData.GetPersonById(item.PeopleId)));
+                    fullList.Add(new WorkerAndName(item, personRepository.GetPersonById(item.PeopleId)));
                 }
             }
             catch
@@ -72,8 +72,8 @@ namespace SpecialInsulator.DAL.Implementations
                                                 "SelectWorkerById",
                                                 new ReadWorker(),
                                                 new SqlParameter("@Id", Id));
-                worker.WorkerPost = postData.GetPostById(worker.WorkerPost.Id);
-                workerWithName = new WorkerAndName(worker, personData.GetPersonById(worker.PeopleId));
+                worker.WorkerPost = postRepository.GetPostById(worker.WorkerPost.Id);
+                workerWithName = new WorkerAndName(worker, personRepository.GetPersonById(worker.PeopleId));
             }
             catch
             {
@@ -93,7 +93,7 @@ namespace SpecialInsulator.DAL.Implementations
                                            "Delete_Worker",
                                            new ReadId(),
                                            new SqlParameter("@Id", Id));
-                personData.DeletePersonById(personId);
+                personRepository.DeletePersonById(personId);
             }
             catch
             {
@@ -114,7 +114,7 @@ namespace SpecialInsulator.DAL.Implementations
                     new SqlParameter("@PeopleId",workerAndName.Worker.PeopleId),
                 };
                 workerAndName.Person.Id = workerAndName.Worker.PeopleId;
-                personData.EditPerson(workerAndName.Person);
+                personRepository.EditPerson(workerAndName.Person);
                 Executer.ExecuteNonQuery(connectionString, "UpdateWorker", parameters);
             }
             catch
@@ -138,5 +138,39 @@ namespace SpecialInsulator.DAL.Implementations
             return id;
         }
 
+        public List<int> GetUsingIds(string type)
+        {
+            List<int> ids;
+            try
+            {
+                if(type == "Detain")
+                {
+                    ids = Executer.ExecuteCollectionRead(connectionString,
+                                                        "SelectAllWorkerIdsFromDetainWorkers",
+                                                        new ReadId());
+                }
+                else if(type == "Delivery")
+                {
+                    ids = Executer.ExecuteCollectionRead(connectionString,
+                                                        "SelectAllWorkerIdsFromDeliveryWorkers", 
+                                                        new ReadId());
+                }
+                else if(type == "Release")
+                {
+                    ids = Executer.ExecuteCollectionRead(connectionString,
+                                                        "SelectAllWorkerIdsFromReleaseWorkers",
+                                                        new ReadId());
+                }
+                else
+                {
+                    ids = new List<int>();
+                }
+            }
+            catch
+            {
+                return null;
+            }
+            return ids;
+        }
     }
 }

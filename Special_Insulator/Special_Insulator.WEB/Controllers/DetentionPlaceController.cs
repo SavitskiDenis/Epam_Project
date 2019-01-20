@@ -8,19 +8,20 @@ namespace Special_Insulator.WEB.Controllers
 {
     public class DetentionPlaceController : Controller
     {
-        IDetentionPlaceService data;
+        IDetentionPlaceService placeService;
 
         public DetentionPlaceController(IDetentionPlaceService data)
         {
-            this.data = data;
+            this.placeService = data;
         }
 
         [Authorize(Roles ="Editor")]
-        public ActionResult Index()
+        public ActionResult Index(string error="")
         {
-            var collection = data.GetAllDetentionPlaces();
+            var collection = placeService.GetAllDetentionPlaces();
             if (collection!=null)
             {
+                ViewBag.Error = error;
                 return View(collection);
             }
             return RedirectToAction("InformationError", "Error", new { message = "Произошла ошибка получения списка мест содержания!" });
@@ -39,11 +40,11 @@ namespace Special_Insulator.WEB.Controllers
         {
             if(ModelState.IsValid)
             {
-                if(data.IsNewPlace(department.Address))
+                if(placeService.IsNewPlace(department.Address))
                 {
                     var addDepartment = Mapper.MapToItem<DetentionPlaceModel, DetentionPlace>(department);
 
-                    if(data.AddDetentionPlace(addDepartment))
+                    if(placeService.AddDetentionPlace(addDepartment))
                     {
                         return RedirectToAction("Index", "Edit");
                     }
@@ -61,7 +62,7 @@ namespace Special_Insulator.WEB.Controllers
         [Authorize(Roles = "Editor")]
         public ActionResult EditDetentionPlace(int? Id)
         {
-            var place = data.GetDetentionPlaceById(Id);
+            var place = placeService.GetDetentionPlaceById(Id);
             if (place != null)
             {
                 DetentionPlaceModel department = Mapper.MapToItem<DetentionPlace, DetentionPlaceModel>(place);
@@ -76,10 +77,10 @@ namespace Special_Insulator.WEB.Controllers
         {
             if (ModelState.IsValid)
             {
-                if (data.IsNewPlace(department.Address))
+                if (placeService.IsNewPlace(department.Address))
                 {
                     DetentionPlace dep = Mapper.MapToItem<DetentionPlaceModel, DetentionPlace>(department);
-                    if(data.EditDetentionPlace(dep))
+                    if(placeService.EditDetentionPlace(dep))
                     {
                         return RedirectToAction("Index", "DetentionPlace");
                     }
@@ -93,12 +94,15 @@ namespace Special_Insulator.WEB.Controllers
         [Authorize(Roles = "Editor")]
         public ActionResult DeleteDetentionPlace(int? Id)
         {
-            if(data.DeleteDetentionPlaceById(Id))
+            if(!placeService.IsUsing(Id))
             {
-                return RedirectToAction("Index", "DetentionPlace");
+                if (placeService.DeleteDetentionPlaceById(Id))
+                {
+                    return RedirectToAction("Index", "DetentionPlace");
+                }
+                return RedirectToAction("InformationError", "Error", new { message = "Произошла ошибка при удалении данных. Проверьте вводимые данные!" });
             }
-            return RedirectToAction("InformationError", "Error", new { message = "Произошла ошибка при удалении данных. Проверьте вводимые данные!" });
-
+            return RedirectToAction("Index","DetentionPlace",new { error = "Невозможно удалить, т.к. это место содержания используется"});
         }
 
     }

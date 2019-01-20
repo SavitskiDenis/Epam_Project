@@ -8,19 +8,20 @@ namespace Special_Insulator.WEB.Controllers
 {
     public class PostController : Controller
     {
-        IPostService postData;
+        IPostService postService;
 
         public PostController(IPostService postData)
         {
-            this.postData = postData;
+            this.postService = postData;
         }
 
         [Authorize(Roles = "Editor")]
-        public ActionResult Index()
+        public ActionResult Index(string error = "")
         {
-            var posts = postData.GetAllPosts();
+            var posts = postService.GetAllPosts();
             if (posts != null)
             {
+                ViewBag.Error = error;
                 return View(posts);
             }
             return RedirectToAction("InformationError", "Error", new { message = "Произошла ошибка при получении данных!" });
@@ -39,10 +40,10 @@ namespace Special_Insulator.WEB.Controllers
         {
             if (ModelState.IsValid)
             {
-                if(postData.IsNewPost(model.PostName))
+                if(postService.IsNewPost(model.PostName))
                 {
                     Post post = Mapper.MapToItem<PostModel, Post>(model);
-                    postData.AddPost(post);
+                    postService.AddPost(post);
                     return RedirectToAction("Index", "Edit");
                 }
                 ViewBag.Error = "Такая должность уже существует";
@@ -55,7 +56,7 @@ namespace Special_Insulator.WEB.Controllers
         [Authorize(Roles = "Editor")]
         public ActionResult EditPost(int? Id)
         {
-            var post = postData.GetPostById(Id);
+            var post = postService.GetPostById(Id);
             if(post != null)
             {
                 PostModel model = Mapper.MapToItem<Post, PostModel>(post);
@@ -70,10 +71,10 @@ namespace Special_Insulator.WEB.Controllers
         {
             if (ModelState.IsValid )
             {
-                if(postData.IsNewPost(model.PostName))
+                if(postService.IsNewPost(model.PostName))
                 {
                     Post post = Mapper.MapToItem<PostModel, Post>(model);
-                    postData.EditPost(post);
+                    postService.EditPost(post);
                     return RedirectToAction("Index", "Post");
                 }
                 ViewBag.Error = "Такая должность уже существует";
@@ -84,11 +85,15 @@ namespace Special_Insulator.WEB.Controllers
         [Authorize(Roles = "Editor")]
         public ActionResult DeletePost(int? Id)
         {
-            if(postData.DeletePostById(Id))
+            if(!postService.IsUsing(Id))
             {
-                return RedirectToAction("Index", "Post");
+                if (postService.DeletePostById(Id))
+                {
+                    return RedirectToAction("Index", "Post");
+                }
+                return RedirectToAction("InformationError", "Error", new { message = "Произошла ошибка при удалении данных. Проверьте вводимые данные!" });
             }
-            return RedirectToAction("InformationError", "Error", new { message = "Произошла ошибка при удалении данных. Проверьте вводимые данные!" });
+            return RedirectToAction("Index","Post",new { error = "Невозможно удалить, т.к. эта должность используется"});
         }
     }
 }

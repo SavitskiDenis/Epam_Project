@@ -9,16 +9,16 @@ namespace SpecialInsulator.BLL.Implementations
 {
     public class DetentionPlaceService : IDetentionPlaceService
     {
-        IDetentionPlaceRepository data;
+        private IDetentionPlaceRepository placeRepository;
 
         public DetentionPlaceService(IDetentionPlaceRepository data)
         {
-            this.data = data;
+            this.placeRepository = data;
         }
 
         public bool AddDetentionPlace(DetentionPlace place)
         {
-            if(Checker.CheckedForNull(place) && data.AddDetentionPlace(place))
+            if(Checker.CheckedForNull(place) && placeRepository.AddDetentionPlace(place))
             {
                 return true;
             }
@@ -28,7 +28,7 @@ namespace SpecialInsulator.BLL.Implementations
 
         public bool DeleteDetentionPlaceById(int? Id)
         {
-            if(Checker.CheckedForNull(Id) && data.DeleteDetentionPlaceById(int.Parse(Id.ToString())))
+            if(Checker.CheckedForNull(Id) && placeRepository.DeleteDetentionPlaceById(int.Parse(Id.ToString())))
             {
                 return true;
             }
@@ -37,14 +37,14 @@ namespace SpecialInsulator.BLL.Implementations
 
         public List<DetentionPlace> GetAllDetentionPlaces()
         {
-            return data.GetAllDetentionPlaces();
+            return placeRepository.GetAllDetentionPlaces();
         }
 
         public DetentionPlace GetDetentionPlaceById(int? Id)
         {
             if(Checker.CheckedForNull(Id))
             {
-                return data.GetDetentionPlaceById(int.Parse(Id.ToString()));
+                return placeRepository.GetDetentionPlaceById(int.Parse(Id.ToString()));
             }
             else
             {
@@ -55,7 +55,7 @@ namespace SpecialInsulator.BLL.Implementations
 
         public bool EditDetentionPlace(DetentionPlace department)
         {
-            if(Checker.CheckedForNull(department) && data.EditDetentionPlace(department))
+            if(Checker.CheckedForNull(department) && placeRepository.EditDetentionPlace(department))
             {
                 return true;
             }
@@ -64,7 +64,7 @@ namespace SpecialInsulator.BLL.Implementations
 
         public List<DetentionPlace> GetAllDetentionPlacesAndSwap(int? Id)
         {
-            List<DetentionPlace> places = data.GetAllDetentionPlaces();
+            List<DetentionPlace> places = placeRepository.GetAllDetentionPlaces();
 
             int index = places.IndexOf(places.Where(item => item.Id == Id).FirstOrDefault());
             if(index > 0)
@@ -91,6 +91,26 @@ namespace SpecialInsulator.BLL.Implementations
             }
 
             return true;
+        }
+
+        public bool IsUsing(int? Id)
+        {
+            if(Id != null)
+            {
+                int id = int.Parse(Id.ToString());
+                List<int> ids = placeRepository.GetUsingIds();
+                if(ids != null)
+                {
+                    foreach(var item in ids)
+                    {
+                        if(item == id)
+                        {
+                            return true;
+                        }
+                    }
+                }
+            }
+            return false;
         }
     }
 }

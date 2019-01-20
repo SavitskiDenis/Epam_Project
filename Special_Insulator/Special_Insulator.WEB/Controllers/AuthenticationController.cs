@@ -8,11 +8,11 @@ namespace Special_Insulator.WEB.Controllers
 {
     public class AuthenticationController : Controller
     {
-        private IUserService userData;
+        private IUserService userService;
 
         public AuthenticationController(IUserService userData)
         {
-            this.userData = userData;
+            this.userService = userData;
         }
 
         [HttpGet]
@@ -27,10 +27,10 @@ namespace Special_Insulator.WEB.Controllers
             if (ModelState.IsValid)
             {
                 User user = Mapper.MapToItem<UserLoginModel, User>(model);
-                user = userData.checkUserAndGet(user);
+                user = userService.checkUserAndGet(user);
                 if (user != null)
                 {
-                    userData.AddCookies(user);
+                    userService.AddCookies(user);
                     return RedirectToAction("Index", "Home");
                 }
                 else
@@ -54,7 +54,7 @@ namespace Special_Insulator.WEB.Controllers
             if(ModelState.IsValid)
             {
                 User user = Mapper.MapToItem<UserRegistrationModel, User>(model);
-                if(userData.AddUser(user))
+                if(userService.AddUser(user))
                 {
                     return RedirectToAction("Login", "Authentication");
                 }
@@ -66,7 +66,7 @@ namespace Special_Insulator.WEB.Controllers
         [Authorize]
         public ActionResult LogOut()
         {
-            userData.DeleteCookies();
+            userService.DeleteCookies();
             return RedirectToAction("Index","Home");
         }
     }

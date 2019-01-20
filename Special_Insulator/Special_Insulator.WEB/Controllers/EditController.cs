@@ -1,5 +1,5 @@
-﻿using SpecialInsulator.Common.Entity;
-using SpecialInsulator.BLL.Interfaces;
+﻿using SpecialInsulator.BLL.Interfaces;
+using SpecialInsulator.Common.Entity;
 using System.Web.Mvc;
 
 namespace Special_Insulator.WEB.Controllers
@@ -7,22 +7,22 @@ namespace Special_Insulator.WEB.Controllers
     public class EditController : Controller
     {
 
-        private IDetaineeService data;
-        private IDetentionService detentionData;
-        private IAdvertisingService advertising;
+        private IDetaineeService detaineeService;
+        private IDetentionService detentionService;
+        private IAdvertisingService advertisingService;
 
         public EditController(IDetaineeService data, IDetentionService detentionData, IAdvertisingService advertising)
         {
-            this.data = data;
-            this.detentionData = detentionData;
-            this.advertising = advertising;
+            this.detaineeService = data;
+            this.detentionService = detentionData;
+            this.advertisingService = advertising;
         }
 
         [Authorize(Roles = "Editor")]
         public ActionResult Index(string error = "")
         {
-            var collection = advertising.GetLinks();
-            var detainees = data.GetAllDetainees();
+            var collection = advertisingService.GetLinks();
+            var detainees = detaineeService.GetAllDetainees();
             if(detainees != null && collection!= null)
             {
                 ViewBag.Advertising = collection;
@@ -33,12 +33,12 @@ namespace Special_Insulator.WEB.Controllers
         }
 
         [Authorize(Roles = "Editor")]
-        public ActionResult FullInformation(int Id )
+        public ActionResult FullInformation(int? Id )
         {
-            DetaineeWithName mydetainee = data.GetDeteineeById(Id);
-            mydetainee.detainee.Detentions = detentionData.GetDetentionsByDetaineeId(Id);
+            DetaineeWithName mydetainee = detaineeService.GetDeteineeById(Id);
             if(mydetainee!= null)
             {
+                mydetainee.detainee.Detentions = detentionService.GetDetentionsByDetaineeId(Id);
                 ViewBag.DetaineeId = Id;
                 return View(mydetainee);
             }

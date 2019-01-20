@@ -9,7 +9,9 @@
     <div class="row justify-content-center" }>
         @using (@Html.BeginForm("AddDetention", "Detentions", FormMethod.Post, new { @style = "border:1px solid #000000;border-radius:20px", @class = "col-lg-4" }))
         {
+            
             @Html.HiddenFor(model => model.DetaineeId);
+            @Html.ValidationSummary(true,"",new { @style= "text-decoration: none;color:red;font-weight: bold;" })
             <div class="row  justify-content-center">
                 <div class="col-10" style="margin:0 auto;margin-bottom:5px ; margin-top:10px">
                     <label>Дата задержания</label>

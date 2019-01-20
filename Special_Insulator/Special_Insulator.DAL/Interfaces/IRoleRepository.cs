@@ -7,8 +7,6 @@ namespace SpecialInsulator.DAL.Interfaces
     {
         bool AddRoleToUser(int userId,int roleId);
 
-        bool EditUserRole(int userId,int roleId);
-
         List<string> GetUserRolesByUserId(int Id);
 
         List<int> GetRolesId();

@@ -171,6 +171,7 @@
     <Compile Include="Controllers\PostController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\WorkersController.cs" />
+    <Compile Include="CostumeVaidationAttribute\CheckDateTime.cs" />
     <Compile Include="CostumeVaidationAttribute\CompareDateTime.cs" />
     <Compile Include="DependencyResolution\ControllerConvention.cs" />
     <Compile Include="DependencyResolution\DefaultRegistry.cs" />
@@ -232,6 +233,8 @@
     <Content Include="Views\Error\InformationError.cshtml" />
     <Content Include="Views\User\UserProfile.cshtml" />
     <Content Include="Views\User\EditUserInfo.cshtml" />
+    <Content Include="Views\Error\NotFoundError.cshtml" />
+    <Content Include="Views\Home\Others.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

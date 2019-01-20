@@ -39,16 +39,5 @@ namespace Special_Insulator.WEB
                 HttpContext.Current.User = principal;
             }
         }
-
-        protected void Application_Error(object sender, EventArgs e)
-        {
-            Exception exception = Server.GetLastError();
-
-            IContainer container = IoC.Initialize();
-            ILogger myLogger = container.GetInstance<ILogger>();
-
-            myLogger.Error(exception.Message);
-           
-        }
     }
 }

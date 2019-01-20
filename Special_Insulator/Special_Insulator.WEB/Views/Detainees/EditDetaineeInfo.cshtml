@@ -12,8 +12,9 @@
             @Html.HiddenFor(model => model.Photo);
             <div class="row  justify-content-center">
                 <div class="col-10" style="margin:0 auto;margin-bottom:5px ; margin-top:10px">
-                    <label>Фото</label>
+                    <label>Изменить фото</label>
                     <input class="form-control-file" style="margin:0 auto" type="file" name="uploadImage" />
+                    <p style="color:red;font-weight:bold">@ViewBag.Error</p>
                 </div>
             </div>
             <div class="row  justify-content-center">

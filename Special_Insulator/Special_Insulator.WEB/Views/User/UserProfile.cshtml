@@ -5,18 +5,19 @@
 }
 <div class="container">
     <div class="row justify-content-center">
-        <h4 class="col-md-6">Пользовательская информация</h4>
+        <h4 class="col-md">Пользовательская информация</h4>
     </div>
     <div class="row justify-content-center">
-        <div class="col-md-6">
+        <div class="col-md">
             <p>Логин: @Model.Login</p>
             <p>Email: @Model.Email</p>
         </div>
     </div>
     <div class="row justify-content-center">
-        <div class="col-md-4">
+        <div class="col-md">
             <button class="btn btn-outline-info" onclick="location.href = '@Url.Action("EditUserInfo", "User")'">Изменить информацию</button>
         </div>
-        
+
     </div>
 </div>
+

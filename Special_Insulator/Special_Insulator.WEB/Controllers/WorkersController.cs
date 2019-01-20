@@ -9,21 +9,22 @@ namespace Special_Insulator.WEB.Controllers
 {
     public class WorkersController : Controller
     {
-        IWorkerService data;
-        IPostService post;
+        IWorkerService workerService;
+        IPostService postSevice;
 
         public WorkersController(IWorkerService data,IPostService post)
         {
-            this.data = data;
-            this.post = post;
+            this.workerService = data;
+            this.postSevice = post;
         }
 
         [Authorize(Roles = "Editor")]
-        public ActionResult Index()
+        public ActionResult Index(string error = "")
         {
-            var workers = data.GetAllWorkers();
+            var workers = workerService.GetAllWorkers();
             if (workers != null)
             {
+                ViewBag.Error = error;
                 return View(workers);
             }
             return RedirectToAction("InformationError", "Error", new { message = "Произошла ошибка при получении данных!" });
@@ -33,7 +34,7 @@ namespace Special_Insulator.WEB.Controllers
         [Authorize(Roles = "Editor")]
         public ActionResult AddWorker()
         {
-            var posts = post.GetAllPosts();
+            var posts = postSevice.GetAllPosts();
             if(posts != null && posts.Count>0)
             {
                 ViewBag.Posts = new SelectList(posts, "Id", "PostName");
@@ -56,13 +57,13 @@ namespace Special_Insulator.WEB.Controllers
                 var addPerson = Mapper.MapToItem<WorkerWithNameModel, Person>(worker);
                 addWorker.WorkerPost =new Post {Id =  worker.WorkerPostId };
 
-                if(data.AddWorker(addWorker, addPerson))
+                if(workerService.AddWorker(addWorker, addPerson))
                 {
                     return RedirectToAction("Index", "Edit");
                 }
                 return RedirectToAction("InformationError", "Error", new { message = "Произошла ошибка при добавлении данных!" });
             }
-            var posts = post.GetAllPosts();
+            var posts = postSevice.GetAllPosts();
             if(posts != null)
             {
                 ViewBag.Posts = new SelectList(posts, "Id", "PostName");
@@ -71,23 +72,29 @@ namespace Special_Insulator.WEB.Controllers
             return RedirectToAction("InformationError", "Error", new { message = "Произошла ошибка при получении данных!" });
         }
 
+        [Authorize(Roles = "Editor")]
         public ActionResult DeleteWorker(int? Id)
         {
-            if(data.DeleteWorkerById(Id))
+            if(!workerService.IsUsing(Id))
             {
-                return RedirectToAction("Index", "Workers");
+                if (workerService.DeleteWorkerById(Id))
+                {
+                    return RedirectToAction("Index", "Workers");
+                }
+                return RedirectToAction("InformationError", "Error", new { message = "Ошибка удаления. Проверьте вводимые данные!" });
             }
-            return RedirectToAction("InformationError", "Error", new { message = "Ошибка удаления. Проверьте вводимые данные!" });
+            return RedirectToAction("Index","Workers",new { error ="Невозможно удалить, т.к. данные сотрудник используется"});
+            
         }
 
         [HttpGet]
         [Authorize(Roles = "Editor")]
         public ActionResult EditWorker(int? Id)
         {
-            WorkerAndName myWorker = data.GetWorkerById(Id);
+            WorkerAndName myWorker = workerService.GetWorkerById(Id);
             if(myWorker != null)
             {
-                var posts = post.SwapPost(myWorker.Worker.WorkerPost.Id);
+                var posts = postSevice.SwapPost(myWorker.Worker.WorkerPost.Id);
                 if(posts != null)
                 {
                     ViewBag.Posts = new SelectList(posts, "Id", "PostName");
@@ -110,14 +117,14 @@ namespace Special_Insulator.WEB.Controllers
                 var person = Mapper.MapToItem<WorkerWithNameModel, Person>(editWorker);
                 var worker = Mapper.MapToItem<WorkerWithNameModel, Worker>(editWorker);
                 worker.WorkerPost = new Post { Id = editWorker.WorkerPostId};
-                if(data.EditWorker(new WorkerAndName(worker, person)))
+                if(workerService.EditWorker(new WorkerAndName(worker, person)))
                 {
                     return RedirectToAction("Index", "Workers");
                 }
                 return RedirectToAction("InformationError", "Error", new { message = "Произошла ошибка при изменении данных!" });
 
             }
-            var posts = post.SwapPost(editWorker.WorkerPostId);
+            var posts = postSevice.SwapPost(editWorker.WorkerPostId);
             ViewBag.Posts = new SelectList(posts, "Id", "PostName");
             return View(editWorker);
         }

@@ -10,8 +10,8 @@ namespace SpecialInsulator.DAL.Implementations
 {
     public class DetaineeRepository : IDetaineeRepository
     {
-        private PersonRepository personData = new PersonRepository();
-        private DetentionRepository detentionData = new DetentionRepository();
+        private IPersonRepository personRepository = new PersonRepository();
+        private IDetentionRepository detentionRepository = new DetentionRepository();
         private readonly string connectionString = WebConfigurationManager.ConnectionStrings["MyDb"].ConnectionString;
 
         public bool AddDetainee(Person person, Detainee detainee)
@@ -56,12 +56,13 @@ namespace SpecialInsulator.DAL.Implementations
             try
             {
                 int myId = int.Parse(id.ToString());
-                detentionData.DeleteDetentionByDetaineeId(myId);
+                detentionRepository.DeleteDetentionByDetaineeId(myId);
                 int personId = Executer.ExecuteRead(connectionString,
                                                     "DeleteDetainee",
                                                     new ReadId(),
                                                     new SqlParameter("@Id", id));
-                personData.DeletePersonById(personId);
+
+                personRepository.DeletePersonById(personId);
             }
             catch
             {
@@ -83,9 +84,8 @@ namespace SpecialInsulator.DAL.Implementations
 
                 foreach (var item in detainees)
                 {
-                    //item.Phone = personData.GetPhoneByDetaineeId(item.Id);
-                    fullList.Add(new DetaineeWithName(item, personData.GetPersonById(item.PeopleId))
-                                { lastDetention = detentionData.GetLastDetentionDateByDetaineeId(item.Id) });
+                    fullList.Add(new DetaineeWithName(item, personRepository.GetPersonById(item.PeopleId))
+                                { lastDetention = detentionRepository.GetLastDetentionDateByDetaineeId(item.Id) });
 
                 }
             }
@@ -103,11 +103,13 @@ namespace SpecialInsulator.DAL.Implementations
             DetaineeWithName withName;
             try
             {
-                detainee = Executer.ExecuteRead(connectionString, "SelectDetaineeById", new ReadDetainee(), new SqlParameter("@Id", Id));
+                detainee = Executer.ExecuteRead(connectionString,
+                                                "SelectDetaineeById",
+                                                new ReadDetainee(),
+                                                new SqlParameter("@Id", Id));
 
-                detainee.Detentions = detentionData.GetDetentionsByDetaineeId(detainee.Id);
-                //detainee.Phone = personData.GetPhoneByDetaineeId(detainee.Id);
-                withName = new DetaineeWithName(detainee, personData.GetPersonById(detainee.PeopleId));
+                detainee.Detentions = detentionRepository.GetDetentionsByDetaineeId(detainee.Id);
+                withName = new DetaineeWithName(detainee, personRepository.GetPersonById(detainee.PeopleId));
             }
             catch
             {
@@ -135,10 +137,13 @@ namespace SpecialInsulator.DAL.Implementations
                 };
 
                 detaineeWithName.person.Id = detaineeWithName.detainee.PeopleId;
-                personData.EditPerson(detaineeWithName.person);
+                personRepository.EditPerson(detaineeWithName.person);
 
                 Executer.ExecuteNonQuery(connectionString, "UpdateDetainee", parameters);
-                Executer.ExecuteNonQuery(connectionString, "UpdatePhone", new SqlParameter("@DetaineeId", detaineeWithName.detainee.Id),new SqlParameter("@Number", detaineeWithName.detainee.Phone));
+                Executer.ExecuteNonQuery(connectionString, 
+                                        "UpdatePhone",
+                                        new SqlParameter("@DetaineeId", detaineeWithName.detainee.Id),
+                                        new SqlParameter("@Number", detaineeWithName.detainee.Phone));
             }
             catch
             {

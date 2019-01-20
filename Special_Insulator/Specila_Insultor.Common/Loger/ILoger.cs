@@ -10,7 +10,5 @@ namespace SpecialInsulator.Common.Loger
     public interface ILogger
     {
         void Error(string message);
-        ILog For(object LoggerObject);
-        ILog For(Type ObjectType);
     }
 }

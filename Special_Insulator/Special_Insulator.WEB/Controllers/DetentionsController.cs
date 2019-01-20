@@ -10,27 +10,27 @@ namespace Special_Insulator.WEB.Controllers
 {
     public class DetentionsController : Controller
     {
-        private IWorkerService data;
-        private IDetentionPlaceService department;
-        private IDetentionService detentionData;
-        private IDetaineeService detaineeData;
+        private IWorkerService workerService;
+        private IDetentionPlaceService placeService;
+        private IDetentionService detentionService;
+        private IDetaineeService detaineeService;
 
         public DetentionsController(IWorkerService data, IDetentionPlaceService department, IDetentionService detentionData, IDetaineeService detaineeData)
         {
-            this.data = data;
-            this.department = department;
-            this.detentionData = detentionData;
-            this.detaineeData = detaineeData;
+            this.workerService = data;
+            this.placeService = department;
+            this.detentionService = detentionData;
+            this.detaineeService = detaineeData;
         }
 
         [HttpGet]
         [Authorize(Roles = "Editor")]
         public ActionResult AddDetention(int? Id)
         {
-            if(detaineeData.ExistId(Id))
+            if(detaineeService.ExistId(Id))
             {
-                List<WorkerAndName> workerAndNames = data.GetAllWorkers();
-                List<DetentionPlace> departments = department.GetAllDetentionPlaces();
+                List<WorkerAndName> workerAndNames = workerService.GetAllWorkers();
+                List<DetentionPlace> departments = placeService.GetAllDetentionPlaces();
                 if (workerAndNames.Count == 0 && departments.Count == 0)
                 {
                     return RedirectToAction("Index", "Edit", new { error = "Необходимо добавить отделы и сотрудников!" });
@@ -66,15 +66,15 @@ namespace Special_Insulator.WEB.Controllers
                 detention.DetainWorker = new WorkerAndName (new Worker { Id = detentionMod .DetainWorkerId}, new Person());
                 detention.DeliveryWorker = new WorkerAndName(new Worker { Id = detentionMod.DeliveryWorkerId }, new Person());
                 detention.ReleaseWorker = new WorkerAndName(new Worker { Id = detentionMod.ReleaseWorkerId }, new Person());
-                if(detentionData.AddDetention(detention))
+                if(detentionService.AddDetention(detention))
                 {
                     return RedirectToAction("FullInformation", "Edit", new { detentionMod.Id });
                 }
                 return RedirectToAction("InformationError", "Error", new { message = "Произошла ошибка при добавлении данных!" });
 
             }
-            List<WorkerAndName> workerAndNames = data.GetAllWorkers();
-            List<DetentionPlace> departments = department.GetAllDetentionPlaces();
+            List<WorkerAndName> workerAndNames = workerService.GetAllWorkers();
+            List<DetentionPlace> departments = placeService.GetAllDetentionPlaces();
             if(workerAndNames != null && departments != null)
             {
                 var workers = Mapper.MapCollection<WorkerWithNameModel>(workerAndNames);
@@ -90,9 +90,10 @@ namespace Special_Insulator.WEB.Controllers
         [Authorize(Roles = "Editor")]
         public ActionResult DeleteDetention(int? Id)
         {
-            if(detentionData.DeleteDetention(Id))
+            int id = detentionService.DeleteDetention(Id);
+            if (id > 0)
             {
-                return RedirectToAction("Index", "Edit");
+                return RedirectToAction("FullInformation", "Edit",new { Id = id});
             }
             return RedirectToAction("InformationError", "Error", new { message = "Ошибка удаления. Проверьте вводимые данные!" });
 
@@ -102,25 +103,25 @@ namespace Special_Insulator.WEB.Controllers
         [Authorize(Roles = "Editor")]
         public ActionResult EditDetention(int? Id)
         {
-            Detention mydetention = detentionData.GetDetentionById(Id);
-            List<WorkerAndName> workerAndNames = data.GetAllWorkers();
+            Detention mydetention = detentionService.GetDetentionById(Id);
+            List<WorkerAndName> workerAndNames = workerService.GetAllWorkers();
             
             if(mydetention != null && workerAndNames!= null)
             {
                 DetentionModel detention = new DetentionModel();
                 detention = Mapper.UpdateInfo(detention, mydetention);
-                List<DetentionPlace> departments = department.GetAllDetentionPlacesAndSwap(detention.DetentionPlaceId);
+                List<DetentionPlace> departments = placeService.GetAllDetentionPlacesAndSwap(detention.DetentionPlaceId);
                 ViewBag.Departments = new SelectList(departments, "Id", "Address");
                 //ViewBag.DetainWorkers = new SelectList(Mapper.MapCollection<WorkerWithNameModel>(data.SwapItems(workerAndNames,mydetention.DetainWorker.Worker.Id)), "Id", "LF");
                 //ViewBag.DeliveryWorkers = new SelectList(Mapper.MapCollection<WorkerWithNameModel>(data.SwapItems(workerAndNames, mydetention.DeliveryWorker.Worker.Id)), "Id", "LF");
                 //ViewBag.ReleaseWorkers = new SelectList(Mapper.MapCollection<WorkerWithNameModel>(data.SwapItems(workerAndNames, mydetention.ReleaseWorker.Worker.Id)), "Id", "LF");
-                ViewBag.DetainWorkers = new SelectList(data.SwapItems<WorkerWithNameModel>(workerAndNames, mydetention.DetainWorker.Worker.Id),
+                ViewBag.DetainWorkers = new SelectList(workerService.SwapItems<WorkerWithNameModel>(workerAndNames, mydetention.DetainWorker.Worker.Id),
                                                         "Id",
                                                         "LF");
-                ViewBag.DeliveryWorkers = new SelectList(data.SwapItems<WorkerWithNameModel>(workerAndNames, mydetention.DeliveryWorker.Worker.Id),
+                ViewBag.DeliveryWorkers = new SelectList(workerService.SwapItems<WorkerWithNameModel>(workerAndNames, mydetention.DeliveryWorker.Worker.Id),
                                                         "Id",
                                                         "LF");
-                ViewBag.ReleaseWorkers = new SelectList(data.SwapItems<WorkerWithNameModel>(workerAndNames, mydetention.ReleaseWorker.Worker.Id),
+                ViewBag.ReleaseWorkers = new SelectList(workerService.SwapItems<WorkerWithNameModel>(workerAndNames, mydetention.ReleaseWorker.Worker.Id),
                                                         "Id",
                                                         "LF");
                 return View(detention);
@@ -143,7 +144,7 @@ namespace Special_Insulator.WEB.Controllers
                 detention.DetainWorker = new WorkerAndName(new Worker { Id = detentionMod.DetainWorkerId }, new Person());
                 detention.DeliveryWorker = new WorkerAndName(new Worker { Id = detentionMod.DeliveryWorkerId }, new Person());
                 detention.ReleaseWorker = new WorkerAndName(new Worker { Id = detentionMod.ReleaseWorkerId }, new Person());
-                if(detentionData.EditDetention(detention))
+                if(detentionService.EditDetention(detention))
                 {
                     return RedirectToAction("FullInformation", "Edit", new { Id = detentionMod.DetaineeId });
                 }
@@ -151,19 +152,19 @@ namespace Special_Insulator.WEB.Controllers
             }
 
 
-            List<WorkerAndName> workerAndNames = data.GetAllWorkers();
-            List<DetentionPlace> departments = department.GetAllDetentionPlacesAndSwap(detentionMod.DetentionPlaceId);
+            List<WorkerAndName> workerAndNames = workerService.GetAllWorkers();
+            List<DetentionPlace> departments = placeService.GetAllDetentionPlacesAndSwap(detentionMod.DetentionPlaceId);
             if(workerAndNames != null && departments != null)
             {
                 var workers = Mapper.MapCollection<WorkerWithNameModel>(workerAndNames);
                 ViewBag.Departments = new SelectList(departments, "Id", "Address");
-                ViewBag.DetainWorkers = new SelectList(data.SwapItems<WorkerWithNameModel>(workerAndNames, detentionMod.DetainWorkerId),
+                ViewBag.DetainWorkers = new SelectList(workerService.SwapItems<WorkerWithNameModel>(workerAndNames, detentionMod.DetainWorkerId),
                                                             "Id",
                                                             "LF");
-                ViewBag.DeliveryWorkers = new SelectList(data.SwapItems<WorkerWithNameModel>(workerAndNames, detentionMod.DeliveryWorkerId),
+                ViewBag.DeliveryWorkers = new SelectList(workerService.SwapItems<WorkerWithNameModel>(workerAndNames, detentionMod.DeliveryWorkerId),
                                                         "Id",
                                                         "LF");
-                ViewBag.ReleaseWorkers = new SelectList(data.SwapItems<WorkerWithNameModel>(workerAndNames, detentionMod.ReleaseWorkerId),
+                ViewBag.ReleaseWorkers = new SelectList(workerService.SwapItems<WorkerWithNameModel>(workerAndNames, detentionMod.ReleaseWorkerId),
                                                         "Id",
                                                         "LF");
 

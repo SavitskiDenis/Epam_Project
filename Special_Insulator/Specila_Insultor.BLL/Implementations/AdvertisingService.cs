@@ -13,13 +13,22 @@ namespace SpecialInsulator.BLL.Implementations
     {
         public List<Advertising> GetLinks()
         {
-            Uri address = new Uri("http://localhost:47310/AdvertisingWCFService.svc");
-            BasicHttpBinding basic = new BasicHttpBinding();
-            EndpointAddress endpoint = new EndpointAddress(address);
-            ChannelFactory<IAdvertisingWCFService> factory = new ChannelFactory<IAdvertisingWCFService>(basic, endpoint);
-            IAdvertisingWCFService channel = factory.CreateChannel();
+            List<Advertising> advertisings;
+            try
+            {
+                Uri address = new Uri("http://localhost:47310/AdvertisingWCFService.svc");
+                BasicHttpBinding basic = new BasicHttpBinding();
+                EndpointAddress endpoint = new EndpointAddress(address);
+                ChannelFactory<IAdvertisingWCFService> factory = new ChannelFactory<IAdvertisingWCFService>(basic, endpoint);
+                IAdvertisingWCFService channel = factory.CreateChannel();
 
-            return channel.GetAdversiting();
+                advertisings =  channel.GetAdversiting();
+            }
+            catch
+            {
+                return new List<Advertising>();
+            }
+            return advertisings;
         }
     }
 }

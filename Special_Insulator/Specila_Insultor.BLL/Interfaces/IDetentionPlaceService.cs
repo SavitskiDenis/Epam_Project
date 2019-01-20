@@ -18,5 +18,7 @@ namespace SpecialInsulator.BLL.Interfaces
         bool EditDetentionPlace(DetentionPlace place);
 
         bool IsNewPlace(string address);
+
+        bool IsUsing(int? Id);
     }
 }

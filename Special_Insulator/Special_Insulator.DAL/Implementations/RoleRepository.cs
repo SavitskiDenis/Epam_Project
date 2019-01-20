@@ -29,11 +29,6 @@ namespace SpecialInsulator.DAL.Implementations
             return true;
         }
 
-        public bool EditUserRole(int userId, int roleId)
-        {
-            throw new NotImplementedException();
-        }
-
         public List<int> GetRolesId()
         {
             List<int> ids;

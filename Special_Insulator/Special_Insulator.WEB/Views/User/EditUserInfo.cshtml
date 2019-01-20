@@ -9,6 +9,7 @@
         {
             @Html.HiddenFor(model => model.Id)
             @Html.HiddenFor(model => model.OldLogin)
+            <p style="color:red;font-weight:bold">@ViewBag.Error</p>
             <div class="row  justify-content-center">
                 <div class="col-10" style="margin:0 auto;margin-bottom:5px ; margin-top:10px">
                     <label>Логин</label>
@@ -34,7 +35,6 @@
                     <label>Старый пароль</label>
                     @Html.PasswordFor(model => model.OldPassword, new { @class = "form-control" })
                     @Html.ValidationMessageFor(model => model.OldPassword, "", new { @style = "color:red;font-weight: bold;" })
-                    <p style="color:red;font-weight:bold">@ViewBag.Error</p>
                 </div>
             </div>
             <div class="row justify-content-center" style="margin-bottom:20px; margin-top:20px">

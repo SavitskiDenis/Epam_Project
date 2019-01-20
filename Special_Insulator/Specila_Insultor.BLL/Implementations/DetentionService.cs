@@ -7,36 +7,36 @@ namespace SpecialInsulator.BLL.Implementations
 {
     class DetentionService : IDetentionService
     {
-        private IDetentionRepository detentionData;
+        private IDetentionRepository detentionRepository;
 
         public DetentionService(IDetentionRepository detention)
         {
-            detentionData = detention;
+            detentionRepository = detention;
         }
 
         public bool AddDetention(Detention detention)
         {
             if(detention != null)
             {
-                return detentionData.AddDetention(detention);
+                return detentionRepository.AddDetention(detention);
             }
             return false;
         }
 
-        public bool DeleteDetention(int? Id)
+        public int DeleteDetention(int? Id)
         {
             if(Id != null)
             {
-                return detentionData.DeleteDetention(int.Parse(Id.ToString()));
+                return detentionRepository.DeleteDetention(int.Parse(Id.ToString()));
             }
-            return false;
+            return 0;
         }
 
         public List<Detention> GetDetentionsByDetaineeId(int? id)
         {
             if(id != null)
             {
-                return detentionData.GetDetentionsByDetaineeId(int.Parse(id.ToString()));
+                return detentionRepository.GetDetentionsByDetaineeId(int.Parse(id.ToString()));
             }
             return null;
         }
@@ -45,7 +45,7 @@ namespace SpecialInsulator.BLL.Implementations
         {
             if(Id != null)
             {
-                return detentionData.GetDetentionById(int.Parse(Id.ToString()));
+                return detentionRepository.GetDetentionById(int.Parse(Id.ToString()));
             }
             return null;
         }
@@ -54,7 +54,7 @@ namespace SpecialInsulator.BLL.Implementations
         {
             if(detention != null)
             {
-                return detentionData.EditDetention(detention);
+                return detentionRepository.EditDetention(detention);
             }
             return false;
         }

@@ -9,7 +9,7 @@ namespace SpecialInsulator.DAL.Interfaces
 
         List<User> GetAllUsers();
 
-        bool DeleteUserById(int Id);
+        //bool DeleteUserById(int Id);
 
         bool EditUserInfo(User user);
 

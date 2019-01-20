@@ -12,8 +12,8 @@ namespace SpecialInsulator.DAL.Implementations
     class DetentionRepository : IDetentionRepository
     {
         private string connectionString = WebConfigurationManager.ConnectionStrings["MyDb"].ConnectionString;
-        private WorkerRepository worker = new WorkerRepository();
-        private DetentionPlaceRepository placeData = new DetentionPlaceRepository();
+        private IWorkerRepository workerRepository = new WorkerRepository();
+        private IDetentionPlaceRepository placeRepository = new DetentionPlaceRepository();
 
         public List<Detention> GetDetentionsByDetaineeId(int id)
         {
@@ -26,11 +26,14 @@ namespace SpecialInsulator.DAL.Implementations
                                                             new SqlParameter("@DetaineeId", id));
                 foreach (var item in detentions)
                 {
-                    item.DetainWorker = worker.GetWorkerById(worker.GetWorkerIdByDetentionId(item.Id, "SelectDetainWorkerId"));
+                    item.DetainWorker = workerRepository.GetWorkerById(workerRepository.GetWorkerIdByDetentionId(item.Id,
+                                                                        "SelectDetainWorkerId"));
 
-                    item.DeliveryWorker = worker.GetWorkerById(worker.GetWorkerIdByDetentionId(item.Id, "SelectDeliveryWorkerId"));
+                    item.DeliveryWorker = workerRepository.GetWorkerById(workerRepository.GetWorkerIdByDetentionId(item.Id,
+                                                                       "SelectDeliveryWorkerId"));
 
-                    item.ReleaseWorker = worker.GetWorkerById(worker.GetWorkerIdByDetentionId(item.Id, "SelectReleaseWorkerId"));
+                    item.ReleaseWorker = workerRepository.GetWorkerById(workerRepository.GetWorkerIdByDetentionId(item.Id,
+                                                                        "SelectReleaseWorkerId"));
                 }
             }
             catch
@@ -80,8 +83,9 @@ namespace SpecialInsulator.DAL.Implementations
             return true;
         }
 
-        public bool DeleteDetention(int Id)
+        public int DeleteDetention(int Id)
         {
+            int id;
             try
             {
                 Executer.ExecuteNonQuery(connectionString, "Delete_DetDel", new SqlParameter("@Id", Id));
@@ -90,13 +94,13 @@ namespace SpecialInsulator.DAL.Implementations
 
                 Executer.ExecuteNonQuery(connectionString, "Delete_DR", new SqlParameter("@Id", Id));
 
-                Executer.ExecuteNonQuery(connectionString, "Delete_Detention", new SqlParameter("@Id", Id));
+                id = Executer.ExecuteRead(connectionString, "DeleteDetention", new ReadId(),new SqlParameter("@Id", Id));
             }
             catch
             {
-                return false;
+                return 0;
             }
-            return true;
+            return id;
             
 
         }
@@ -113,13 +117,13 @@ namespace SpecialInsulator.DAL.Implementations
 
                 detention.Id = Id;
 
-                detention.DetainWorker = worker.GetWorkerById(worker.GetWorkerIdByDetentionId(detention.Id,
+                detention.DetainWorker = workerRepository.GetWorkerById(workerRepository.GetWorkerIdByDetentionId(detention.Id,
                                                                                                 "SelectDetainWorkerId"));
 
-                detention.DeliveryWorker = worker.GetWorkerById(worker.GetWorkerIdByDetentionId(detention.Id,
+                detention.DeliveryWorker = workerRepository.GetWorkerById(workerRepository.GetWorkerIdByDetentionId(detention.Id,
                                                                                                 "SelectDeliveryWorkerId"));
 
-                detention.ReleaseWorker = worker.GetWorkerById(worker.GetWorkerIdByDetentionId(detention.Id,
+                detention.ReleaseWorker = workerRepository.GetWorkerById(workerRepository.GetWorkerIdByDetentionId(detention.Id,
                                                                                                 "SelectReleaseWorkerId"));
             }
             catch

@@ -30,7 +30,10 @@ namespace SpecialInsulator.DAL.Implementations
         {
             try
             {
-                return Executer.ExecuteCollectionRead(connectionString, "SelectAllDetentionPlaces", new ReadDetentionPlace(), null);
+                return Executer.ExecuteCollectionRead(connectionString,
+                                                        "SelectAllDetentionPlaces",
+                                                        new ReadDetentionPlace(),
+                                                        null);
             }
             catch
             {
@@ -86,6 +89,22 @@ namespace SpecialInsulator.DAL.Implementations
             }
             return true;
             
+        }
+
+        public List<int> GetUsingIds()
+        {
+            List<int> ids;
+            try
+            {
+                ids = Executer.ExecuteCollectionRead(connectionString,
+                                                    "SelectAllDetentionPlaceIdsFromDetentions",
+                                                    new ReadId());
+            }
+            catch
+            {
+                return null;
+            }
+            return ids;
         }
     }
 }

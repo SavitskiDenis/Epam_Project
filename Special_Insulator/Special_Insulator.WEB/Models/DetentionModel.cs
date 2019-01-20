@@ -16,14 +16,17 @@ namespace Special_Insulator.WEB.Models
 
         [Required(ErrorMessage = "Поле не должно быть пустым")]
         [RegularExpression(@"(0[1-9]|[12][0-9]|3[01])[- /.](0[1-9]|1[012])[- /.](19|20)\d\d", ErrorMessage = "Дата должна быть в формате xx.xx.xxxx")]
+        [CheckDateTime]
         public string DetentionDate { get; set; }
 
         [Required(ErrorMessage = "Поле не должно быть пустым")]
         [RegularExpression(@"(0[1-9]|[12][0-9]|3[01])[- /.](0[1-9]|1[012])[- /.](19|20)\d\d", ErrorMessage = "Дата должна быть в формате xx.xx.xxxx")]
+        [CheckDateTime]
         public string DeliveryDate { get; set; }
 
         [Required(ErrorMessage = "Поле не должно быть пустым")]
         [RegularExpression(@"(0[1-9]|[12][0-9]|3[01])[- /.](0[1-9]|1[012])[- /.](19|20)\d\d", ErrorMessage = "Дата должна быть в формате xx.xx.xxxx")]
+        [CheckDateTime]
         public string LiberationDate { get; set; }
 
         public int DetainWorkerId { get; set; }
@@ -35,11 +38,11 @@ namespace Special_Insulator.WEB.Models
         public int DetentionPlaceId { get; set; }
 
         [Required(ErrorMessage = "Поле не должно быть пустым")]
-        [RegularExpression(@"[0-9]{1,8}\.[0-9]{2}", ErrorMessage = "Не верный формат")]
+        [RegularExpression(@"[0-9]{1,8}(?:[.,][0-9]{2})?", ErrorMessage = "Не верный формат")]
         public string AccruedAmount { get; set; }
 
         [Required(ErrorMessage = "Поле не должно быть пустым")]
-        [RegularExpression(@"[0-9]{1,8}\.[0-9]{2}", ErrorMessage = "Не верный формат")]
+        [RegularExpression(@"[0-9]{1,8}(?:[.,][0-9]{2})?", ErrorMessage = "Не верный формат")]
         public string PaidAmount { get; set; }
 
         public int DetaineeId { get; set; }

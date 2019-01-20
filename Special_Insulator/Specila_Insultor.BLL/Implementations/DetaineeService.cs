@@ -8,16 +8,16 @@ namespace SpecialInsulator.BLL.Implementations
 {
     public class DetaineeService : IDetaineeService
     {
-        private IDetaineeRepository data;
+        private IDetaineeRepository detaineeRepository;
 
         public DetaineeService(IDetaineeRepository data)
         {
-            this.data = data;
+            this.detaineeRepository = data;
         }
 
         public bool AddDetainee(Person addPerson, Detainee addDetainee)
         {
-            if(Checker.CheckedForNull(addPerson, addDetainee) && data.AddDetainee(addPerson, addDetainee))
+            if(Checker.CheckedForNull(addPerson, addDetainee) && detaineeRepository.AddDetainee(addPerson, addDetainee))
             {
                 return true;
             }
@@ -31,12 +31,12 @@ namespace SpecialInsulator.BLL.Implementations
 
         public List<DetaineeWithName> GetAllDetainees()
         {
-            return data.GetAllDeteinees();
+            return detaineeRepository.GetAllDeteinees();
         }
 
         public bool DeleteDetaineeById(int? id)
         {
-            if(Checker.CheckedForNull(id) && id>0 && data.DeletDetaineeById(id))
+            if(Checker.CheckedForNull(id) && id>0 && detaineeRepository.DeletDetaineeById(id))
             {
                 return true;
             }
@@ -48,7 +48,7 @@ namespace SpecialInsulator.BLL.Implementations
         {
             if(Checker.CheckedForNull(Id))
             {
-                var detainee = data.GetDeteineeById(Id);
+                var detainee = detaineeRepository.GetDeteineeById(Id);
                 if (detainee != null)
                 {
                     return detainee;
@@ -60,7 +60,7 @@ namespace SpecialInsulator.BLL.Implementations
 
         public bool EditDetaineeInfo(DetaineeWithName detainee)
         {
-            if (Checker.CheckedForNull(detainee) && data.EditDetaineeInfo(detainee))
+            if (Checker.CheckedForNull(detainee) && detaineeRepository.EditDetaineeInfo(detainee))
             {
                 return true;
             }

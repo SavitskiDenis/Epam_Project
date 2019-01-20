@@ -1,4 +1,5 @@
 ﻿using SpecialInsulator.Common.Entity;
+using System;
 using System.Collections.Generic;
 
 namespace SpecialInsulator.DAL.Interfaces
@@ -9,7 +10,7 @@ namespace SpecialInsulator.DAL.Interfaces
 
         bool AddDetention(Detention detention);
 
-        bool DeleteDetention(int Id);
+        int DeleteDetention(int Id);
 
         Detention GetDetentionById(int Id);
 
@@ -18,5 +19,7 @@ namespace SpecialInsulator.DAL.Interfaces
         bool DeleteDetentionByDetaineeId(int Id);
 
         List<int> GetDetentionsIdByDetaineeId(int Id);
+
+        DateTime GetLastDetentionDateByDetaineeId(int Id);
     }
 }

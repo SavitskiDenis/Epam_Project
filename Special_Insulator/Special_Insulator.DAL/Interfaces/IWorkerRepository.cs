@@ -16,5 +16,7 @@ namespace SpecialInsulator.DAL.Interfaces
         bool EditWorker(WorkerAndName workerAndName);
 
         int GetWorkerIdByDetentionId(int Id, string procedure);
+
+        List<int> GetUsingIds(string type);
     }
 }

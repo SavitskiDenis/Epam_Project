@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Special_Insulator.WEB.CostumeVaidationAttribute;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -28,6 +29,7 @@ namespace Special_Insulator.WEB.Models
 
         [Required(ErrorMessage = "Поле не должно быть пустым")]
         [RegularExpression(@"(0[1-9]|[12][0-9]|3[01])[- /.](0[1-9]|1[012])[- /.](19|20)\d\d", ErrorMessage = "Дата должна быть в формате xx.xx.xxxx")]
+        [CheckDateTime]
         public string BornDate { get; set; }
         
         public int StatusId { get; set; }

@@ -17,6 +17,6 @@ namespace SpecialInsulator.BLL.Interfaces
 
         List<T> SwapItems<T>(List<WorkerAndName> workers, int Id) where T : class, new();
 
-
+        bool IsUsing(int? Id);
     }
 }

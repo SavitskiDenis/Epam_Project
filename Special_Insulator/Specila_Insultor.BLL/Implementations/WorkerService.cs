@@ -9,32 +9,32 @@ namespace SpecialInsulator.BLL.Implementations
 {
     public class WorkerService : IWorkerService
     {
-        IWorkerRepository workerData;
+        private IWorkerRepository workerRepository;
 
         public WorkerService(IWorkerRepository workerData)
         {
-            this.workerData = workerData;
+            this.workerRepository = workerData;
         }
 
         public bool AddWorker(Worker worker,Person person)
         {
             if(worker != null && person != null)
             {
-                return workerData.AddWorker(worker, person);
+                return workerRepository.AddWorker(worker, person);
             }
             return false;
         }
 
         public List<WorkerAndName> GetAllWorkers()
         {
-            return workerData.GetAllWorkers();
+            return workerRepository.GetAllWorkers();
         }
 
         public WorkerAndName GetWorkerById(int? Id)
         {
             if(Id != null)
             {
-                return workerData.GetWorkerById(int.Parse(Id.ToString()));
+                return workerRepository.GetWorkerById(int.Parse(Id.ToString()));
             }
             return null;
         }
@@ -43,7 +43,7 @@ namespace SpecialInsulator.BLL.Implementations
         {
             if(Id != null)
             {
-                return workerData.DeleteWorkerById(int.Parse(Id.ToString()));
+                return workerRepository.DeleteWorkerById(int.Parse(Id.ToString()));
             }
             return false;
         }
@@ -52,7 +52,7 @@ namespace SpecialInsulator.BLL.Implementations
         {
             if(workerAndName != null)
             {
-                return workerData.EditWorker(workerAndName);
+                return workerRepository.EditWorker(workerAndName);
             }
             return false;
         }
@@ -67,6 +67,45 @@ namespace SpecialInsulator.BLL.Implementations
                 workers[0] = worker;
             }
             return Mapper.MapCollection<T>(workers);
+        }
+
+        public bool IsUsing(int? Id)
+        {
+            List<int> ids = workerRepository.GetUsingIds("Detain");
+            if(ExistId(Id,ids))
+            {
+                return true;
+            }
+
+            ids = workerRepository.GetUsingIds("Delivery");
+            if (ExistId(Id, ids))
+            {
+                return true;
+            }
+
+            ids = workerRepository.GetUsingIds("Release");
+            if (ExistId(Id, ids))
+            {
+                return true;
+            }
+            return false;
+        }
+
+        private bool ExistId(int? Id,List<int> collection)
+        {
+            if(Id != null && collection != null)
+            {
+                int id = int.Parse(Id.ToString());
+
+                foreach(var item in collection)
+                {
+                    if(item == id)
+                    {
+                        return true;
+                    }
+                }
+            }
+            return false;
         }
     }
 }

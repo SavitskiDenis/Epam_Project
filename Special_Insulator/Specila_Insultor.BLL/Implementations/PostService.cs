@@ -7,18 +7,18 @@ namespace SpecialInsulator.BLL.Implementations
 {
     public class PostService : IPostService
     {
-        IPostRepository postData;
+        IPostRepository postRepository;
 
         public PostService(IPostRepository postData)
         {
-            this.postData = postData;
+            this.postRepository = postData;
         }
 
         public bool AddPost(Post post)
         {
             if(post != null)
             {
-                return postData.AddPost(post);
+                return postRepository.AddPost(post);
             }
             return false;
         }
@@ -27,7 +27,7 @@ namespace SpecialInsulator.BLL.Implementations
         {
             if(Id != null)
             {
-                return postData.DeletePostById(int.Parse(Id.ToString()));
+                return postRepository.DeletePostById(int.Parse(Id.ToString()));
             }
             return false;
         }
@@ -36,21 +36,21 @@ namespace SpecialInsulator.BLL.Implementations
         {
             if(post != null)
             {
-                return postData.EditPost(post);
+                return postRepository.EditPost(post);
             }
             return false;
         }
 
         public List<Post> GetAllPosts()
         {
-            return postData.GetAllPosts();
+            return postRepository.GetAllPosts();
         }
 
         public Post GetPostById(int? Id)
         {
             if(Id != null)
             {
-                return postData.GetPostById(int.Parse(Id.ToString()));
+                return postRepository.GetPostById(int.Parse(Id.ToString()));
             }
             return null;
         }
@@ -70,6 +70,27 @@ namespace SpecialInsulator.BLL.Implementations
             }
             return true;
 
+        }
+
+        public bool IsUsing(int? Id)
+        {
+            if(Id != null)
+            {
+                List<int> ids = postRepository.GetUsingIds();
+                int id = int.Parse(Id.ToString());
+
+                if (ids != null)
+                {
+                    foreach(var item in ids)
+                    {
+                        if(item == id)
+                        {
+                            return true;
+                        }
+                    }
+                }
+            }
+            return false;
         }
 
         public List<Post> SwapPost(int? Id)

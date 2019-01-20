@@ -20,30 +20,6 @@ namespace SpecialInsulator.Common.Loger
             myLogger = LogManager.GetLogger("MyLogger");
         }
 
-        public  ILog For(object LoggerObject)
-        {
-            if(LoggerObject != null)
-            {
-                return For(LoggerObject.GetType());
-            }
-            else
-            {
-                return For(null);
-            }
-        }
-
-        public  ILog For(Type ObjectType)
-        {
-            if (ObjectType != null)
-            {
-                return LogManager.GetLogger(ObjectType.Name);
-            }
-            else
-            {
-                return LogManager.GetLogger(string.Empty);
-            }
-        }
-
         public void Error(string message)
         {
             myLogger.Error(message);

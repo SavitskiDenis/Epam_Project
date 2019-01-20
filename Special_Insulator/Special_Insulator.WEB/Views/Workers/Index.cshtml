@@ -4,10 +4,10 @@
     ViewBag.Title = "Список сотркдников";
 }
 <div style="margin-top:20px">
-    @*<a onclick="location.href = '@Url.Action("Index","Edit")'"><img src="https://img.icons8.com/windows/32/000000/back.png"></a>*@
     <button onclick="location.href = '@Url.Action("Index","Edit")'" class="btn btn-outline-info"><img height="20" src="https://img.icons8.com/windows/32/000000/back.png"></button>
 </div>
 <div class="container">
+    <p style="color:red;font-weight:bold">@ViewBag.Error</p>
     <table class="table table-sm">
         <tr>
             <th>

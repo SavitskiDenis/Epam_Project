@@ -15,5 +15,7 @@ namespace SpecialInsulator.DAL.Interfaces
         bool DeleteDetentionPlaceById(int Id);
 
         bool EditDetentionPlace(DetentionPlace place);
+
+        List<int> GetUsingIds();
     }
 }

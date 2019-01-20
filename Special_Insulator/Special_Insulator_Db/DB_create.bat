@@ -78,6 +78,11 @@ sqlcmd -S.\ -E -i %Procedures/Select/SelectRolesIdByUserId.sql
 sqlcmd -S.\ -E -i %Procedures/Select/SelectAllPosts.sql
 sqlcmd -S.\ -E -i %Procedures/Select/SelectPostById.sql
 sqlcmd -S.\ -E -i %Procedures/Select/SelectAllStatuses.sql
+sqlcmd -S.\ -E -i %Procedures/Select/SelectAllWorkerIdsFromDeliveryWorkers.sql
+sqlcmd -S.\ -E -i %Procedures/Select/SelectAllDetentionPlaceIdsFromDetentions.sql
+sqlcmd -S.\ -E -i %Procedures/Select/SelectAllPostIdsFromWorkers.sql
+sqlcmd -S.\ -E -i %Procedures/Select/SelectAllWorkerIdsFromDetainWorkers.sql
+sqlcmd -S.\ -E -i %Procedures/Select/SelectAllWorkerIdsFromReleaseWorkers.sql
 
 
 

@@ -84,5 +84,21 @@ namespace SpecialInsulator.DAL.Implementations
             }
             return post;
         }
+
+        public List<int> GetUsingIds()
+        {
+            List<int> ids;
+            try
+            {
+                ids = Executer.ExecuteCollectionRead(connectionString, "SelectAllPostIdsFromWorkers",new ReadId());
+            }
+            catch
+            {
+                return null;
+            }
+            return ids;
+        }
+
+        
     }
 }

@@ -11,16 +11,16 @@ namespace SpecialInsulator.BLL.Implementations
 {
     class StatusService : IStatusService
     {
-        private readonly IStatusRepository status;
+        private  IStatusRepository statusRepository;
 
         public StatusService(IStatusRepository status)
         {
-            this.status = status;
+            this.statusRepository = status;
         }
 
         public List<Status> GetAllStatuses()
         {
-            return status.GetAllStatuses();
+            return statusRepository.GetAllStatuses();
         }
 
         public List<Status> GetAllStatusesAndSwap(int? Id)

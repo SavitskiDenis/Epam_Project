@@ -14,5 +14,7 @@ namespace SpecialInsulator.DAL.Interfaces
         bool DeletePostById(int Id);
 
         bool EditPost(Post post);
+
+        List<int> GetUsingIds();
     }
 }

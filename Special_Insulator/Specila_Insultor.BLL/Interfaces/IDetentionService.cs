@@ -9,7 +9,7 @@ namespace SpecialInsulator.BLL.Interfaces
 
         bool AddDetention(Detention detention);
 
-        bool DeleteDetention(int? Id);
+        int DeleteDetention(int? Id);
 
         Detention GetDetentionById(int? Id);
 

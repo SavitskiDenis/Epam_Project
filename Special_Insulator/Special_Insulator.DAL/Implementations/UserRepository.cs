@@ -12,7 +12,7 @@ namespace SpecialInsulator.DAL.Implementations
     class UserRepository : IUserRepository
     {
         private string connectionString = WebConfigurationManager.ConnectionStrings["MyDb"].ConnectionString;
-        private RoleRepository roleData = new RoleRepository();
+        private IRoleRepository roleRepository = new RoleRepository();
 
         public bool AddUser(User user)
         {
@@ -27,7 +27,7 @@ namespace SpecialInsulator.DAL.Implementations
                 int id = int.Parse(Executer.ExecuteScalar(connectionString, "AddUser", parameters).ToString());
                 if (id != 0)
                 {
-                    roleData.AddRoleToUser(id, 1);
+                    roleRepository.AddRoleToUser(id, 1);
                 }
                 else
                 {
@@ -47,9 +47,9 @@ namespace SpecialInsulator.DAL.Implementations
         {
             try
             {
-                roleData.DeleteRoleFromUser(Id,1);
-                roleData.DeleteRoleFromUser(Id,2);
-                roleData.DeleteRoleFromUser(Id,3);
+                roleRepository.DeleteRoleFromUser(Id,1);
+                roleRepository.DeleteRoleFromUser(Id,2);
+                roleRepository.DeleteRoleFromUser(Id,3);
                 Executer.ExecuteNonQuery(connectionString, "Delete_User",new SqlParameter("@Id",Id));
             }
             catch
@@ -59,19 +59,19 @@ namespace SpecialInsulator.DAL.Implementations
             return true;
         }
 
-        public bool DeleteUserById(int Id)
-        {
-            try
-            {
-                Executer.ExecuteNonQuery(connectionString, "Delete_User", new SqlParameter("@Id", Id));
-            }
-            catch
-            {
-                return false;
-            }
-            return true;
+        //public bool DeleteUserById(int Id)
+        //{
+        //    try
+        //    {
+        //        Executer.ExecuteNonQuery(connectionString, "Delete_User", new SqlParameter("@Id", Id));
+        //    }
+        //    catch
+        //    {
+        //        return false;
+        //    }
+        //    return true;
             
-        }
+        //}
 
         public bool EditUserInfo(User user)
         {
@@ -101,7 +101,7 @@ namespace SpecialInsulator.DAL.Implementations
                 users = Executer.ExecuteCollectionRead(connectionString, "SelectAllUsers", new ReadUser());
                 foreach (var item in users)
                 {
-                    item.Roles = roleData.GetUserRolesByUserId(item.Id);
+                    item.Roles = roleRepository.GetUserRolesByUserId(item.Id);
                 }
             }
             catch

@@ -19,11 +19,11 @@
 <div>
     @if (Model.detainee.Photo != null)
     {
-        <img class="rounded mx-auto d-block" src="@String.Format("data:image/png;base64,{0}", Convert.ToBase64String(Model.detainee.Photo))" style="width:30%" />
+        <img height="500" class="rounded mx-auto d-block" src="@String.Format("data:image/png;base64,{0}", Convert.ToBase64String(Model.detainee.Photo))"  />
     }
     else
     {
-        <img class="rounded mx-auto d-block" src="https://image.freepik.com/free-icon/male-user-close-up-shape-for-facebook_318-37635.jpg" width="200" style="border:2px solid #0094ff;border-radius:50px" />
+        <img height="500" class="rounded mx-auto d-block" src="https://image.freepik.com/free-icon/male-user-close-up-shape-for-facebook_318-37635.jpg" width="200" style="border:2px solid #0094ff;border-radius:50px" />
     }
 </div>
 <div class="row justify-content-between content">
@@ -62,14 +62,35 @@
             </td>
             <td>
                 <p>Кем задержен:</p>
-                <p>ФИО: @item.DetainWorker.Person.LastName . @item.DetainWorker.Person.FirstName[0] . @item.DetainWorker.Person.Patronymic[0]</p>
+                @if (item.DetainWorker.Person.Patronymic == null || item.DetainWorker.Person.Patronymic == "")
+                {
+                    <p>ФИО: @item.DetainWorker.Person.LastName . @item.DetainWorker.Person.FirstName[0] </p>
+                }
+                else
+                {
+                    <p>ФИО: @item.DetainWorker.Person.LastName . @item.DetainWorker.Person.FirstName[0] . @item.DetainWorker.Person.Patronymic[0] </p>
+                }
                 <p>Должность: @item.DetainWorker.Worker.WorkerPost.PostName</p>
                 <p>Кем доставлен:</p>
-                <p>ФИО: @item.DeliveryWorker.Person.LastName . @item.DeliveryWorker.Person.FirstName[0]</p>
-                <p>Должность: @item.DetainWorker.Worker.WorkerPost.PostName</p>
+                @if (item.DeliveryWorker.Person.Patronymic == null || item.DeliveryWorker.Person.Patronymic == "")
+                {
+                    <p>ФИО: @item.DeliveryWorker.Person.LastName . @item.DeliveryWorker.Person.FirstName[0] </p>
+                }
+                else
+                {
+                    <p>ФИО: @item.DeliveryWorker.Person.LastName . @item.DeliveryWorker.Person.FirstName[0] . @item.DeliveryWorker.Person.Patronymic[0] </p>
+                }
+                <p>Должность: @item.DeliveryWorker.Worker.WorkerPost.PostName</p>
                 <p>Кем отпущен:</p>
-                <p>ФИО: @item.ReleaseWorker.Person.LastName . @item.ReleaseWorker.Person.FirstName[0]</p>
-                <p>Должность: @item.DetainWorker.Worker.WorkerPost.PostName</p>
+                @if (item.ReleaseWorker.Person.Patronymic == null || item.ReleaseWorker.Person.Patronymic == "")
+                {
+                    <p>ФИО: @item.DetainWorker.Person.LastName . @item.DetainWorker.Person.FirstName[0] </p>
+                }
+                else
+                {
+                    <p>ФИО: @item.ReleaseWorker.Person.LastName . @item.ReleaseWorker.Person.FirstName[0] . @item.ReleaseWorker.Person.Patronymic[0] </p>
+                }
+                <p>Должность: @item.ReleaseWorker.Worker.WorkerPost.PostName</p>
             </td>
             <td>
                 @item.DetentionPlace.Address

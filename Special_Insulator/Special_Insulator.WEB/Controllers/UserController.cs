@@ -9,19 +9,19 @@ namespace Special_Insulator.WEB.Controllers
 {
     public class UserController : Controller
     {
-        private IUserService userData;
+        private IUserService userService;
 
         private AuthenticationPrincipal MyUser { get { return HttpContext.User as AuthenticationPrincipal; } }
 
         public UserController(IUserService userData)
         {
-            this.userData = userData;
+            this.userService = userData;
         }
 
         [Authorize(Roles = "Admin")]
         public ActionResult Index()
         {
-            var collection = userData.GetAllUsers();
+            var collection = userService.GetAllUsers();
             if (collection != null)
             {
                 return View(collection);
@@ -34,7 +34,7 @@ namespace Special_Insulator.WEB.Controllers
         {
             if(type != null && Id != 0)
             {
-                userData.EditRoles(Id,type);
+                userService.EditRoles(Id,type);
             }
             return RedirectToAction("Index", "User");
         }
@@ -55,7 +55,7 @@ namespace Special_Insulator.WEB.Controllers
         [Authorize]
         public ActionResult EditUserInfo()
         {
-            var user = userData.GetUserByLoginAndEmail(MyUser.Login,MyUser.Email);
+            var user = userService.GetUserByLoginAndEmail(MyUser.Login,MyUser.Email);
             if(user != null)
             {
                 var model = Mapper.MapToItem<User, UserEditModel>(user);
@@ -71,17 +71,32 @@ namespace Special_Insulator.WEB.Controllers
         {
             if(ModelState.IsValid)
             {
-                if (userData.checkUserAndGet(new User { Login = user.OldLogin, Password =  user.OldPassword}) != null)
+                if (userService.checkUserAndGet(new User { Login = user.OldLogin, Password =  user.OldPassword}) != null)
                 {
-                    var _newUser = Mapper.MapToItem<UserEditModel,User>(user);
+                    var _newUser = Mapper.MapToItem<UserEditModel, User>(user);
                     _newUser.Password = user.NewPassword;
-                    if(userData.EditUserInfo(_newUser))
+                    bool check = false;
+                    if (_newUser.Login != user.OldLogin)
                     {
-                        return RedirectToAction("LogOut", "Authentication");
+                        check = userService.checkUser(_newUser);
                     }
-                    return RedirectToAction("InformationError", "Error", new { message = "Произошла ошибка при изменении данных!" });
+                    
+                    if (!check)
+                    {
+                        if (userService.EditUserInfo(_newUser))
+                        {
+                            return RedirectToAction("LogOut", "Authentication");
+                        }
+                        return RedirectToAction("InformationError", "Error", new { message = "Произошла ошибка при изменении данных!" });
+                    }
+                    ViewBag.Error = "Пользователь с таким логином уже существует!";
+
                 }
-                ViewBag.Error = "Не верный пароль!";
+                else
+                {
+                    ViewBag.Error = "Не верный пароль!";
+                }
+                
             }
             return View(user);
             
@@ -90,7 +105,7 @@ namespace Special_Insulator.WEB.Controllers
         [Authorize(Roles ="Admin")]
         public ActionResult DeleteUser(int? Id)
         {
-            if(userData.DeleteUser(Id))
+            if(userService.DeleteUser(Id))
             {
                 return RedirectToAction("Index","User");
             }

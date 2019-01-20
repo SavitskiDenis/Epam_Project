@@ -18,5 +18,7 @@ namespace SpecialInsulator.BLL.Interfaces
         List<Post> SwapPost(int? Id);
 
         bool IsNewPost(string postName);
+
+        bool IsUsing(int? Id);
     }
 }

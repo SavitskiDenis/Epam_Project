@@ -135,6 +135,11 @@
     <None Include="Procedures\Select\SelectRolesId.sql" />
     <None Include="Tables\CreateStatusTable.sql" />
     <None Include="Procedures\Select\SelectAllStatuses.sql" />
+    <None Include="Procedures\Select\SelectAllDetentionPlaceIdsFromDetentions.sql" />
+    <None Include="Procedures\Select\SelectAllPostIdsFromWorkers.sql" />
+    <None Include="Procedures\Select\SelectAllWorkerIdsFromReleaseWorkers.sql" />
+    <None Include="Procedures\Select\SelectAllWorkerIdsFromDeliveryWorkers.sql" />
+    <None Include="Procedures\Select\SelectAllWorkerIdsFromDetainWorkers.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Procedures\Add\AddDetentionPlace.sql" />

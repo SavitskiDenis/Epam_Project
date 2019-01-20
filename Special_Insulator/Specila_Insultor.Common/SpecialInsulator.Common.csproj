@@ -94,7 +94,6 @@
     <Compile Include="SQLExecuter\Executer.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Loger\LoggerConfiguration.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup />
