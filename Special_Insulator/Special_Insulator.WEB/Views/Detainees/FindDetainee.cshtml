@@ -42,7 +42,7 @@
                 }
             </td>
             <td>
-                @Html.TextAreaFor(modelItem => item.detainee.Address, new { disabled = "disabled", resize = "none" })
+                @Html.TextAreaFor(modelItem => item.detainee.Address, new { disabled = "disabled", @style = "resize:none;" })
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.detainee.Phone)

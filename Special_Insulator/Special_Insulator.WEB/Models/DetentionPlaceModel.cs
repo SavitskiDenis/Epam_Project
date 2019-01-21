@@ -11,7 +11,7 @@ namespace Special_Insulator.WEB.Models
         public int Id { get; set; }
 
         [Required(ErrorMessage = "Поле не должно быть пустым")]
-        [StringLength(200,MinimumLength = 5, ErrorMessage = "Не верный размер текста")]
+        [StringLength(200,MinimumLength = 5, ErrorMessage = "Неверный размер текста")]
         public string Address { get; set; }
     }
 }
